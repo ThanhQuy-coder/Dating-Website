@@ -1,5 +1,60 @@
+# ========================
+# 1. Hệ điều hành
+# ========================
+.DS_Store        # macOS
+Thumbs.db        # Windows
+
+# ========================
+# 2. Trình soạn thảo
+# ========================
+.vscode/
+.idea/
+*.swp             # file tạm của Vim
+*.sublime*
+
+# ========================
+# 3. File tạm, cache, log
+# ========================
+*.log
+*.tmp
+*.bak
+*.cache
+*.pid
+
+# ========================
+# 4. Môi trường & cấu hình riêng
+# ========================
 .env
-*.env
-env/
-node_modules/
-vendor/
+*.local
+*.env.*
+
+# ========================
+# 5. Thư mục build (nếu có dùng build tools)
+# ========================
+dist/
+build/
+out/
+coverage/
+
+# ========================
+# 6. Thư viện tải về thủ công
+# ========================
+/node_modules/        # nếu có dùng npm để cài thư viện
+/vendor/              # nếu có dùng PHP tĩnh hoặc tải lib thủ công
+
+# ========================
+# 7. Tệp ZIP / backup / export
+# ========================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.bak
+*.old
+
+# ========================
+# 8. Tùy chọn cá nhân
+# ========================
+secret.json
+config.local.js
+firebase-config.js
