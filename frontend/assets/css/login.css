@@ -1,0 +1,322 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Stick+No+Bills:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body with original background */
+body {
+    font-family: 'Stick No Bills', sans-serif;
+    min-height: 100vh;
+    background: 
+        url('/frontend/assets/images/web.png') 
+        no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+/* Header with nav and logo in one box */
+.header-home {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 15px 40px;
+    background: #F35980;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 48px;
+    color: #b71c1c;
+    font-family: 'Orbitron', serif;
+    text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
+    justify-self: start;
+}
+
+.center {
+    justify-self: center;
+}
+
+.navmenu {
+    display: flex;
+    gap: 50px;
+    font-size: 24px;
+    align-items: center;
+}
+
+.navmenu a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.navmenu a:hover {
+    color: #ffeb3b;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.language {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.down-item {
+    display: none;
+    position: absolute;
+    background-color: #FF72B6;
+    min-width: 160px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    padding: 10px 0;
+    right: 0;
+}
+
+.dropdown:hover .down-item {
+    display: block;
+}
+
+.drop_down_item {
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+}
+
+.drop_down_item:hover {
+    background-color: #f06292;
+    border-radius: 6px;
+}
+
+.arrow {
+    font-size: 16px;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+
+
+/* Main form section */
+.main-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    padding: 20px;
+    position: relative;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.95);
+    width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: black;
+}
+
+/* Logo in box */
+.box-logo {
+    font-weight: bold;
+    font-size: 48px;
+    color: #b71c1c;
+    font-family: 'Orbitron', serif;
+    text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+/* Slogan */
+.slogan {
+    font-family: 'Zeyada', cursive;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: black;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Input sections */
+.inputname, .inputpass {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+input[type="text"], 
+input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ff6090;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'Stick No Bills', sans-serif;
+    background: rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+input[type="text"]::placeholder, 
+input[type="password"]::placeholder {
+    color: #555;
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus {
+    border-color: #f06292;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.2);
+}
+
+/* Forget password link */
+.box a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 14px;
+    float: right;
+    margin-top: 5px;
+}
+
+.box a:hover {
+    text-decoration: underline;
+}
+
+/* Sign in button */
+.signin-btn button {
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+    font-family: 'Stick No Bills', sans-serif;
+    margin-top: 20px;
+}
+
+.signin-btn button:hover {
+    background-color: #ec407a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+}
+
+/* Social login buttons */
+.logofb button, 
+.logogg button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ff6090;
+    border-radius: 15px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Stick No Bills', sans-serif;
+    color: black;
+}
+
+.logofb button:hover {
+    background: #3b5998;
+    color: white;
+}
+
+.logogg button:hover {
+    background: #4285F4;
+    color: white;
+}
+
+/* Bottom signup text */
+
+.signup-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    width: 100%;
+    justify-content: center;
+}
+
+.signup-text a {
+    font-size: 16px;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    justify-content: center;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid #bbb;
+    margin: 0 10px;
+}
+
+.or-divider span {
+    padding: 0 10px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 10px;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 20px;
+    z-index: 2;
+}
+
+.input-icon input {
+    padding-left: 45px;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #000;
+    margin: 0 0 30px 0;
+}
