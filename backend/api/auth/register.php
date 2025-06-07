@@ -1,5 +1,5 @@
 <?php
-    require_once "../core/db.php";
+    require_once dirname(__DIR__, 2) . "/core/db.php";
 
     $data = json_decode(file_get_contents("php://input"), true);
     $email = $data["email"];
@@ -17,7 +17,7 @@
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
     //Them DB
-    $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?,?)");
+    $stmt = $conn->prepare("INSERT INTO users (email, password_hash) VALUES (?,?)");
     $stmt->execute([$email, $hashed]);
 
     echo json_encode(["success" => true]);

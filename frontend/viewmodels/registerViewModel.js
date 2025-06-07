@@ -1,4 +1,4 @@
-import { register } from "../models/userModel";
+import { register } from "../models/userModel.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("register-form");
@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok && result.success) {
         alert("Đăng ký thành công!");
-        window.location.href = "login.html";
+        window.location.href = "../frontend/views/login.html";
       } else {
         alert(result.message || "Đăng ký thất bại");
       }
     } catch (err) {
-      console.error("Lỗi đăng ký, err");
+      console.error("Lỗi đăng ký: ", err);
       alert("Đã xảy ra lỗi khi đăng ký.");
     }
   });

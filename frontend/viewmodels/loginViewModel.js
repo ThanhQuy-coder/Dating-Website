@@ -1,4 +1,4 @@
-import { login } from "../models/userModel";
+import { login } from "../models/userModel.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("login-email");
-    const password = document.getElementById("login-pass");
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-pass").value;
 
     try {
       const response = await login(email, password);
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok && result.success) {
         alert("Đăng nhập thành công!");
-        window.location.href = "home.html"; // sau nay chuyen thanh dashboard
+        window.location.href = "../frontend/views/home.html";
       } else {
         alert(result.message || "Sai tài khoản hoặc mật khẩu!");
       }
