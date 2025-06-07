@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Choco - Sign Up</title>
-    <link rel="stylesheet" href="/frontend/assets/css/register.css" />
+    <link
+      rel="stylesheet"
+      href="/Dating-Website/frontend/assets/css/register.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -14,7 +17,7 @@
     <header class="header-home">
       <div class="logo">
         <a
-          href="/frontend/views/home.html"
+          href="/Dating-Website/frontend/views/home.html"
           style="color: inherit; text-decoration: none"
           >Choco</a
         >
@@ -39,18 +42,33 @@
       <div class="box">
         <div class="box-logo">Choco</div>
         <p class="slogan">Happiness you can taste!</p>
-        <form>
+        <form id="register-form">
           <section class="inputname input-icon">
             <i class="fa fa-user"></i>
-            <input type="text" placeholder="Username" required />
+            <input
+              type="text"
+              placeholder="Email"
+              id="register-email"
+              required
+            />
           </section>
           <section class="inputpass input-icon">
             <i class="fa fa-lock"></i>
-            <input type="password" placeholder="Password" required />
+            <input
+              type="password"
+              placeholder="Password"
+              id="register-pass"
+              required
+            />
           </section>
           <section class="inputrepass input-icon">
             <i class="fa fa-lock"></i>
-            <input type="password" placeholder="Confirm Password" required />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              id="confirm-password"
+              required
+            />
           </section>
           <section class="signup-btn">
             <button type="submit">Sign up</button>
