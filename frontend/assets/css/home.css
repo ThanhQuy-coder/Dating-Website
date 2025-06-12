@@ -109,6 +109,13 @@ body {
   white-space: nowrap;
 }
 
+hr {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-top: 2px solid #fff;
+}
+
 /* ===== MAIN CONTENT ===== */
 .main-home {
   display: flex;
@@ -174,6 +181,4 @@ body {
   height: 1024px;
 }
 
-.img-home {
-  margin-bottom: 8px;
-}
+
