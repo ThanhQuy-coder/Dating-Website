@@ -16,6 +16,7 @@ body {
    position: fixed;
   top: 0;
   left: 0;
+  right:0;
   z-index: 1000;}
 
 .logo {
@@ -113,7 +114,7 @@ body {
 /* ===== SUPPORT HERO ===== */
 .support-hero {
   position: relative;
-  width: 1400px;
+  width: 100%;
   height: 590px;
   overflow:hidden;
 }
