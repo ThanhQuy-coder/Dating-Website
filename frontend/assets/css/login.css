@@ -13,8 +13,8 @@
 body {
   font-family: "Stick No Bills", sans-serif;
   min-height: 100vh;
-  background: url("/frontend/assets/images/web.png") no-repeat center center
-    fixed;
+  background: url("/Dating-Website/frontend/assets/images/web.png") no-repeat
+    center center fixed;
   background-size: cover;
   color: white;
   position: relative;

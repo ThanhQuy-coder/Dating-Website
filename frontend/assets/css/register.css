@@ -1,226 +1,227 @@
 /* Font import */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Stick+No+Bills:wght@400;700&family=Zeyada&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Stick+No+Bills:wght@400;700&family=Zeyada&display=swap");
 
 /* Reset and base styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body with original background */
 body {
-    font-family: 'Stick No Bills', sans-serif;
-    min-height: 100vh;
-    background: 
-        url('/frontend/assets/images/web.png') 
-        no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    position: relative;
+  font-family: "Stick No Bills", sans-serif;
+  min-height: 100vh;
+  background: url("/Dating-Website/frontend/assets/images/web.png") no-repeat
+    center center fixed;
+  background-size: cover;
+  color: white;
+  position: relative;
 }
 
 /* Header with nav and logo in one box */
 .header-home {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 15px 40px;
-    background: #F35980;
-    width: 100%;
-    border-radius: 0;
-    margin: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 15px 40px;
+  background: #f35980;
+  width: 100%;
+  border-radius: 0;
+  margin: 0;
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 48px;
-    color: #b71c1c;
-    font-family: 'Orbitron', serif;
-    text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
-    justify-self: start;
+  font-weight: bold;
+  font-size: 48px;
+  color: #b71c1c;
+  font-family: "Orbitron", serif;
+  text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
+  justify-self: start;
 }
 
 .center {
-    justify-self: center;
+  justify-self: center;
 }
 
 .navmenu {
-    display: flex;
-    gap: 50px;
-    font-size: 24px;
-    align-items: center;
+  display: flex;
+  gap: 50px;
+  font-size: 24px;
+  align-items: center;
 }
 
 .navmenu a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
 }
 
 .navmenu a:hover {
-    color: #ffeb3b;
+  color: #ffeb3b;
 }
 
 /* Dropdown */
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .language {
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .down-item {
-    display: none;
-    position: absolute;
-    background-color: #FF72B6;
-    min-width: 160px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-    padding: 10px 0;
-    right: 0;
+  display: none;
+  position: absolute;
+  background-color: #ff72b6;
+  min-width: 160px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  padding: 10px 0;
+  right: 0;
 }
 
 .dropdown:hover .down-item {
-    display: block;
+  display: block;
 }
 
 .drop_down_item {
-    color: white;
-    padding: 10px 20px;
-    font-size: 20px;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s;
 }
 
 .drop_down_item:hover {
-    background-color: #f06292;
-    border-radius: 6px;
+  background-color: #f06292;
+  border-radius: 6px;
 }
 
 .arrow {
-    font-size: 16px;
-    margin-left: 6px;
-    transition: transform 0.3s ease;
+  font-size: 16px;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
 }
 
 .dropdown:hover .arrow {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 hr {
-    border: none;
-    border-top: 2px solid #000;
-    margin: 0 0 30px 0;
+  border: none;
+  border-top: 2px solid #000;
+  margin: 0 0 30px 0;
 }
 
 /* Main form section */
 .main-signup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 100px);
-    padding: 20px;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+  position: relative;
 }
 
 .box {
-    background: rgba(255, 255, 255, 0.95);
-    width: 600px;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    color: black;
+  background: rgba(255, 255, 255, 0.95);
+  width: 600px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: black;
 }
 
 /* Logo in box */
 .box-logo {
-    font-weight: bold;
-    font-size: 48px;
-    color: #b71c1c;
-    font-family: 'Orbitron', serif;
-    text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 48px;
+  color: #b71c1c;
+  font-family: "Orbitron", serif;
+  text-shadow: 1px 1px 1px #000, 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 }
 
 /* Slogan */
 .slogan {
-    font-family: 'Zeyada', cursive;
-    font-size: 32px;
-    margin-bottom: 25px;
-    color: black;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: "Zeyada", cursive;
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: black;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Input sections */
-.inputname, .inputpass, .inputrepass {
-    margin-bottom: 20px;
-    text-align: left;
-    font-size: 16px;
-    position: relative;
+.inputname,
+.inputpass,
+.inputrepass {
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 16px;
+  position: relative;
 }
 
 .input-icon {
-    position: relative;
+  position: relative;
 }
 
 .input-icon i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #555;
-    font-size: 20px;
-    z-index: 2;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 20px;
+  z-index: 2;
 }
 
 .input-icon input {
-    width: 100%;
-    padding: 15px 15px 15px 45px;
-    border: 2px solid #ff6090;
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: 'Stick No Bills', sans-serif;
-    background: rgba(255, 255, 255, 0.3);
-    color: black;
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 2px solid #ff6090;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: "Stick No Bills", sans-serif;
+  background: rgba(255, 255, 255, 0.3);
+  color: black;
 }
 
 .input-icon input::placeholder {
-    color: #555;
+  color: #555;
 }
 
 .input-icon input:focus {
-    border-color: #f06292;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.2);
+  border-color: #f06292;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.2);
 }
 
 /* Sign up button */
 .signup-btn button {
-    background-color: #d81b60;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 22px;
-    border-radius: 12px;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s;
-    font-family: 'Stick No Bills', sans-serif;
-    margin-top: 20px;
-    font-weight: bold;
+  background-color: #d81b60;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+  font-family: "Stick No Bills", sans-serif;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
 .signup-btn button:hover {
-    background-color: #ec407a;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+  background-color: #ec407a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
 }
