@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Choco - Create Avatar</title>
+    <link rel="stylesheet" href="/frontend/assets/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/frontend/assets/css/create-profile.css">
+</head>
+<body>
+    <header class="header-home">
+    <div class="logo">
+        <a href="/frontend/views/home.html" style="color: inherit; text-decoration: none;">Choco</a>
+    </div>
+        <div class="center">
+            <nav class="navmenu">
+                <a href="#">Premium</a>
+                <a href="/frontend/views/about.html">About</a>
+                <a href="/frontend/views/support.html">Support</a>
+                <div class="dropdown">
+                    <span class="language">Language <span class="arrow">▼</span></span>
+                    <div class="down-item">
+                        <a href="#" class="drop_down_item">English</a>
+                        <a href="#" class="drop_down_item">Tiếng Việt</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <hr>
+    <main class="main-signup">
+        <div class="box">
+            <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
+            <div class="box-logo">Choco</div>
+            <p class="slogan">Happiness you can taste!</p>
+            <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
+            <form id="profileForm" novalidate>
+                <!-- Avatar upload UI sẽ được chỉnh sửa ở bước tiếp theo -->
+                <section class="avatar-upload" style="display:flex; flex-direction:column; align-items:center; margin-bottom: 24px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" style="width:150px; height:150px; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08); object-fit:cover;">
+                    <label for="avatarInput" style="position:relative; top:-40px; left:55px; cursor:pointer;">
+                        <i class="fa fa-plus-circle" style="font-size:2rem; color:#2196f3; background:#fff; border-radius:50%;"></i>
+                        <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display:none;">
+                    </label>
+                </section>
+                <section class="signup-btn">
+                    <button type="submit" class="submit-btn">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </section>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </main>
+    <script>
+        const form = document.getElementById('profileForm');
+        const message = document.getElementById('formMessage');
+        const avatarInput = document.getElementById('avatarInput');
+        const avatarImg = document.querySelector('.avatar-upload img');
+        avatarInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    avatarImg.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            message.textContent = '';
+            const btn = form.querySelector('.submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+            setTimeout(() => {
+                if (!avatarInput.value) {
+                    message.textContent = 'Please upload an avatar!';
+                    message.style.color = '#e75480';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
+                } else {
+                    message.textContent = 'Avatar uploaded successfully!';
+                    message.style.color = '#2196f3';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
