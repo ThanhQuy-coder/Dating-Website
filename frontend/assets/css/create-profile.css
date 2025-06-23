@@ -56,7 +56,7 @@ body::before {
 .navmenu {
     display: flex;
     gap: 50px;
-    font-size: 24px;
+    font-size: 36px;
     align-items: center;
 }
 
@@ -73,6 +73,7 @@ body::before {
 .dropdown {
     position: relative;
     display: inline-block;
+    z-index: 9999;
 }
 
 .language {
@@ -89,7 +90,7 @@ body::before {
     min-width: 160px;
     border-radius: 12px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
-    z-index: 10;
+    z-index: 9999;
     padding: 10px 0;
     right: 0;
 }
@@ -146,7 +147,7 @@ hr {
     text-align: center;
     color: black;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .box-logo {
@@ -227,6 +228,13 @@ form section {
 .signup-btn button i, .signup-btn .submit-btn i {
     font-size: 1.2rem;
 }
+.signup-btn button:hover,
+.signup-btn .submit-btn:hover {
+  background-color: #ec407a;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(216, 27, 96, 0.4);
+}
+
 
 /* Back button style */
 .box a {
