@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../assets/css/match.css" />
   </head>
   <body>
+    <!-- Trang điều hướng bên trái -->
     <aside class="sidebar">
       <!-- Phần avatar và tên user -->
       <div class="profile">
@@ -41,7 +42,9 @@
       <nav class="nav-icons">
         <button class="icon-btn"><i class="fa-solid fa-crown"></i></button>
         <button class="icon-btn"><i class="fa-solid fa-comments"></i></button>
-        <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
+        <button class="icon-btn" onclick="showTab('notification')">
+          <i class="fa-solid fa-bell"></i>
+        </button>
         <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
       </nav>
 
@@ -58,59 +61,91 @@
       </div>
     </aside>
 
-    <main class="main-content">
-      <!-- Thanh search -->
-      <div class="search-container">
-        <i class="fa-solid fa-search search-icon"></i>
-        <input type="text" class="search-input" placeholder="Search" />
-      </div>
+    <!-- Trang match -->
+    <div id="match-tab" class="tab-content">
+      <main class="main-content">
+        <!-- Thanh search -->
+        <div class="search-container">
+          <i class="fa-solid fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search" />
+        </div>
 
-      <!-- Container để card profile -->
-      <div class="card-wrapper">
-        <div class="card">
-          <!-- wrapper hình với aspect-ratio cố định -->
-          <div class="image-wrapper">
-            <!-- Phần hiển thị ảnh -->
-            <img
-              src="../assets/images/cat_beautiful.jpg"
-              alt="Profile Image"
-              id="profile-image"
-            />
-            <!-- Các chấm hoặc line chỉ báo carousel (nếu có nhiều ảnh). Ví dụ 5 line nhỏ -->
+        <!-- Container để card profile -->
+        <div class="card-wrapper">
+          <div class="card">
+            <!-- wrapper hình với aspect-ratio cố định -->
+            <div class="image-wrapper">
+              <!-- Phần hiển thị ảnh -->
+              <!-- Phần hiệu ứng skeleton -->
+              <div class="skeleton" id="img-loader"></div>
+              <!-- Phần này sẽ được chỉnh sửa thay thế ảnh trong cơ sở dữ liệu -->
+              <img
+                id="profile-image"
+                src="../assets/images/cat_beautiful.jpg"
+                alt="Profile Image"
+                class="carousel-img"
+                data-images="../assets/images/Test/img1.jpg
+              , ../assets/images/Test/img2.jpg
+              , ../assets/images/Test/img3.jpg
+              , ../assets/images/Test/img4.jpg"
+                loading="lazy"
+                onload="document.getElementById('img-loader').style.display='none'"
+              />
+
+              <!-- Các chấm hoặc line chỉ báo carousel (nếu có nhiều ảnh). Ví dụ 5 line nhỏ
             <div class="indicators">
               <span class="indicator"></span>
               <span class="indicator"></span>
               <span class="indicator"></span>
               <span class="indicator"></span>
               <span class="indicator"></span>
-            </div>
-            <!-- Overlay gradient để chữ dễ đọc -->
-            <div class="overlay"></div>
-            <!-- Thông tin chữ chồng lên ảnh -->
-            <div class="card-info">
-              <h3 class="name">Nguyễn Hà My</h3>
-              <p class="age-distance">Age: 21</p>
-              <p class="age-distance">5 km away</p>
-              <div class="hobbies">
-                <!-- Bạn có thể thêm/bớt span .hobby -->
-                <span class="hobby">Badminton</span>
-                <span class="hobby">Anime</span>
-                <span class="hobby">Photography</span>
-                <span class="hobby">Blogging</span>
+            </div> -->
+              <!-- Overlay gradient để chữ dễ đọc -->
+              <div class="overlay"></div>
+              <!-- Thông tin chữ chồng lên ảnh -->
+              <div class="card-info">
+                <h3 class="name">Nguyễn Hà My</h3>
+                <p class="age-distance">Age: 21</p>
+                <p class="age-distance">5 km away</p>
+                <div class="hobbies">
+                  <!-- Bạn có thể thêm/bớt span .hobby -->
+                  <span class="hobby">Badminton</span>
+                  <span class="hobby">Anime</span>
+                  <span class="hobby">Photography</span>
+                  <span class="hobby">Blogging</span>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Nút Like / Dislike -->
-          <div class="action-buttons">
-            <button class="action-btn dislike">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-            <button class="action-btn like">
-              <i class="fa-solid fa-heart"></i>
-            </button>
+            <!-- Nút Like / Dislike -->
+            <div class="action-buttons">
+              <button class="action-btn dislike">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <button class="action-btn like">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
+
+    <!-- Trang tin nhắn -->
+    <div id="message-tab" class="tab-message-content" style="display: none">
+      <h1>This is a page</h1>
+    </div>
+
+    <!-- Trang Thông báo -->
+    <div id="notification-tab" class="tab-content" style="display: none"></div>
+
+    <!-- Phần điều hướng trên điện thoại -->
+    <div class="bottom-nav">
+      <button class="icon-btn"><i class="fa-solid fa-crown"></i></button>
+      <button class="icon-btn"><i class="fa-solid fa-comments"></i></button>
+      <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
+      <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
+    </div>
+
+    <script src="../viewmodels/match.js"></script>
   </body>
 </html>

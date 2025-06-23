@@ -15,14 +15,14 @@
   --hobby-bg: rgba(255, 255, 255, 0.8);
   --hobby-text: #333;
   --btn-size: 50px;
-  --card-width: 300px; /* bạn có thể thay đổi width card */
+  --card-width: 320px; /* bạn có thể thay đổi width card */
 }
 
 body {
   font-family: "Poppins", Arial, sans-serif;
   display: flex;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* ---------- SIDEBAR ---------- */
@@ -49,7 +49,6 @@ body {
   border-radius: 50%;
   background-color: #fff;
   object-fit: cover;
-  /* Nếu src="" sẽ là hình trống, bạn có thể set placeholder background-image nếu muốn */
 }
 .profile .username {
   font-weight: bold;
@@ -82,6 +81,7 @@ body {
 }
 .icon-btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Tab container */
@@ -136,7 +136,25 @@ body {
   line-height: 1.4;
 }
 
+/* Scrollbar Custom cho .matches-info */
+.matches-info::-webkit-scrollbar {
+  width: 8px;
+}
+.matches-info::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+.matches-info::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
 /* ---------- MAIN CONTENT ---------- */
+.tab-content {
+  flex-grow: 1;
+  background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+}
 .main-content {
   flex-grow: 1;
   background-color: var(--bg-light);
@@ -156,15 +174,12 @@ body {
 }
 .search-input {
   width: 100%;
-  padding: 10px 50px 10px 16px;
+  padding: 10px 50px 10px 35px;
   border: 2px solid #ccc;
   border-radius: 25px;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
-}
-.search-input::placeholder {
-  padding-left: 20px;
 }
 .search-input:focus {
   border-color: var(--primary-color);
@@ -186,7 +201,7 @@ body {
   justify-content: center;
   align-items: start; /* bắt đầu từ trên, nếu muốn giữa dọc dùng center */
   padding-top: 16px;
-  padding-bottom: 32px;
+  padding-bottom: 16px;
 }
 
 /* Card chính */
@@ -199,16 +214,33 @@ body {
   align-items: center;
   /* để nút hành động có thể phủ ra ngoài image-wrapper */
   margin-bottom: 40px;
+  border-radius: 30px;
 }
 
 /* Image wrapper với aspect-ratio */
 .image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 8; /* ratio 3:4, bạn có thể đổi thành 4/5 tuỳ ý */
+  aspect-ratio: 3 / 4; /* ratio bạn có thể đổi tuỳ ý */
   border-radius: 16px;
   overflow: hidden;
   background-color: #ddd; /* khi chưa có ảnh */
+}
+
+/* Hiệu ứng skeleton */
+.skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-90deg, #eee, #ddd, #eee);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
 }
 
 /* Ảnh profile */
@@ -245,12 +277,6 @@ body {
   opacity: 0.5;
   border-radius: 1px;
 }
-/* Ví dụ active indicator: nếu bạn quản lý carousel qua JS, có thể thêm class .active để highlight */
-/*
-.image-wrapper .indicator.active {
-    opacity: 1;
-}
-*/
 
 /* Thông tin chồng lên ảnh */
 .card-info {
@@ -263,7 +289,6 @@ body {
 .card-info .name {
   font-size: 1.3rem;
   margin-bottom: 4px;
-  /* Có thể dùng font Orbitron nếu muốn style khác: */
   font-family: "Orbitron", sans-serif;
 }
 .card-info .age-distance {
@@ -287,6 +312,7 @@ body {
 /* Nút hành động */
 .action-buttons {
   margin-top: 12px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -318,6 +344,33 @@ body {
   color: #333;
 }
 
+/* Hiệu ứng cho nút dislike-like */
+.action-btn:active {
+  transform: scale(0.9) rotate(-10deg);
+  transition: 0.1s;
+}
+.action-btn.like:active {
+  background-color: #ff5a7d;
+  color: white;
+}
+.action-btn.dislike:active {
+  background-color: #333;
+  color: white;
+}
+
+/* Phần card */
+.card:hover {
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover .image-wrapper {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 /* Responsive cơ bản */
 @media (max-width: 768px) {
   .sidebar {
@@ -335,11 +388,44 @@ body {
   }
 }
 
-/* Bạn có thể thêm hiệu ứng chuyển ảnh (carousel) bằng JS: khi click icon next/prev, thay src ảnh và thay đổi .indicator.active */
-/* Cũng có thể thêm animation hover cho card: scale nhẹ, shadow, v.v. */
-/* Ví dụ thêm shadow khi hover vào card */
-.card:hover .image-wrapper {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-4px);
-  transition: transform 0.2s, box-shadow 0.2s;
+/* Responsive Sidebar --> Bottom Nav trên Mobile */
+@media (max-width: 768px) {
+  body,
+  html {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .main-content {
+    padding-bottom: 70px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--primary-color);
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  }
+  .bottom-nav .icon-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: white;
+  }
+  .bottom-nav .icon-btn i {
+    color: white;
+  }
 }
+/* ---------- MESSAGE ---------- */
+
+/* Thêm dark mode */
