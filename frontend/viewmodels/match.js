@@ -41,14 +41,29 @@ document.addEventListener("DOMContentLoaded", () => {
 function showTab(tabName = "match") {
   // Lưu tên tab vào localStorage
   localStorage.setItem("activeTab", tabName);
-  if (tabName === "messages") {
-    // Ẩn tất cả các tab
-    const tabs = document.querySelectorAll(".tab-content");
-    tabs.forEach((tab) => (tab.style.display = "none"));
+
+  // Nếu tab là notification, setting hoặc premium, chỉ cần hiển thị tab đó
+  // và không cần ẩn các tab khác
+  if (
+    tabName === "notification" ||
+    tabName === "setting" ||
+    tabName === "premium"
+  ) {
+    showTabNav(tabName);
+    return;
   }
-  // Ẩn tab ở thanh điều hướng bên trái
-  const navTabs = document.querySelectorAll(".nav-tab");
-  navTabs.forEach((tab) => (tab.style.display = "none"));
+
+  // Ẩn tất cả các tab
+  const tabs = document.querySelectorAll(".tab-content");
+  tabs.forEach((tab) => (tab.style.display = "none"));
+  showTabNav(tabName);
+  function showTabNav(tabNameNav) {
+    // Ẩn tab ở thanh điều hướng bên trái
+    const navTabs = document.querySelectorAll(".nav-tab");
+    navTabs.forEach((tab) => (tab.style.display = "none"));
+
+    document.getElementById("nav-" + tabName + "-tab").style.display = "block";
+  }
 
   // Hiện tab được chọn
   document.getElementById(tabName + "-tab").style.display = "block";
@@ -59,15 +74,3 @@ window.addEventListener("DOMContentLoaded", () => {
   const savedTab = localStorage.getItem("activeTab") || "match";
   showTab(savedTab);
 });
-
-// ----- Hàm xử lý sự kiện active giữa các nút -----
-// Khi người dùng nhấn vào một tab, hàm này sẽ được gọi để đánh dấu tab đó là active
-// Hoạt động ở cả thanh điều hướng bên trái và các tab nội dung
-function setActive(element) {
-  // Xóa class active khỏi tất cả các tab
-  const tabs = document.querySelectorAll(".tab-btn");
-  tabs.forEach((tab) => tab.classList.remove("active"));
-
-  // Thêm class active cho tab được nhấn
-  element.classList.add("active");
-}
