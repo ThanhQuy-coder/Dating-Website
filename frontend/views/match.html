@@ -39,14 +39,18 @@
 
       <!-- Các icon navigation phía trên -->
       <nav class="nav-icons">
-        <button class="icon-btn"><i class="fa-solid fa-crown"></i></button>
+        <button class="icon-btn" onclick="window.location.href='premium.html'">
+          <i class="fa-solid fa-crown"></i>
+        </button>
         <button class="icon-btn" onclick="showTab('messages');">
           <i class="fa-solid fa-comments"></i>
         </button>
         <button class="icon-btn" onclick="showTab('notification');">
           <i class="fa-solid fa-bell"></i>
         </button>
-        <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
+        <button class="icon-btn" onclick="showTab('settings');">
+          <i class="fa-solid fa-gear"></i>
+        </button>
       </nav>
 
       <!-- Tab match -->
@@ -71,6 +75,42 @@
             <div class="match-info">
               <h3>Nguyễn Hà My</h3>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab message -->
+      <div id="nav-messages-tab" class="nav-tab" style="display: none">
+        <!-- Phần trở về match và tìm kiếm -->
+        <div class="tab-container-messages">
+          <button class="tab-btn" onclick="showTab('match'); ">
+            <i class="fa fa-home"></i>
+          </button>
+          <button class="tab-btn active" id="title-messages">Messages</button>
+          <button class="tab-btn">
+            <i class="fa-solid fa-search search-icon-notification"></i>
+          </button>
+        </div>
+        <!-- Phần nội dung bên dưới tab -->
+        <div class="messages-info">
+          <!-- Trường hợp không có tin nhắn -->
+          <div style="display: none">
+            <h2>Messages</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae,
+              rerum, doloribus illo adipisci numquam nam natus ex, quia odit
+              ipsam placeat necessitatibus! Distinctio explicabo maiores dolores
+              ratione velit. Quos, ea!
+            </p>
+          </div>
+          <!-- Trường hợp có tin nhắn -->
+          <div class="friend" style="display: flex">
+            <img
+              src="../assets/images/cat_beautiful.jpg"
+              alt=""
+              class="notification-avatar"
+            />
+            <h3>Trần Hà Linh</h3>
           </div>
         </div>
       </div>
@@ -115,44 +155,56 @@
         </div>
       </div>
 
-      <!-- Tab message -->
-      <div id="nav-messages-tab" class="nav-tab" style="display: none">
-        <!-- Phần trở về match và tìm kiếm -->
-        <div class="tab-container-messages">
-          <button class="tab-btn" onclick="showTab('match'); ">
-            <i class="fa fa-home"></i>
-          </button>
-          <button class="tab-btn active" id="title-messages">Messages</button>
-          <button class="tab-btn">
-            <i class="fa-solid fa-search search-icon-notification"></i>
-          </button>
-        </div>
-        <!-- Phần nội dung bên dưới tab -->
-        <div class="messages-info">
-          <!-- Trường hợp không có tin nhắn -->
-          <div style="display: none">
-            <h2>Messages</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae,
-              rerum, doloribus illo adipisci numquam nam natus ex, quia odit
-              ipsam placeat necessitatibus! Distinctio explicabo maiores dolores
-              ratione velit. Quos, ea!
-            </p>
+      <!-- Tab settings -->
+      <div id="nav-settings-tab" class="nav-tab" style="display: none">
+        <!-- Settings Menu -->
+        <div class="settings-menu">
+          <div class="settings-item">
+            <i class="fas fa-cog"></i>
+            <span>Account Settings</span>
           </div>
-          <!-- Trường hợp có tin nhắn -->
-          <div class="friend" style="display: flex">
-            <img
-              src="../assets/images/cat_beautiful.jpg"
-              alt=""
-              class="notification-avatar"
-            />
-            <h3>Trần Hà Linh</h3>
+          <div class="settings-item">
+            <i class="fas fa-search"></i>
+            <span>Search Settings</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-eye"></i>
+            <span>Control Who You See</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Your Activity</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-headset"></i>
+            <span>Help & Support</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-users"></i>
+            <span>Community Standards</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-file-contract"></i>
+            <span>Legal Policies</span>
+          </div>
+          <div class="settings-item">
+            <span>Log Out</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-user-times"></i>
+            <span>Delete Account</span>
+          </div>
+          <div class="settings-item">
+            <i class="fas fa-globe"></i>
+            <span>Language</span>
+            <i class="fas fa-chevron-down dropdown-icon"></i>
           </div>
         </div>
       </div>
     </aside>
 
-    <!-- Trang match -->
+    <!-- Trang chính match -->
     <div id="match-tab" class="tab-content">
       <main class="main-content">
         <!-- Thanh search -->
@@ -221,9 +273,10 @@
       </main>
     </div>
 
-    <!-- Trang tin nhắn -->
+    <!-- Trang chính tin nhắn -->
     <div id="messages-tab" class="tab-content" style="display: none">
-      <div class="chat-container">
+      <!-- Phần chat container -->
+      <div id="chat" class="chat-container">
         <div class="chat-header">
           <img
             src="../assets/images/cat_beautiful.jpg"
@@ -235,9 +288,11 @@
             <p class="chat-status">Active now</p>
           </div>
           <div class="chat-actions">
-            <i class="fa-solid fa-phone"></i>
-            <i class="fa-solid fa-video"></i>
-            <i class="fa-solid fa-ellipsis"></i>
+            <button><i class="fa-solid fa-phone"></i></button>
+            <button><i class="fa-solid fa-video"></i></button>
+            <button id="toggle-chat-setting" onclick="setupChatSettingToggle()">
+              <i class="fa-solid fa-ellipsis"></i>
+            </button>
           </div>
         </div>
         <div class="chat-body">
@@ -253,6 +308,118 @@
           <button class="chat-icon">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
+        </div>
+      </div>
+
+      <!-- Phần setting chat container -->
+      <div id="setting-chat" class="tab-content" style="display: none">
+        <!-- Phần header setting chat -->
+        <div class="setting-chat-header">
+          <div class="setting-chat-actions">
+            <div class="chat-actions">
+              <button><i class="fa-solid fa-phone"></i></button>
+              <button><i class="fa-solid fa-video"></i></button>
+              <button id="back-to-chat" onclick="setupChatSettingToggle()">
+                <i class="fa-solid fa-ellipsis"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phần body setting chat -->
+        <div class="setting-chat-header-info">
+          <img
+            src="../assets/images/cat_beautiful.jpg"
+            alt="Avatar"
+            class="chat-setting-avatar"
+          />
+          <h3 class="chat-setting-name">Hà My</h3>
+        </div>
+        <div class="setting-chat-body">
+          <div class="chat-setting-actions">
+            <div class="chat-setting-action">
+              <button><i class="fa-solid fa-user"></i></button>
+              <p>View Profile</p>
+            </div>
+            <div class="chat-setting-action">
+              <button><i class="fa-solid fa-bell-slash"></i></button>
+              <p>Disable notifications</p>
+            </div>
+            <div class="chat-setting-action">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+              <p>Search messages</p>
+            </div>
+          </div>
+
+          <!-- Customize -->
+          <div class="chat-setting-section">
+            <h4>Customize</h4>
+            <div class="chat-setting-item">
+              <i class="fa-solid fa-font"></i>
+              <span>Nickname</span>
+            </div>
+            <div class="chat-setting-item">
+              <i class="fa-solid fa-heart"></i>
+              <span>Quick Reactions</span>
+            </div>
+          </div>
+
+          <!-- Privacy & Support -->
+          <div class="chat-setting-section">
+            <h4>Privacy & Support</h4>
+            <div class="chat-setting-item">
+              <i class="fa-solid fa-ban"></i>
+              <span>Block</span>
+            </div>
+            <div class="chat-setting-item">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Report</span>
+            </div>
+            <div class="chat-setting-item">
+              <i class="fa-solid fa-trash-can"></i>
+              <span>Delete message</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trang chính cài đặt -->
+    <div id="settings-tab" class="tab-content" style="display: none">
+      <div class="settings-container">
+        <!-- Search Bar -->
+        <div class="settings-search">
+          <h2>Find the setting you need</h2>
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Settings" />
+          </div>
+        </div>
+
+        <!-- Most visited settings -->
+        <div class="settings-most-visited">
+          <h3>Suggest most visited settings</h3>
+          <div class="settings-grid">
+            <!-- Item 1 -->
+            <button>
+              <div class="setting-card">
+                <i class="fa-solid fa-user-slash icon-large"></i>
+                <h4>Blocking</h4>
+                <p>
+                  Review people you've previously blocked or add someone to your
+                  blocked list
+                </p>
+              </div>
+            </button>
+            <!-- Item 2 -->
+            <button>
+              <div class="setting-card">
+                <i class="fa-solid fa-clock icon-large"></i>
+                <h4>Your Activity</h4>
+                <p>View and manage your activity on Choco</p>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
