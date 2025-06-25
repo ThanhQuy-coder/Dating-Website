@@ -28,13 +28,15 @@
     <aside class="sidebar">
       <!-- Phần avatar và tên user -->
       <div class="profile">
-        <!-- đặt avatar -->
-        <img
-          src="../assets/images/cat_beautiful.jpg"
-          alt="Your Avatar"
-          class="avatar"
-        />
-        <span class="username">You</span>
+        <button onclick="showTab('profile')">
+          <!-- đặt avatar -->
+          <img
+            src="../assets/images/cat_beautiful.jpg"
+            alt="Your Avatar"
+            class="avatar"
+          />
+          <span class="username">You</span>
+        </button>
       </div>
 
       <!-- Các icon navigation phía trên -->
@@ -52,6 +54,11 @@
           <i class="fa-solid fa-gear"></i>
         </button>
       </nav>
+
+      <!-- tab profile -->
+      <div id="nav-profile-tab" class="nav-tab">
+        <div class="profile-info"></div>
+      </div>
 
       <!-- Tab match -->
       <div id="nav-match-tab" class="nav-tab">
@@ -204,6 +211,69 @@
       </div>
     </aside>
 
+    <!-- Trang chính profile -->
+    <div id="profile-tab" class="tab-content">
+      <div class="profile-container">
+        <button class="close-btn" onclick="showTab('match')">&times;</button>
+
+        <div class="left">
+          <div class="avatar-wrapper" style="position: relative">
+            <img
+              src="../assets/images/cat_beautiful.jpg"
+              alt="Avatar"
+              class="avatar"
+            />
+            <button class="camera-btn">
+              <div class="camera-icon"><i class="fa fa-camera"></i></div>
+            </button>
+          </div>
+          <div class="info">
+            <h2>
+              Minh Hoàng
+              <button class="edit-btn"><i class="fa fa-pen"></i></button>
+            </h2>
+            <div class="info-row">
+              <i class="fa-brands fa-instagram"></i> Hoang_deptrai
+              <button class="edit-btn"><i class="fa fa-pen"></i></button>
+            </div>
+            <div class="info-row">
+              <i class="fa fa-cake-candles"></i> October 2nd, 2005
+              <button class="edit-btn"><i class="fa fa-pen"></i></button>
+            </div>
+            <button class="edit-profile-btn">Edit profile</button>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="edit-photo-section">
+            <h3>
+              Edit Photo
+              <button class="edit-btn"><i class="fa fa-plus"></i></button>
+            </h3>
+            <div class="photo-grid">
+              <img src="../assets/images/cat_beautiful.jpg" />
+              <img src="../assets/images/cat_beautiful.jpg" />
+              <img src="../assets/images/cat_beautiful.jpg" />
+            </div>
+          </div>
+
+          <div>
+            <p class="section-title">Hobbies:</p>
+            <div class="hobbies">
+              <div class="chip">Game</div>
+              <div class="chip">Sports</div>
+              <div class="chip">Coding</div>
+              <div class="chip">Taking photos</div>
+            </div>
+          </div>
+
+          <div class="location">
+            <span>Location:</span> District 12, Ho Chi Minh City, Việt Nam
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Trang chính match -->
     <div id="match-tab" class="tab-content">
       <main class="main-content">
@@ -243,6 +313,7 @@
               <span class="indicator"></span>
               <span class="indicator"></span>
             </div> -->
+
               <!-- Overlay gradient để chữ dễ đọc -->
               <div class="overlay"></div>
               <!-- Thông tin chữ chồng lên ảnh -->
