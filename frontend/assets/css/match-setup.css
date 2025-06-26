@@ -1,0 +1,72 @@
+/* CSS cho trang create-match.html */
+
+.gender-select {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.gender-btn {
+    padding: 10px 28px;
+    border: 2px solid #F35980;
+    border-radius: 18px;
+    background: #fff;
+    color: #d81b60;
+    font-size: 1.1rem;
+    font-family: 'Stick No Bills', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+    font-weight: 500;
+}
+.gender-btn.active, .gender-btn:focus {
+    background: #f8bbd0;
+    color: #fff;
+    border: 2px solid #d81b60;
+}
+.gender-btn:hover {
+    background: #fce4ec;
+    color: #d81b60;
+}
+
+.age-slider {
+    width: 100%;
+    margin: 18px 0 8px 0;
+    accent-color: #F35980;
+    height: 6px;
+    border-radius: 6px;
+    background: #f8bbd0;
+}
+.age-value {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-top: 10px;
+}
+
+.gender-label, .age-label {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #222;
+}
+
+section {
+    margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+    .gender-select {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .gender-btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+    .age-value {
+        font-size: 1.1rem;
+    }
+} 

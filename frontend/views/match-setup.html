@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Choco - Create Match</title>
+    <link rel="stylesheet" href="/frontend/assets/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/frontend/assets/css/create-profile.css">
+    <link rel="stylesheet" href="/frontend/assets/css/match-setup.css">
+</head>
+<body>
+    <header class="header-home">
+    <div class="logo">
+        <a href="/frontend/views/home.html" style="color: inherit; text-decoration: none;">Choco</a>
+    </div>
+        <div class="center">
+            <nav class="navmenu">
+                <a href="#">Premium</a>
+                <a href="/frontend/views/about.html">About</a>
+                <a href="/frontend/views/support.html">Support</a>
+                <div class="dropdown">
+                    <span class="language">Language <span class="arrow">▼</span></span>
+                    <div class="down-item">
+                        <a href="#" class="drop_down_item">English</a>
+                        <a href="#" class="drop_down_item">Tiếng Việt</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <hr>
+    <main class="main-signup">
+        <div class="box">
+            <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
+            <div class="box-logo">Choco</div>
+            <p class="slogan">Happiness you can taste!</p>
+            <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
+            <form id="matchForm" novalidate>
+                <section>
+                    <label class="gender-label">Gender you want to meet:</label>
+                    <div class="gender-select">
+                        <button type="button" class="gender-btn" data-value="male">Male</button>
+                        <button type="button" class="gender-btn" data-value="female">Female</button>
+                        <button type="button" class="gender-btn" data-value="both">Both</button>
+                    </div>
+                </section>
+                <section>
+                    <label class="age-label">Age you want to meet?</label>
+                    <input type="range" min="18" max="50" value="25" class="age-slider" id="ageRange">
+                    <div class="age-value" id="ageValue">25 Age</div>
+                </section>
+                <section class="signup-btn">
+                    <button type="submit" class="submit-btn">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </section>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="/frontend/viewmodels/match-setup.js"></script>
+</body>
+</html> 
