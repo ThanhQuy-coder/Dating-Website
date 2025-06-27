@@ -2,6 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <base href="/Dating-Website/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Match Page</title>
     <!-- Font Awesome -->
@@ -21,7 +22,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/match.css" />
+    <link rel="stylesheet" href="frontend/assets/css/match.css" />
   </head>
   <body>
     <!-- Trang điều hướng bên trái -->
@@ -31,7 +32,7 @@
         <button onclick="showTab('profile')">
           <!-- đặt avatar -->
           <img
-            src="../assets/images/cat_beautiful.jpg"
+            src="frontend/assets/images/cat_beautiful.jpg"
             alt="Your Avatar"
             class="avatar"
           />
@@ -41,7 +42,10 @@
 
       <!-- Các icon navigation phía trên -->
       <nav class="nav-icons">
-        <button class="icon-btn" onclick="window.location.href='premium.html'">
+        <button
+          class="icon-btn"
+          onclick="window.location.href='frontend/views/premium.html';"
+        >
           <i class="fa-solid fa-crown"></i>
         </button>
         <button class="icon-btn" onclick="showTab('messages');">
@@ -75,7 +79,7 @@
           </div>
           <div class="match" style="display: none">
             <img
-              src="../assets/images/cat_beautiful.jpg"
+              src="frontend/assets/images/cat_beautiful.jpg"
               alt="Your Avatar"
               class="match-avatar"
             />
@@ -113,7 +117,7 @@
           <!-- Trường hợp có tin nhắn -->
           <div class="friend" style="display: flex">
             <img
-              src="../assets/images/cat_beautiful.jpg"
+              src="frontend/assets/images/cat_beautiful.jpg"
               alt=""
               class="notification-avatar"
             />
@@ -151,7 +155,7 @@
           <!-- Trường hợp có thông báo -->
           <div class="notification" style="display: flex">
             <img
-              src="../assets/images/cat_beautiful.jpg"
+              src="frontend/assets/images/cat_beautiful.jpg"
               alt=""
               class="notification-avatar"
             />
@@ -219,7 +223,7 @@
         <div class="left">
           <div class="avatar-wrapper" style="position: relative">
             <img
-              src="../assets/images/cat_beautiful.jpg"
+              src="frontend/assets/images/cat_beautiful.jpg"
               alt="Avatar"
               class="avatar"
             />
@@ -251,9 +255,9 @@
               <button class="edit-btn"><i class="fa fa-plus"></i></button>
             </h3>
             <div class="photo-grid">
-              <img src="../assets/images/cat_beautiful.jpg" />
-              <img src="../assets/images/cat_beautiful.jpg" />
-              <img src="../assets/images/cat_beautiful.jpg" />
+              <img src="frontend/assets/images/cat_beautiful.jpg" />
+              <img src="frontend/assets/images/cat_beautiful.jpg" />
+              <img src="frontend/assets/images/cat_beautiful.jpg" />
             </div>
           </div>
 
@@ -294,13 +298,13 @@
               <!-- Phần này sẽ được chỉnh sửa thay thế ảnh trong cơ sở dữ liệu -->
               <img
                 id="profile-image"
-                src="../assets/images/cat_beautiful.jpg"
+                src="frontend/assets/images/cat_beautiful.jpg"
                 alt="Profile Image"
                 class="carousel-img"
-                data-images="../assets/images/Test/img1.jpg
-              , ../assets/images/Test/img2.jpg
-              , ../assets/images/Test/img3.jpg
-              , ../assets/images/Test/img4.jpg"
+                data-images="frontend/assets/images/Test/img1.jpg
+              , frontend/assets/images/Test/img2.jpg
+              , frontend/assets/images/Test/img3.jpg
+              , frontend/assets/images/Test/img4.jpg"
                 loading="lazy"
                 onload="document.getElementById('img-loader').style.display='none'"
               />
@@ -350,7 +354,7 @@
       <div id="chat" class="chat-container">
         <div class="chat-header">
           <img
-            src="../assets/images/cat_beautiful.jpg"
+            src="frontend/assets/images/cat_beautiful.jpg"
             alt="Avatar"
             class="chat-avatar"
           />
@@ -400,7 +404,7 @@
         <!-- Phần body setting chat -->
         <div class="setting-chat-header-info">
           <img
-            src="../assets/images/cat_beautiful.jpg"
+            src="frontend/assets/images/cat_beautiful.jpg"
             alt="Avatar"
             class="chat-setting-avatar"
           />
@@ -503,6 +507,6 @@
       <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
     </div>
 
-    <script src="../viewmodels/match.js"></script>
+    <script src="frontend/viewmodels/match.js"></script>
   </body>
 </html>
