@@ -1,0 +1,378 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco Dating - Find Your Sweet Connection</title>
+    <meta name="description" content="Choco Dating - Where sweet connections begin. Find meaningful relationships in a warm, welcoming space.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/frontend/assets/css/about.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <!-- Header Skeleton -->
+            <div class="skeleton-header">
+                <div class="skeleton skeleton-logo"></div>
+                <div class="skeleton-nav">
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                </div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            
+            <!-- Main Content Skeleton -->
+            <div class="skeleton-main">
+                <div class="skeleton-content">
+                    <div class="skeleton-text-box">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                    <div class="skeleton skeleton-image"></div>
+                </div>
+            </div>
+            
+            <!-- Loading Hearts -->
+            <div class="loading-hearts">
+                <div class="heart">💕</div>
+                <div class="heart">❤️</div>
+                <div class="heart">💖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#home" class="logo-link">Choco</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav desktop-nav" role="navigation">
+                    <a href="#premium" class="nav-link">Premium</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#support" class="nav-link">Support</a>
+                    
+                    <!-- Language Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                            <a href="#" class="dropdown-item" role="menuitem">English</a>
+                            <a href="#" class="dropdown-item" role="menuitem">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Right Side Controls -->
+                <div class="header-controls">
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+
+                    <!-- Sign In Button (Desktop) -->
+                    <a href="#signin" class="sign-in-btn desktop-only">Sign in</a>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav" role="navigation">
+                    <a href="#premium" class="mobile-nav-link">Premium</a>
+                    <a href="#about" class="mobile-nav-link">About</a>
+                    <a href="#support" class="mobile-nav-link">Support</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle">Language</button>
+                        <div class="mobile-dropdown-menu">
+                            <a href="#" class="mobile-dropdown-item">English</a>
+                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                    <a href="#signin" class="mobile-sign-in">Sign in</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main" id="main">
+            <!-- Hero Section -->
+            <section class="hero-section" id="home">
+                <div class="hero-bg"></div>
+                <div class="container">
+                    <div class="hero-grid">
+                        <!-- Left Content -->
+                        <div class="hero-content">
+                            <div class="content-box">
+                                <h1 class="hero-title">Find Your Sweet Connection</h1>
+                                
+                                <div class="hero-text">
+                                    <p>Welcome to Choco, where meaningful relationships begin with genuine conversations.</p>
+                                    <p>Connect with like-minded people in a safe, welcoming environment designed for authentic connections.</p>
+                                    <p>Whether you're looking for love, friendship, or companionship, your journey starts here.</p>
+                                </div>
+                                
+                                <div class="hero-actions">
+                                    <a href="#signup" class="cta-button primary">Get Started</a>
+                                    <a href="#about" class="cta-button secondary">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Content - Feature Cards -->
+                        <div class="hero-features">
+                            <div class="feature-card">
+                                <i class="fas fa-heart feature-icon"></i>
+                                <h3>Genuine Connections</h3>
+                                <p>Meet real people looking for meaningful relationships</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-shield-alt feature-icon"></i>
+                                <h3>Safe & Secure</h3>
+                                <p>Your privacy and safety are our top priorities</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-comments feature-icon"></i>
+                                <h3>Easy Communication</h3>
+                                <p>Start conversations naturally and comfortably</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">About Choco</h2>
+                        <p class="section-subtitle">Where sweet moments begin</p>
+                    </div>
+                    
+                    <div class="about-grid">
+                        <div class="about-content">
+                            <h3>Our Story</h3>
+                            <p>Choco was created for conversations that matter. A space with no pressure, no judgment — just real people with a genuine desire to connect.</p>
+                            <p>Whether you're looking for a serious relationship, a companion to share your interests with, or simply someone who understands you, Choco offers a gentle starting point.</p>
+                            
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-number">10K+</span>
+                                    <span class="stat-label">Happy Couples</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">50K+</span>
+                                    <span class="stat-label">Active Users</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-image">
+                            <div class="image-placeholder">
+                                <img src="/frontend/assets/images/couple-love.jpg" alt="About" class="about-img-in-circle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sweet Section -->
+            <section class="sweet-section">
+                <div class="sweet-overlay"></div>
+                <img src="/frontend/assets/images/choco1.png" alt="" class="sweet-bg-img">
+                <div class="container">
+                    <div class="sweet-content">
+                        <h2 class="sweet-title">Sweet Connections Await</h2>
+                        <p class="sweet-text-1">
+                            Choco isn't just a dating app —<br>
+                            it's where sweet moments begin.
+                        </p>
+                        <p class="sweet-text-2">
+                            Meet new people, chat freely, and<br>
+                            create heartfelt memories in a<br>
+                            space as warm and lovely as<br>
+                            chocolate.
+                        </p>
+                        <a href="#signup" class="cta-button light">Start Your Journey</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section" id="features">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Why Choose Choco?</h2>
+                        <p class="section-subtitle">Discover what makes us special</p>
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h3>Smart Matching</h3>
+                            <p>Our advanced algorithm connects you with compatible people based on your interests and values.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h3>Privacy First</h3>
+                            <p>Your personal information is protected with industry-leading security measures.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Mobile Friendly</h3>
+                            <p>Access Choco anywhere, anytime with our responsive design that works on all devices.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>24/7 Support</h3>
+                            <p>Our dedicated support team is always here to help you with any questions or concerns.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Gallery Section -->
+            <section class="gallery-section" id="gallery">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Happy Moments</h2>
+                        <p class="section-subtitle">Real stories from our community</p>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="/frontend/assets/images/couple-love1.jpg" alt="Happy couple at cafe" class="gallery-img">
+                            <div class="gallery-overlay">
+                                <h4>Sarah & Mike</h4>
+                                <p>"Met on Choco 6 months ago!"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="/frontend/assets/images/couple-love2.jpg" alt="Couple walking in park" class="gallery-img">
+                            <div class="gallery-overlay">
+                                <h4>Emma & David</h4>
+                                <p>"Our first date was magical"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="/frontend/assets/images/couple-love3.jpg" alt="Couple cooking together" class="gallery-img">
+                            <div class="gallery-overlay">
+                                <h4>Lisa & John</h4>
+                                <p>"Found my cooking partner!"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="/frontend/assets/images/couple-love4.jpg" alt="Couple at beach sunset" class="gallery-img">
+                            <div class="gallery-overlay">
+                                <h4>Anna & Tom</h4>
+                                <p>"Beach dates are our favorite"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-overlay"></div>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">Choco</div>
+                            <p class="footer-description">Where sweet connections begin. Find your perfect match in a safe, welcoming environment.</p>
+                        </div>
+                        
+                        <div class="footer-links-grid">
+                            <div class="footer-column">
+                                <h4>Product</h4>
+                                <a href="#features" class="footer-link">Features</a>
+                                <a href="#premium" class="footer-link">Premium</a>
+                                <a href="#safety" class="footer-link">Safety</a>
+                            </div>
+                            
+                            <div class="footer-column">
+                                <h4>Support</h4>
+                                <a href="#help" class="footer-link">Help Center</a>
+                                <a href="#contact" class="footer-link">Contact</a>
+                                <a href="#community" class="footer-link">Community</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="footer-bottom">
+                        <div class="footer-legal">
+                            <a href="#terms" class="footer-link">Terms of Use</a>
+                            <a href="#privacy" class="footer-link">Privacy Policy</a>
+                            <a href="#cookies" class="footer-link">Cookie Policy</a>
+                        </div>
+                        <p class="footer-copyright">© 2025 Choco Dating. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/frontend/viewmodels/about.js"></script>
+</body>
+</html>

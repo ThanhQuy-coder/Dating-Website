@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Choco - Create Profile</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="/frontend/assets/css/create-profile.css">
+    <link rel="stylesheet" href="/frontend/assets/css/about.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <!-- Header Skeleton -->
+            <div class="skeleton-header">
+                <div class="skeleton skeleton-logo"></div>
+                <div class="skeleton-nav">
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                </div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            
+            <!-- Main Content Skeleton -->
+            <div class="skeleton-main">
+                <div class="skeleton-content">
+                    <div class="skeleton-text-box">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                    <div class="skeleton skeleton-image"></div>
+                </div>
+            </div>
+            
+            <!-- Loading Hearts -->
+            <div class="loading-hearts">
+                <div class="heart">💕</div>
+                <div class="heart">❤️</div>
+                <div class="heart">💖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#home" class="logo-link">Choco</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav desktop-nav" role="navigation">
+                    <a href="#premium" class="nav-link">Premium</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#support" class="nav-link">Support</a>
+                    
+                    <!-- Language Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                            <a href="#" class="dropdown-item" role="menuitem">English</a>
+                            <a href="#" class="dropdown-item" role="menuitem">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Right Side Controls -->
+                <div class="header-controls">
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+
+                    <!-- Sign In Button (Desktop) -->
+                    <a href="#signin" class="sign-in-btn desktop-only">Sign in</a>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav" role="navigation">
+                    <a href="#premium" class="mobile-nav-link">Premium</a>
+                    <a href="#about" class="mobile-nav-link">About</a>
+                    <a href="#support" class="mobile-nav-link">Support</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle">Language</button>
+                        <div class="mobile-dropdown-menu">
+                            <a href="#" class="mobile-dropdown-item">English</a>
+                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                    <a href="#signin" class="mobile-sign-in">Sign in</a>
+                </nav>
+            </div>
+        </header>
+    <hr>
+    <main class="main-signup">
+        <div class="box">
+            <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
+            <div class="box-logo">Choco</div>
+            <p class="slogan">Happiness you can taste!</p>
+            <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
+            <form id="profileForm" novalidate>
+                <section class="inputname input-icon">
+                    <input type="text" placeholder="Display name" name="displayName" required>
+                </section>
+                <section class="inputhobbies input-icon">
+                    <input type="text" placeholder="Hobbies" name="hobbies" required>
+                </section>
+                <section class="input-group gender-dob-group">
+                    <select name="gender" required>
+                        <option value="" disabled selected>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="date" name="dob" placeholder="Date of birth" required>
+                </section>
+                <section class="inputdesc input-icon">
+                    <input type="text" placeholder="Self description" name="description" required>
+                </section>
+                <section class="signup-btn">
+                    <button type="submit" class="submit-btn">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </section>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </main>
+    <script>
+        const form = document.getElementById('profileForm');
+        const message = document.getElementById('formMessage');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            message.textContent = '';
+            const btn = form.querySelector('.submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+            setTimeout(() => {
+                // Simple validate
+                let valid = true;
+                form.querySelectorAll('input, select').forEach(input => {
+                    if (!input.value) valid = false;
+                });
+                if (!valid) {
+                    message.textContent = 'Please fill in all fields!';
+                    message.style.color = '#e75480';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
+                } else {
+                    message.textContent = 'Profile created successfully!';
+                    message.style.color = '#2196f3';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
+                }
+            }, 1000);
+        });
+    </script>
+    <script src="/frontend/viewmodels/about.js"></script>
+</body>
+</html> 

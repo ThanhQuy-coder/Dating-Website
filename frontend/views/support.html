@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | Choco Dating</title>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/frontend/assets/css/support.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <!-- Header Skeleton -->
+            <div class="skeleton-header">
+                <div class="skeleton skeleton-logo"></div>
+                <div class="skeleton-nav">
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                </div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            
+            <!-- Hero Skeleton -->
+            <div class="skeleton-hero">
+                <div class="skeleton skeleton-hero-bg"></div>
+                <div class="skeleton skeleton-hero-title"></div>
+            </div>
+            
+            <!-- Support Content Skeleton -->
+            <div class="skeleton-support">
+                <div class="skeleton-support-grid">
+                    <div class="skeleton-support-col">
+                        <div class="skeleton skeleton-col-title"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                    </div>
+                    <div class="skeleton-support-col">
+                        <div class="skeleton skeleton-col-title"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                    </div>
+                    <div class="skeleton-support-col">
+                        <div class="skeleton skeleton-col-title"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                        <div class="skeleton skeleton-col-item"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Support Icons -->
+            <div class="loading-icons">
+                <div class="support-icon">🛠️</div>
+                <div class="support-icon">💬</div>
+                <div class="support-icon">📞</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#" class="logo-link">Choco</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav desktop-nav">
+                    <a href="#" class="nav-link">Premium</a>
+                    <a href="/frontend/views/about.html" class="nav-link">About</a>
+                    <a href="/frontend/views/support.html" class="nav-link active">Support</a>
+                    
+                    <!-- Language Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">English</a>
+                            <a href="#" class="dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Right Side Controls -->
+                <div class="header-controls">
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+
+                    <!-- Sign In Button (Desktop) -->
+                    <a href="#" class="sign-in-btn desktop-only">Sign in</a>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="#" class="mobile-nav-link">Premium</a>
+                    <a href="#" class="mobile-nav-link">About</a>
+                    <a href="#" class="mobile-nav-link active">Support</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle">Language</button>
+                        <div class="mobile-dropdown-menu">
+                            <a href="#" class="mobile-dropdown-item">English</a>
+                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                    <a href="#" class="mobile-sign-in">Sign in</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <h1 class="hero-title animate-slide-in-left">Choco Support</h1>
+            </div>
+        </section>
+
+        <!-- Support Main Content -->
+        <main class="support-main">
+            <div class="container">
+                <div class="support-grid">
+                    <!-- Account Management -->
+                    <div class="support-column animate-fade-in" style="animation-delay: 0.2s;">
+                        <div class="support-icon-wrapper">
+                            <i class="fas fa-user-cog support-icon"></i>
+                        </div>
+                        <h2 class="support-title">Account Management</h2>
+                        <div class="support-links">
+                            <a href="#" class="support-link">
+                                <i class="fas fa-key"></i>
+                                <span>Recover Your Account</span>
+                            </a>
+                            <a href="#" class="support-link">
+                                <i class="fas fa-lock"></i>
+                                <span>Forgot Username/Password</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Payment -->
+                    <div class="support-column animate-fade-in" style="animation-delay: 0.4s;">
+                        <div class="support-icon-wrapper">
+                            <i class="fas fa-credit-card support-icon"></i>
+                        </div>
+                        <h2 class="support-title">Payment</h2>
+                        <div class="support-links">
+                            <a href="#" class="support-link">
+                                <i class="fas fa-undo"></i>
+                                <span>Refund Policy</span>
+                            </a>
+                            <a href="#" class="support-link">
+                                <i class="fas fa-ban"></i>
+                                <span>Chargebacks</span>
+                            </a>
+                            <a href="#" class="support-link">
+                                <i class="fas fa-history"></i>
+                                <span>Purchase History</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Data Protection -->
+                    <div class="support-column animate-fade-in" style="animation-delay: 0.6s;">
+                        <div class="support-icon-wrapper">
+                            <i class="fas fa-shield-alt support-icon"></i>
+                        </div>
+                        <h2 class="support-title">Privacy & Data Protection</h2>
+                        <div class="support-links">
+                            <a href="#" class="support-link">
+                                <i class="fas fa-download"></i>
+                                <span>Request Account Data</span>
+                            </a>
+                            <a href="#" class="support-link">
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Account Deletion</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-background"></div>
+            <div class="contact-content animate-fade-in">
+                <div class="contact-box">
+                    <h2 class="contact-title">Need more support?<br>Contact us.</h2>
+                    <p class="contact-description">
+                        Please contact us directly to find answers to any difficult questions.
+                    </p>
+                    <button class="contact-button">
+                        <i class="fas fa-envelope"></i>
+                        <span>Your question</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-overlay"></div>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">Choco</div>
+                            <p class="footer-description">Where sweet connections begin. Find your perfect match in a safe, welcoming environment.</p>
+                        </div>
+                        
+                        <div class="footer-links-grid">
+                            <div class="footer-column">
+                                <h4>Product</h4>
+                                <a href="#features" class="footer-link">Features</a>
+                                <a href="#premium" class="footer-link">Premium</a>
+                                <a href="#safety" class="footer-link">Safety</a>
+                            </div>
+                            
+                            <div class="footer-column">
+                                <h4>Support</h4>
+                                <a href="#help" class="footer-link">Help Center</a>
+                                <a href="#contact" class="footer-link">Contact</a>
+                                <a href="#community" class="footer-link">Community</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-legal">
+                            <a href="#terms" class="footer-link">Terms of Use</a>
+                            <a href="#privacy" class="footer-link">Privacy Policy</a>
+                            <a href="#cookies" class="footer-link">Cookie Policy</a>
+                        </div>
+                        <p class="footer-copyright">© 2025 Choco Dating. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/frontend/viewmodels/support.js"></script>
+</body>
+</html>

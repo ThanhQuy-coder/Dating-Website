@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff0f5;
+  color: #333;
+}
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #d63384;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.back-button button:hover {
+  color: #b02a6b;
+}
+
+.premium-wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.premium-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #d63384;
+}
+
+.premium-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.premium-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.premium-card i {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #d63384;
+}
+
+.premium-card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.premium-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.premium-footer {
+  margin-top: 50px;
+}
+
+.upgrade-btn {
+  background-color: #d63384;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upgrade-btn:hover {
+  background-color: #b02a6b;
+}
+
+.qr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.qr-popup {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 300px;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.qr-popup img {
+  width: 300px;
+  height: 300px;
+  margin: 20px 0 20px 0;
+}
+
+.qr-popup button {
+  background-color: #d63384;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.qr-popup button:hover {
+  background-color: #b02a6b;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
