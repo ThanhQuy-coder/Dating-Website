@@ -3,31 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <title>Choco - Create Avatar</title>
-    <link rel="stylesheet" href="/frontend/assets/css/register.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
+    
+
     <link rel="stylesheet" href="/frontend/assets/css/create-profile.css">
+    <link rel="stylesheet" href="/frontend/assets/css/about.css">
+    
 </head>
 <body>
-    <header class="header-home">
-    <div class="logo">
-        <a href="/frontend/views/home.html" style="color: inherit; text-decoration: none;">Choco</a>
-    </div>
-        <div class="center">
-            <nav class="navmenu">
-                <a href="#">Premium</a>
-                <a href="/frontend/views/about.html">About</a>
-                <a href="/frontend/views/support.html">Support</a>
-                <div class="dropdown">
-                    <span class="language">Language <span class="arrow">▼</span></span>
-                    <div class="down-item">
-                        <a href="#" class="drop_down_item">English</a>
-                        <a href="#" class="drop_down_item">Tiếng Việt</a>
-                    </div>
+        <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <!-- Header Skeleton -->
+            <div class="skeleton-header">
+                <div class="skeleton skeleton-logo"></div>
+                <div class="skeleton-nav">
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
+                    <div class="skeleton skeleton-nav-item"></div>
                 </div>
-            </nav>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            
+            <!-- Main Content Skeleton -->
+            <div class="skeleton-main">
+                <div class="skeleton-content">
+                    <div class="skeleton-text-box">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                    <div class="skeleton skeleton-image"></div>
+                </div>
+            </div>
+            
+            <!-- Loading Hearts -->
+            <div class="loading-hearts">
+                <div class="heart">💕</div>
+                <div class="heart">❤️</div>
+                <div class="heart">💖</div>
+            </div>
         </div>
-    </header>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#home" class="logo-link">Choco</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav desktop-nav" role="navigation">
+                    <a href="#premium" class="nav-link">Premium</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#support" class="nav-link">Support</a>
+                    
+                    <!-- Language Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                            <a href="#" class="dropdown-item" role="menuitem">English</a>
+                            <a href="#" class="dropdown-item" role="menuitem">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Right Side Controls -->
+                <div class="header-controls">
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+
+                    <!-- Sign In Button (Desktop) -->
+                    <a href="#signin" class="sign-in-btn desktop-only">Sign in</a>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav" role="navigation">
+                    <a href="#premium" class="mobile-nav-link">Premium</a>
+                    <a href="#about" class="mobile-nav-link">About</a>
+                    <a href="#support" class="mobile-nav-link">Support</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle">Language</button>
+                        <div class="mobile-dropdown-menu">
+                            <a href="#" class="mobile-dropdown-item">English</a>
+                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                    <a href="#signin" class="mobile-sign-in">Sign in</a>
+                </nav>
+            </div>
+        </header>
     <hr>
     <main class="main-signup">
         <div class="box">
@@ -54,5 +147,7 @@
         </div>
     </main>
     <script src="/frontend/viewmodels/create-avt1.js"></script>
+    <script src="/frontend/viewmodels/about.js"></script>
+
 </body>
 </html> 

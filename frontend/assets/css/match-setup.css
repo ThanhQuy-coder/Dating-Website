@@ -1,5 +1,11 @@
 /* CSS cho trang create-match.html */
 
+.skip-link,
+a[href="#main-content"] {
+  display: none !important;
+}
+
+
 .gender-select {
     display: flex;
     gap: 24px;
@@ -13,7 +19,7 @@
     background: #fff;
     color: #d81b60;
     font-size: 1.1rem;
-    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Zen+Dot', sans-serif;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border 0.2s;
     outline: none;
