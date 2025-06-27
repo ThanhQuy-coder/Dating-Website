@@ -53,41 +53,6 @@
             </form>
         </div>
     </main>
-    <script>
-        const form = document.getElementById('profileForm');
-        const message = document.getElementById('formMessage');
-        const avatarInput = document.getElementById('avatarInput');
-        const avatarImg = document.querySelector('.avatar-upload img');
-        avatarInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    avatarImg.src = evt.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            message.textContent = '';
-            const btn = form.querySelector('.submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
-            setTimeout(() => {
-                if (!avatarInput.value) {
-                    message.textContent = 'Please upload an avatar!';
-                    message.style.color = '#e75480';
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
-                } else {
-                    message.textContent = 'Avatar uploaded successfully!';
-                    message.style.color = '#2196f3';
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fa fa-arrow-right"></i>';
-                }
-            }, 1000);
-        });
-    </script>
+    <script src="/frontend/viewmodels/create-avt1.js"></script>
 </body>
 </html> 

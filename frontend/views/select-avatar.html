@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Avatar - Choco</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/frontend/assets/css/select-avatar.css">
+</head>
+<body>
+
+  <h2>Select Your Avatar</h2>
+
+  <div class="tab-menu">
+    <button class="tab-btn active" data-target="boy">Boy</button>
+    <button class="tab-btn" data-target="girl">Girl</button>
+    <button class="tab-btn" data-target="animals">Animals</button>
+  </div>
+
+  <div id="boy" class="tab-content active">
+    <div class="avatar-grid">
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy1.png" alt="Boy 1"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy2.png" alt="Boy 2"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy3.png" alt="Boy 3"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy4.png" alt="Boy 4"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy5.png" alt="Boy 5"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/boy6.png" alt="Boy 6"></div>
+        </div>
+  </div>
+
+  <div id="girl" class="tab-content">
+        <div class="avatar-grid">
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl1.png" alt="Girl 1"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl2.png" alt="Girl 2"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl3.png" alt="Girl 3"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl4.png" alt="Girl 4"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl5.png" alt="Girl 5"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/girl6.png" alt="Girl 6"></div>
+        </div>
+  </div>
+
+  <div id="animals" class="tab-content">
+        <div class="avatar-grid">
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal1.png" alt="Animals"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal2.pn" alt="Animals"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal3.png" alt="Animals"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal4.png" alt="Animals"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal5.png" alt="Animals"></div>
+            <div class="avatar-item"><img src="/frontend/assets/images/select-avt/animal6.png" alt="Animals"></div>
+        </div>
+  </div>
+
+  <div class="submit-wrap">
+    <button class="submit-btn" disabled>
+      <i class="fa fa-heart"></i>
+    </button>
+  </div>
+
+  <!-- Success Popup -->
+  <div class="success-popup" id="successPopup">
+    <div class="success-box">
+      <div class="success-icon">
+        <svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="40" fill="#38e600"/><polyline points="30,48 42,60 62,36" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="success-msg">
+        <p class="success-title">Registration successful!</p>
+        <p class="success-desc">Please login again</p>
+      </div>
+      <button class="success-btn" > <a href="/frontend/views/login.html"> Get Started!</a></button>
+    </div>
+  </div>
+  
+  <div class="bg-bubbles">
+    <div></div><div></div><div></div><div></div><div></div>
+  </div>
+  <script src="/frontend/viewmodels/select-avatar.js"></script>
+</body>
+</html>
