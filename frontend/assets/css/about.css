@@ -64,6 +64,14 @@ body {
   background: var(--bg-dark);
   color: var(--text-dark-primary);
 }
+body.dark-mode .dropdown-toggle,
+body.dark-mode .dropdown-menu {
+    color:#cccccc;
+}
+
+body.dark-mode .dropdown-toggle:hover {
+  color:var(--secondary-pink)
+}
 
 /* ===== LOADING SCREEN ===== */
 .loading-screen {
@@ -744,6 +752,7 @@ body {
   border-radius: var(--radius-large);
   box-shadow: var(--shadow-heavy);
   transition: all var(--transition-normal);
+  margin-top: 50px;
 }
 
 .content-box:hover {
@@ -1469,6 +1478,19 @@ body {
   .about-img {
     height: 300px;
   }
+  .about-section {
+  padding: 60px 15px;
+}
+.about-grid {
+  gap: 30px;
+}
+.about-content h3 {
+  font-size: 1.5rem;
+}
+.about-content p {
+  font-size: 1rem;
+}
+
 }
 
 @media (max-width: 480px) {
@@ -1538,6 +1560,68 @@ body {
   .gallery-section {
     padding: 60px 0;
   }
+  .about-section {
+  padding: 60px 15px;
+}
+.about-grid {
+  gap: 30px;
+}
+.about-content h3 {
+  font-size: 1.5rem;
+}
+.about-content p {
+  font-size: 1rem;
+}
+@media (max-width: 480px) {
+  .footer {
+    padding: 60px 20px 30px;
+  }
+
+  .footer-links-grid {
+    gap: 20px;
+  }
+
+  .footer-column h4 {
+    font-size: 1.1rem;
+  }
+
+  .footer-column .footer-link {
+    font-size: 0.95rem;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .image-placeholder {
+    width: 280px; /* hoặc 80% nếu muốn linh hoạt */
+    height: 180px;
+    border-radius: 50% ;
+    margin: 0 auto; /* căn giữa */
+  }
+
+  .about-img-in-circle {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
+
+}
+
+
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
@@ -1593,24 +1677,6 @@ a:focus,
 .dark-mode a:focus,
 .dark-mode .dropdown-toggle:focus {
   outline-color: var(--secondary-pink);
-}
-
-/* Skip link for accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--primary-pink);
-  color: white;
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 10000;
-  transition: top 0.3s;
-}
-
-.skip-link:focus {
-  top: 6px;
 }
 
 /* Gallery Section */

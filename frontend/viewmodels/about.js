@@ -524,23 +524,6 @@ window.addEventListener("error", (e) => {
   }
 })
 
-// ===== ACCESSIBILITY IMPROVEMENTS =====
-// Skip to main content link
-const skipLink = document.createElement("a")
-skipLink.href = "#main"
-skipLink.textContent = "Skip to main content"
-skipLink.className = "skip-link"
-skipLink.setAttribute("tabindex", "0")
-
-skipLink.addEventListener("focus", () => {
-  skipLink.style.top = "6px"
-})
-
-skipLink.addEventListener("blur", () => {
-  skipLink.style.top = "-40px"
-})
-
-document.body.insertBefore(skipLink, document.body.firstChild)
 
 // ===== PERFORMANCE MONITORING =====
 // Monitor page performance

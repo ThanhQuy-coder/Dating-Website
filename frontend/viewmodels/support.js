@@ -1,3 +1,4 @@
+
 // ===== DOM ELEMENTS =====
 const loadingScreen = document.getElementById("loading-screen")
 const mainContent = document.getElementById("main-content")
@@ -176,7 +177,7 @@ function initSupportLinks() {
 
     // Add click effect
     link.addEventListener("click", (e) => {
-      e.preventDefault()
+     
 
       // Create ripple effect
       const ripple = document.createElement("span")
@@ -378,37 +379,7 @@ window.addEventListener("error", (e) => {
     hideLoadingScreen()
   }
 })
-
-// ===== ACCESSIBILITY IMPROVEMENTS =====
-// Skip to main content link
-const skipLink = document.createElement("a")
-skipLink.href = "#support-main"
-skipLink.textContent = "Skip to main content"
-skipLink.className = "skip-link"
-skipLink.style.cssText = `
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--primary-pink);
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    border-radius: 4px;
-    z-index: 10000;
-    transition: top 0.3s;
-`
-
-skipLink.addEventListener("focus", () => {
-  skipLink.style.top = "6px"
-})
-
-skipLink.addEventListener("blur", () => {
-  skipLink.style.top = "-40px"
-})
-
-document.body.insertBefore(skipLink, document.body.firstChild)
-
-// Add main id to support main element
+//Add main id to support main element
 document.querySelector(".support-main").id = "support-main"
 
 console.log("🛠️ Choco Support Page loaded successfully!")

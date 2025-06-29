@@ -29,7 +29,14 @@
   --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
+body.dark-mode .dropdown-toggle,
+body.dark-mode .dropdown-menu {
+    color:#cccccc;
+}
 
+body.dark-mode .dropdown-toggle:hover {
+  color:var(--secondary-pink)
+}
 /* ===== RESET & BASE ===== */
 * {
   margin: 0;
@@ -1024,18 +1031,22 @@ body:not(.dark-mode) .dropdown-toggle:hover {
 }
 
 .footer-bottom {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  align-items: center;
+  color: #7a5e5e;
+  z-index: 2;
+  padding: 16px 0;
 }
-
 .footer-legal {
-  display: flex;
-  gap: 30px;
+  display: flex !important;
+  gap: 24px;
+  margin-bottom: 8px;
 }
-
+.footer-link {
+  text-decoration: none;
+}
 .footer-legal .footer-link {
   color: var(--text-dark-secondary);
   text-decoration: none;
@@ -1108,7 +1119,11 @@ body:not(.dark-mode) .dropdown-toggle:hover {
   .desktop-only {
     display: none;
   }
-
+.hero-background {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center 50%;
+  }
   .mobile-menu-toggle {
     display: flex;
   }
@@ -1161,13 +1176,47 @@ body:not(.dark-mode) .dropdown-toggle:hover {
     flex-direction: column;
     gap: 20px;
   }
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .footer-description {
+    text-align: center;
+  }
 }
+
 
 @media (max-width: 480px) {
   .container {
     padding: 0 15px;
   }
+ .hero-background {
+    background-size: cover;
+    background-position: center center;
+    height: 300px; /* đảm bảo hiển thị vừa */
+  }
 
+  .hero-section {
+    height: auto;
+    min-height: 300px;
+    padding-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
   .logo {
     font-size: 1.8rem;
   }
@@ -1214,7 +1263,31 @@ body:not(.dark-mode) .dropdown-toggle:hover {
   .skeleton-nav {
     display: none;
   }
+  .footer {
+    padding: 50px 20px 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .footer-column h4 {
+    font-size: 1rem;
+  }
+
+  .footer-column .footer-link {
+    font-size: 0.9rem;
+  }
 }
+
 
 /* ===== CUSTOM SCROLLBAR ===== */
 ::-webkit-scrollbar {

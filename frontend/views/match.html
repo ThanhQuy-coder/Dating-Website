@@ -1,512 +1,676 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <base href="/Dating-Website/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Match Page</title>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Poppins cho nội dung chung, Orbitron cho các tiêu đề/underline nếu muốn -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="frontend/assets/css/match.css" />
-  </head>
-  <body>
-    <!-- Trang điều hướng bên trái -->
-    <aside class="sidebar">
-      <!-- Phần avatar và tên user -->
-      <div class="profile">
-        <button onclick="showTab('profile')">
-          <!-- đặt avatar -->
-          <img
-            src="frontend/assets/images/cat_beautiful.jpg"
-            alt="Your Avatar"
-            class="avatar"
-          />
-          <span class="username">You</span>
-        </button>
-      </div>
-
-      <!-- Các icon navigation phía trên -->
-      <nav class="nav-icons">
-        <button
-          class="icon-btn"
-          onclick="window.location.href='frontend/views/premium.html';"
-        >
-          <i class="fa-solid fa-crown"></i>
-        </button>
-        <button class="icon-btn" onclick="showTab('messages');">
-          <i class="fa-solid fa-comments"></i>
-        </button>
-        <button class="icon-btn" onclick="showTab('notification');">
-          <i class="fa-solid fa-bell"></i>
-        </button>
-        <button class="icon-btn" onclick="showTab('settings');">
-          <i class="fa-solid fa-gear"></i>
-        </button>
-      </nav>
-
-      <!-- tab profile -->
-      <div id="nav-profile-tab" class="nav-tab">
-        <div class="profile-info"></div>
-      </div>
-
-      <!-- Tab match -->
-      <div id="nav-match-tab" class="nav-tab">
-        <!-- Tab chọn (chỉ ví dụ 1 tab "Match" ở giữa) -->
-        <div class="tab-container">
-          <button class="tab-btn active" id="title-match">Match</button>
-          <!-- Nếu có thêm tab khác, thêm ở đây -->
-        </div>
-        <!-- Phần nội dung bên dưới tab -->
-        <div class="matches-info">
-          <div style="display: block">
-            <h2>Your Matches</h2>
-            <p>Start swiping right to find your perfect match!</p>
-          </div>
-          <div class="match" style="display: none">
-            <img
-              src="frontend/assets/images/cat_beautiful.jpg"
-              alt="Your Avatar"
-              class="match-avatar"
-            />
-            <div class="match-info">
-              <h3>Nguyễn Hà My</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Match - Complete Pro Dating App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/assets/css/match.css">
+     
+</head>
+<body>
+    <!-- Desktop Sidebar -->
+    <aside class="sidebar desktop-only">
+        <!-- Profile Section -->
+        <div class="profile" onclick="showTab('profile')">
+            <img src="https://i.pinimg.com/736x/7b/af/0f/7baf0f18f4e35c21e8a14365ee05a960.jpg" alt="Profile" class="profile-avatar">
+            <div>
+                <div class="profile-name">Minh Hoàng</div>
+                <div class="profile-status">Online now</div>
             </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Tab message -->
-      <div id="nav-messages-tab" class="nav-tab" style="display: none">
-        <!-- Phần trở về match và tìm kiếm -->
-        <div class="tab-container-messages">
-          <button class="tab-btn" onclick="showTab('match'); ">
-            <i class="fa fa-home"></i>
-          </button>
-          <button class="tab-btn active" id="title-messages">Messages</button>
-          <button class="tab-btn">
-            <i class="fa-solid fa-search search-icon-notification"></i>
-          </button>
+        <!-- Navigation Icons -->
+        <div class="nav-icons">
+            <button class="nav-icon" onclick="showTab('premium')">
+                <i class="fas fa-crown"></i>
+            </button>
+            <button class="nav-icon active" onclick="showTab('dating')">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="nav-icon" onclick="showTab('messages')">
+                <i class="fas fa-comments"></i>
+                <span class="badge">3</span>
+            </button>
+            <button class="nav-icon" onclick="showTab('notifications')">
+                <i class="fas fa-bell"></i>
+                <span class="badge">5</span>
+            </button>
+            <button class="nav-icon" onclick="showTab('settings')">
+                <i class="fas fa-cog"></i>
+            </button>
         </div>
-        <!-- Phần nội dung bên dưới tab -->
-        <div class="messages-info">
-          <!-- Trường hợp không có tin nhắn -->
-          <div style="display: none">
-            <h2>Messages</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae,
-              rerum, doloribus illo adipisci numquam nam natus ex, quia odit
-              ipsam placeat necessitatibus! Distinctio explicabo maiores dolores
-              ratione velit. Quos, ea!
-            </p>
-          </div>
-          <!-- Trường hợp có tin nhắn -->
-          <div class="friend" style="display: flex">
-            <img
-              src="frontend/assets/images/cat_beautiful.jpg"
-              alt=""
-              class="notification-avatar"
-            />
-            <h3>Trần Hà Linh</h3>
-          </div>
-        </div>
-      </div>
 
-      <!-- Tab notification -->
-      <div id="nav-notification-tab" class="nav-tab" style="display: none">
-        <!-- Phần trở về match và tìm kiếm -->
-        <div class="tab-container-notification">
-          <button class="tab-btn" onclick="showTab('match'); ">
-            <i class="fa fa-home"></i>
-          </button>
-          <button class="tab-btn active" id="title-notification">
-            Notification
-          </button>
-          <button class="tab-btn">
-            <i class="fa-solid fa-search search-icon-notification"></i>
-          </button>
-        </div>
-        <!-- Phần nội dung bên dưới tab -->
-        <div class="notification-infor">
-          <!-- Trường hợp không có thông báo -->
-          <div style="display: none">
-            <h2>Notification</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae,
-              rerum, doloribus illo adipisci numquam nam natus ex, quia odit
-              ipsam placeat necessitatibus! Distinctio explicabo maiores dolores
-              ratione velit. Quos, ea!
-            </p>
-          </div>
-          <!-- Trường hợp có thông báo -->
-          <div class="notification" style="display: flex">
-            <img
-              src="frontend/assets/images/cat_beautiful.jpg"
-              alt=""
-              class="notification-avatar"
-            />
-            <p>
-              It's a match! Hà My liked you back. You can now start chatting!
-            </p>
-          </div>
-        </div>
-      </div>
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Matches Tab -->
+            <div id="matches-sidebar" class="tab-pane active">
+                <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">Your Matches</h3>
+                
+                <div class="match-item" onclick="openChat('Hà My')">
+                    <div style="position: relative;">
+                        <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Match" class="match-avatar">
+                        <div class="online-indicator"></div>
+                    </div>
+                    <div class="match-info">
+                        <h4>Hà My</h4>
+                        <p>Hey! How are you? 😊</p>
+                    </div>
+                    <div class="match-time">2h</div>
+                </div>
 
-      <!-- Tab settings -->
-      <div id="nav-settings-tab" class="nav-tab" style="display: none">
-        <!-- Settings Menu -->
-        <div class="settings-menu">
-          <div class="settings-item">
-            <i class="fas fa-cog"></i>
-            <span>Account Settings</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-search"></i>
-            <span>Search Settings</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-eye"></i>
-            <span>Control Who You See</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Your Activity</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-headset"></i>
-            <span>Help & Support</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-users"></i>
-            <span>Community Standards</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-file-contract"></i>
-            <span>Legal Policies</span>
-          </div>
-          <div class="settings-item">
-            <span>Log Out</span>
-            <i class="fas fa-arrow-right"></i>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-user-times"></i>
-            <span>Delete Account</span>
-          </div>
-          <div class="settings-item">
-            <i class="fas fa-globe"></i>
-            <span>Language</span>
-            <i class="fas fa-chevron-down dropdown-icon"></i>
-          </div>
+                <div class="match-item" onclick="openChat('Linh Tran')">
+                    <div style="position: relative;">
+                        <img src="https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg" alt="Match" class="match-avatar">
+                        <div class="online-indicator"></div>
+                    </div>
+                    <div class="match-info">
+                        <h4>Linh Tran</h4>
+                        <p>Thanks for the match!</p>
+                    </div>
+                    <div class="match-time">1d</div>
+                </div>
+
+                <div class="match-item" onclick="openChat('Thu Nguyen')">
+                    <img src="https://i.pinimg.com/736x/38/fd/07/38fd076e6cf0e13ba30b44034ea5f2b9.jpg" alt="Match" class="match-avatar">
+                    <div class="match-info">
+                        <h4>Thu Nguyen</h4>
+                        <p>Nice to meet you</p>
+                    </div>
+                    <div class="match-time">3d</div>
+                </div>
+
+                <div class="match-item">
+                    <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Match" class="match-avatar">
+                    <div class="match-info">
+                        <h4>Shizuka</h4>
+                        <p>Love your photos!</p>
+                    </div>
+                    <div class="match-time">1w</div>
+                </div>
+            </div>
+
+            <!-- Notifications Sidebar -->
+            <div id="notifications-sidebar" class="tab-pane">
+                <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">Notifications</h3>
+                
+                <div class="match-item">
+                    <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Notification" class="match-avatar">
+                    <div class="match-info">
+                        <h4>New Match!</h4>
+                        <p>You and Hà My liked each other</p>
+                    </div>
+                    <div class="match-time">1h</div>
+                </div>
+
+                <div class="match-item">
+                    <img src="https://i.pinimg.com/736x/5d/0e/75/5d0e7559bfa500cf385382ef6147655f.jpg" alt="Notification" class="match-avatar">
+                    <div class="match-info">
+                        <h4>Super Like</h4>
+                        <p>Someone super liked you!</p>
+                    </div>
+                    <div class="match-time">3h</div>
+                </div>
+            </div>
         </div>
-      </div>
     </aside>
 
-    <!-- Trang chính profile -->
-    <div id="profile-tab" class="tab-content">
-      <div class="profile-container">
-        <button class="close-btn" onclick="showTab('match')">&times;</button>
-
-        <div class="left">
-          <div class="avatar-wrapper" style="position: relative">
-            <img
-              src="frontend/assets/images/cat_beautiful.jpg"
-              alt="Avatar"
-              class="avatar"
-            />
-            <button class="camera-btn">
-              <div class="camera-icon"><i class="fa fa-camera"></i></div>
-            </button>
-          </div>
-          <div class="info">
-            <h2>
-              Minh Hoàng
-              <button class="edit-btn"><i class="fa fa-pen"></i></button>
-            </h2>
-            <div class="info-row">
-              <i class="fa-brands fa-instagram"></i> Hoang_deptrai
-              <button class="edit-btn"><i class="fa fa-pen"></i></button>
-            </div>
-            <div class="info-row">
-              <i class="fa fa-cake-candles"></i> October 2nd, 2005
-              <button class="edit-btn"><i class="fa fa-pen"></i></button>
-            </div>
-            <button class="edit-profile-btn">Edit profile</button>
-          </div>
-        </div>
-
-        <div class="right">
-          <div class="edit-photo-section">
-            <h3>
-              Edit Photo
-              <button class="edit-btn"><i class="fa fa-plus"></i></button>
-            </h3>
-            <div class="photo-grid">
-              <img src="frontend/assets/images/cat_beautiful.jpg" />
-              <img src="frontend/assets/images/cat_beautiful.jpg" />
-              <img src="frontend/assets/images/cat_beautiful.jpg" />
-            </div>
-          </div>
-
-          <div>
-            <p class="section-title">Hobbies:</p>
-            <div class="hobbies">
-              <div class="chip">Game</div>
-              <div class="chip">Sports</div>
-              <div class="chip">Coding</div>
-              <div class="chip">Taking photos</div>
-            </div>
-          </div>
-
-          <div class="location">
-            <span>Location:</span> District 12, Ho Chi Minh City, Việt Nam
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trang chính match -->
-    <div id="match-tab" class="tab-content">
-      <main class="main-content">
-        <!-- Thanh search -->
-        <div class="search-container">
-          <i class="fa-solid fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search" />
-        </div>
-
-        <!-- Container để card profile -->
-        <div class="card-wrapper">
-          <div class="card">
-            <!-- wrapper hình với aspect-ratio cố định -->
-            <div class="image-wrapper">
-              <!-- Phần hiển thị ảnh -->
-              <!-- Phần hiệu ứng skeleton -->
-              <div class="skeleton" id="img-loader"></div>
-              <!-- Phần này sẽ được chỉnh sửa thay thế ảnh trong cơ sở dữ liệu -->
-              <img
-                id="profile-image"
-                src="frontend/assets/images/cat_beautiful.jpg"
-                alt="Profile Image"
-                class="carousel-img"
-                data-images="frontend/assets/images/Test/img1.jpg
-              , frontend/assets/images/Test/img2.jpg
-              , frontend/assets/images/Test/img3.jpg
-              , frontend/assets/images/Test/img4.jpg"
-                loading="lazy"
-                onload="document.getElementById('img-loader').style.display='none'"
-              />
-
-              <!-- Các chấm hoặc line chỉ báo carousel (nếu có nhiều ảnh). Ví dụ 5 line nhỏ
-            <div class="indicators">
-              <span class="indicator"></span>
-              <span class="indicator"></span>
-              <span class="indicator"></span>
-              <span class="indicator"></span>
-              <span class="indicator"></span>
-            </div> -->
-
-              <!-- Overlay gradient để chữ dễ đọc -->
-              <div class="overlay"></div>
-              <!-- Thông tin chữ chồng lên ảnh -->
-              <div class="card-info">
-                <h3 class="name">Nguyễn Hà My</h3>
-                <p class="age-distance">Age: 21</p>
-                <p class="age-distance">5 km away</p>
-                <div class="hobbies">
-                  <!-- Bạn có thể thêm/bớt span .hobby -->
-                  <span class="hobby">Badminton</span>
-                  <span class="hobby">Anime</span>
-                  <span class="hobby">Photography</span>
-                  <span class="hobby">Blogging</span>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dating Tab -->
+        <div id="dating-tab" class="tab-pane active">
+            <div class="dating-content">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search for someone special...">
                 </div>
-              </div>
-            </div>
-            <!-- Nút Like / Dislike -->
-            <div class="action-buttons">
-              <button class="action-btn dislike">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <button class="action-btn like">
-                <i class="fa-solid fa-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
 
-    <!-- Trang chính tin nhắn -->
-    <div id="messages-tab" class="tab-content" style="display: none">
-      <!-- Phần chat container -->
-      <div id="chat" class="chat-container">
-        <div class="chat-header">
-          <img
-            src="frontend/assets/images/cat_beautiful.jpg"
-            alt="Avatar"
-            class="chat-avatar"
-          />
-          <div class="chat-name-status">
-            <h3>Hà My</h3>
-            <p class="chat-status">Active now</p>
-          </div>
-          <div class="chat-actions">
-            <button><i class="fa-solid fa-phone"></i></button>
-            <button><i class="fa-solid fa-video"></i></button>
-            <button id="toggle-chat-setting" onclick="setupChatSettingToggle()">
-              <i class="fa-solid fa-ellipsis"></i>
-            </button>
-          </div>
-        </div>
-        <div class="chat-body">
-          <div class="message other">Hi! Nice to meet you 😊</div>
-          <div class="message self">Hey! Same here 😄</div>
-        </div>
-        <div class="chat-footer">
-          <button class="chat-icon">
-            <i class="fa-solid fa-microphone"></i>
-          </button>
-          <button class="chat-icon"><i class="fa-solid fa-image"></i></button>
-          <input type="text" placeholder="Aa" class="chat-input" />
-          <button class="chat-icon">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </div>
-      </div>
+                <!-- Dating Card -->
+                <div class="card-container floating">
+                    <div class="dating-card" id="dating-card">
+                        <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Profile" class="card-image">
+                        <div class="card-gradient"></div>
+                        <div class="card-info">
+                            <div class="card-name">Nguyễn Hà My</div>
+                            <div class="card-details">21 years old • 5km away</div>
+                            <div class="card-hobbies">
+                                <span class="hobby-tag">Photography</span>
+                                <span class="hobby-tag">Travel</span>
+                                <span class="hobby-tag">Music</span>
+                                <span class="hobby-tag">Coffee</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Swipe Hint -->
+                    <div class="swipe-hint mobile-only">
+                        ← Swipe left to pass • Swipe right to like →
+                    </div>
+                </div>
 
-      <!-- Phần setting chat container -->
-      <div id="setting-chat" class="tab-content" style="display: none">
-        <!-- Phần header setting chat -->
-        <div class="setting-chat-header">
-          <div class="setting-chat-actions">
-            <div class="chat-actions">
-              <button><i class="fa-solid fa-phone"></i></button>
-              <button><i class="fa-solid fa-video"></i></button>
-              <button id="back-to-chat" onclick="setupChatSettingToggle()">
-                <i class="fa-solid fa-ellipsis"></i>
-              </button>
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn dislike touch-feedback" onclick="swipeCard('dislike')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="action-btn super-like touch-feedback" onclick="swipeCard('super-like')">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="action-btn like touch-feedback" onclick="swipeCard('like')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
 
-        <!-- Phần body setting chat -->
-        <div class="setting-chat-header-info">
-          <img
-            src="frontend/assets/images/cat_beautiful.jpg"
-            alt="Avatar"
-            class="chat-setting-avatar"
-          />
-          <h3 class="chat-setting-name">Hà My</h3>
+        <!-- Enhanced Profile Tab -->
+        <div id="profile-tab" class="tab-pane">
+            <div class="profile-content">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <button class="close-btn" onclick="showTab('dating')">&times;</button>
+                    
+                    <div style="position: relative; display: inline-block;">
+                        <img src="https://i.pinimg.com/736x/7b/af/0f/7baf0f18f4e35c21e8a14365ee05a960.jpg" alt="Profile" class="profile-main-avatar">
+                        <button class="camera-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="profile-name-section">
+                        <h2>Minh Hoàng, 19</h2>
+                        <p style="opacity: 0.9; margin-bottom: 0;">Software Developer</p>
+                    </div>
+
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">127</span>
+                            <span class="stat-label">Matches</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">89%</span>
+                            <span class="stat-label">Match Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4.8</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Body -->
+                <div class="profile-body">
+                    <!-- Photos Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3 class="section-title">Photos</h3>
+                            <button class="edit-btn">
+                                <i class="fas fa-plus"></i> Add Photos
+                            </button>
+                        </div>
+                        <div class="photo-grid">
+                            <div class="photo-item">
+                                <img src="https://i.pinimg.com/736x/e3/44/0a/e3440af3b0065b41f75b7096c1f3dd95.jpg" alt="Photo 1">
+                                <div class="photo-overlay">
+                                    <div class="photo-actions">
+                                        <button class="photo-action"><i class="fas fa-edit"></i></button>
+                                        <button class="photo-action"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="https://i.pinimg.com/736x/16/23/d6/1623d621db4b1840915c187a168abcf4.jpg" alt="Photo 2">
+                                <div class="photo-overlay">
+                                    <div class="photo-actions">
+                                        <button class="photo-action"><i class="fas fa-edit"></i></button>
+                                        <button class="photo-action"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="https://i.pinimg.com/736x/ae/a0/2e/aea02ebad2d98fde0225cb8b5b11ee59.jpg" alt="Photo 3">
+                                <div class="photo-overlay">
+                                    <div class="photo-actions">
+                                        <button class="photo-action"><i class="fas fa-edit"></i></button>
+                                        <button class="photo-action"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="photo-item add-photo">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3 class="section-title">About Me</h3>
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div class="info-card">
+                            <p style="color: var(--text-secondary); line-height: 1.6;">
+                                Passionate software developer who loves creating amazing user experiences. 
+                                When I'm not coding, you can find me exploring new coffee shops, 
+                                taking photos around the city, or planning my next travel adventure! 
+                                Looking for someone who shares my love for technology and adventure. ✨
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Basic Info Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3 class="section-title">Basic Info</h3>
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Age</h4>
+                                <p>19 years old (October 2nd, 2005)</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Location</h4>
+                                <p>District 12, Ho Chi Minh City, Vietnam</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Occupation</h4>
+                                <p>Software Developer at Tech Company</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Education</h4>
+                                <p>Computer Science - University of Technology</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3 class="section-title">Interests & Hobbies</h3>
+                            <button class="edit-btn">
+                                <i class="fas fa-plus"></i> Add More
+                            </button>
+                        </div>
+                        <div class="hobbies-grid">
+                            <div class="hobby-chip">🎮 Gaming</div>
+                            <div class="hobby-chip">⚽ Sports</div>
+                            <div class="hobby-chip">💻 Coding</div>
+                            <div class="hobby-chip">📸 Photography</div>
+                            <div class="hobby-chip">✈️ Travel</div>
+                            <div class="hobby-chip">🎵 Music</div>
+                            <div class="hobby-chip">☕ Coffee</div>
+                            <div class="hobby-chip">🍳 Cooking</div>
+                            <div class="hobby-chip">📚 Reading</div>
+                            <div class="hobby-chip">🎬 Movies</div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3 class="section-title">Social Media</h3>
+                            <button class="edit-btn">
+                                <i class="fas fa-link"></i> Connect
+                            </button>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Instagram</h4>
+                                <p>@hoang_deptrai</p>
+                            </div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-icon" style="background: #1877f2;">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Facebook</h4>
+                                <p>Minh Hoàng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="setting-chat-body">
-          <div class="chat-setting-actions">
-            <div class="chat-setting-action">
-              <button><i class="fa-solid fa-user"></i></button>
-              <p>View Profile</p>
-            </div>
-            <div class="chat-setting-action">
-              <button><i class="fa-solid fa-bell-slash"></i></button>
-              <p>Disable notifications</p>
-            </div>
-            <div class="chat-setting-action">
-              <button><i class="fa-solid fa-magnifying-glass"></i></button>
-              <p>Search messages</p>
-            </div>
-          </div>
 
-          <!-- Customize -->
-          <div class="chat-setting-section">
-            <h4>Customize</h4>
-            <div class="chat-setting-item">
-              <i class="fa-solid fa-font"></i>
-              <span>Nickname</span>
-            </div>
-            <div class="chat-setting-item">
-              <i class="fa-solid fa-heart"></i>
-              <span>Quick Reactions</span>
-            </div>
-          </div>
+        <!-- Enhanced Messages Tab -->
+        <div id="messages-tab" class="tab-pane">
+            <div class="messages-content">
+                <div class="chat-header">
+                    <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Chat Avatar" class="chat-avatar">
+                    <div class="chat-info">
+                        <h3>Hà My</h3>
+                        <div class="chat-status">Active now</div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="chat-action-btn" title="Voice Call">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                        <button class="chat-action-btn" title="Video Call">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="chat-action-btn" title="More Options" onclick="toggleChatOptions()">
+                             <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
 
-          <!-- Privacy & Support -->
-          <div class="chat-setting-section">
-            <h4>Privacy & Support</h4>
-            <div class="chat-setting-item">
-              <i class="fa-solid fa-ban"></i>
-              <span>Block</span>
+                <div class="chat-body" id="chat-body">
+                    <div class="message other">
+                        Hi! Nice to meet you 😊
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+                    <div class="message self">
+                        Hey! Same here 😄
+                        <div class="message-time">2:32 PM</div>
+                    </div>
+                    <div class="message other">
+                        How's your day going?
+                        <div class="message-time">2:33 PM</div>
+                    </div>
+                    <div class="message self">
+                        Pretty good! Just finished work. How about you?
+                        <div class="message-time">2:35 PM</div>
+                    </div>
+                    <div class="message other">
+                        Great! I'm planning to go to that new coffee shop downtown. Want to join? ☕
+                        <div class="message-time">2:37 PM</div>
+                    </div>
+                    <div class="message self">
+                        That sounds amazing! I'd love to 💕
+                        <div class="message-time">2:38 PM</div>
+                    </div>
+                    <div class="message other">
+                        Perfect! How about 4 PM today?
+                        <div class="message-time">2:39 PM</div>
+                    </div>
+                </div>
+
+                <div class="chat-footer">
+                    <button class="chat-action-btn" title="Voice Message">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="chat-action-btn" title="Send Photo">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
+                    <button class="chat-send-btn" id="chat-send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
-            <div class="chat-setting-item">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>Report</span>
-            </div>
-            <div class="chat-setting-item">
-              <i class="fa-solid fa-trash-can"></i>
-              <span>Delete message</span>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Trang chính cài đặt -->
-    <div id="settings-tab" class="tab-content" style="display: none">
-      <div class="settings-container">
-        <!-- Search Bar -->
-        <div class="settings-search">
-          <h2>Find the setting you need</h2>
-          <div class="search-container-settings">
-            <i class="fa-solid fa-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search" />
-          </div>
+        <!-- Enhanced Settings Tab -->
+        <div id="settings-tab" class="tab-pane">
+            <div class="settings-content">
+                <div class="settings-container">
+                    <div class="settings-header">
+                        <h2>Settings</h2>
+                        <p>Manage your account and preferences</p>
+                    </div>
+
+                    <div class="settings-search">
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search settings...">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">Quick Settings</h3>
+                    <div class="settings-grid">
+                        <div class="setting-card" onclick="toggleDarkMode()">
+                            <i class="fas fa-moon" id="theme-icon-card"></i>
+                            <h4 id="theme-title">Dark Mode</h4>
+                            <p>Switch between light and dark themes for better viewing experience</p>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <i class="fas fa-user-slash"></i>
+                            <h4>Blocking</h4>
+                            <p>Review people you've blocked or add someone to your blocked list</p>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Your Activity</h4>
+                            <p>View and manage your activity on the app</p>
+                        </div>
+
+                        <div class="setting-card">
+                            <i class="fas fa-bell"></i>
+                            <h4>Notifications</h4>
+                            <p>Customize your notification preferences and settings</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">All Settings</h3>
+                    <div class="settings-menu">
+                        <div class="settings-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Account Settings</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-search"></i>
+                            <span>Discovery Settings</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Control Who You See</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privacy & Safety</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-headset"></i>
+                            <span>Help & Support</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-users"></i>
+                            <span>Community Guidelines</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Legal Policies</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Language</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item danger">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                        
+                        <div class="settings-item danger">
+                            <i class="fas fa-user-times"></i>
+                            <span>Delete Account</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Most visited settings -->
-        <div class="settings-most-visited">
-          <h3>Suggest most visited settings</h3>
-          <div class="settings-grid">
-            <!-- Item 1 -->
-            <button>
-              <div class="setting-card">
-                <i class="fa-solid fa-user-slash icon-large"></i>
-                <h4>Blocking</h4>
-                <p>
-                  Review people you've previously blocked or add someone to your
-                  blocked list
-                </p>
-              </div>
-            </button>
-            <!-- Item 2 -->
-            <button>
-              <div class="setting-card">
-                <i class="fa-solid fa-clock icon-large"></i>
-                <h4>Your Activity</h4>
-                <p>View and manage your activity on Choco</p>
-              </div>
-            </button>
-          </div>
+        <!-- Enhanced Notifications Tab -->
+        <div id="notifications-tab" class="tab-pane">
+            <div class="notifications-content">
+                <div class="notifications-header">
+                    <h2>Notifications</h2>
+                    <p style="color: var(--text-secondary);">Stay updated with your latest activities</p>
+                </div>
+                
+                <div class="notification-item">
+                    <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Notification" class="notification-avatar">
+                    <div class="notification-content">
+                        <h4>It's a Match! 💕</h4>
+                        <p>You and Hà My liked each other. Start chatting now!</p>
+                    </div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+
+                <div class="notification-item">
+                    <img src="https://i.pinimg.com/736x/5d/0e/75/5d0e7559bfa500cf385382ef6147655f.jpg" alt="Notification" class="notification-avatar">
+                    <div class="notification-content">
+                        <h4>Super Like Received ⭐</h4>
+                        <p>Someone super liked your profile!</p>
+                    </div>
+                    <div class="notification-time">3 hours ago</div>
+                </div>
+
+                <div class="notification-item">
+                    <img src="https://i.pinimg.com/736x/21/71/01/2171015c4685f52aafc7d630f404da86.jpg" alt="Notification" class="notification-avatar">
+                    <div class="notification-content">
+                        <h4>Profile Views 👀</h4>
+                        <p>5 people viewed your profile today</p>
+                    </div>
+                    <div class="notification-time">1 day ago</div>
+                </div>
+
+                <div class="notification-item">
+                    <img src="https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg" alt="Notification" class="notification-avatar">
+                    <div class="notification-content">
+                        <h4>New Message 💬</h4>
+                        <p>Linh Tran sent you a message</p>
+                    </div>
+                    <div class="notification-time">2 days ago</div>
+                </div>
+
+                <div class="notification-item">
+                    <img src="https://i.pinimg.com/736x/ca/8d/4d/ca8d4dab44097df42a07c0e7a4d649a8.jpg" alt="Notification" class="notification-avatar">
+                    <div class="notification-content">
+                        <h4>Profile Boost 🚀</h4>
+                        <p>Your profile was boosted and got 15 more views</p>
+                    </div>
+                    <div class="notification-time">1 week ago</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Phần điều hướng trên điện thoại -->
-    <div class="bottom-nav">
-      <button class="icon-btn"><i class="fa-solid fa-crown"></i></button>
-      <button class="icon-btn"><i class="fa-solid fa-comments"></i></button>
-      <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
-      <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
-    </div>
+        <!-- Premium Tab -->
+        <div id="premium-tab" class="tab-pane">
+            <div class="settings-content">
+                <div class="settings-container">
+                    <div class="settings-header">
+                        <h2>Premium Features</h2>
+                        <p>Unlock exclusive features and get more matches</p>
+                    </div>
 
-    <script src="frontend/viewmodels/match.js"></script>
-  </body>
+                    <div class="settings-grid">
+                        <div class="setting-card">
+                            <i class="fas fa-crown" style="color: #ffd700;"></i>
+                            <h4>Premium Plus</h4>
+                            <p>Unlimited likes, super likes, and see who liked you</p>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <i class="fas fa-rocket" style="color: #ff6b9d;"></i>
+                            <h4>Profile Boost</h4>
+                            <p>Get 10x more profile views for 30 minutes</p>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <i class="fas fa-undo" style="color: #74b9ff;"></i>
+                            <h4>Rewind</h4>
+                            <p>Undo your last swipe and get a second chance</p>
+                        </div>
+
+                        <div class="setting-card">
+                            <i class="fas fa-passport" style="color: #6c5ce7;"></i>
+                            <h4>Passport</h4>
+                            <p>Swipe around the world and meet people anywhere</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav mobile-only">
+        <div class="bottom-nav-items">
+            <div class="bottom-nav-item" onclick="showTab('premium')">
+                <i class="fas fa-crown"></i>
+                <span>Premium</span>
+            </div>
+            <div class="bottom-nav-item active" onclick="showTab('dating')">
+                <i class="fas fa-heart"></i>
+                <span>Discover</span>
+            </div>
+            <div class="bottom-nav-item" onclick="showTab('messages')">
+                <i class="fas fa-comments"></i>
+                <span>Messages</span>
+                <div class="badge">3</div>
+            </div>
+            <div class="bottom-nav-item" onclick="showTab('profile')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </div>
+            <div class="bottom-nav-item" onclick="showTab('settings')">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+    </nav>
+
+    <script src="/frontend/viewmodels/match.js"></script>
+</body>
 </html>
