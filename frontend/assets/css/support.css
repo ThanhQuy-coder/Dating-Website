@@ -674,7 +674,7 @@ body:not(.dark-mode) .dropdown-toggle:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("/frontend/assets/images/3ddfa9af-d470-4c43-bd7b-51889f65f5c8.png");
+  background-image: url("frontend/assets/images/3ddfa9af-d470-4c43-bd7b-51889f65f5c8.png");
   background-size: cover;
   background-position: center 40%;
   background-attachment: scroll
@@ -831,7 +831,7 @@ body:not(.dark-mode) .dropdown-toggle:hover {
 .contact-section {
   position: relative;
   padding: 80px 0;
-  background-image: url("/frontend/assets/images/Screenshot_4.png");
+  background-image: url("frontend/assets/images/Screenshot_4.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

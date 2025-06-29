@@ -6,7 +6,7 @@
     <title>Perfect Match - Complete Pro Dating App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/frontend/assets/css/match.css">
+    <link rel="stylesheet" href="frontend/assets/css/match.css">
      
 </head>
 <body>
@@ -81,15 +81,16 @@
                     <div class="match-time">3d</div>
                 </div>
 
-                <div class="match-item">
-                    <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Match" class="match-avatar">
-                    <div class="match-info">
-                        <h4>Shizuka</h4>
-                        <p>Love your photos!</p>
-                    </div>
-                    <div class="match-time">1w</div>
+              <div class="match-item" onclick="openChat('Mai Anh')">
+               <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Match" class="match-avatar">
+                <div class="match-info">
+                 <h4>Mai Anh</h4>
+                <p>Love your photos!</p>
                 </div>
-            </div>
+                  <div class="match-time">1w</div>
+                 </div>
+
+         
 
             <!-- Notifications Sidebar -->
             <div id="notifications-sidebar" class="tab-pane">
@@ -671,6 +672,6 @@
         </div>
     </nav>
 
-    <script src="/frontend/viewmodels/match.js"></script>
+    <script src="frontend/viewmodels/match.js"></script>
 </body>
 </html>
