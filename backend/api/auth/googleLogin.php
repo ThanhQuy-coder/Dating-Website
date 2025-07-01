@@ -26,7 +26,7 @@ if (isset($_GET['code'])) {
 
         if (isset($token['error'])) {
             // Nếu có lỗi khi lấy access token → quay lại login
-            header('Location: /login.php');
+            header('Location: /Dating-Website/index.php?page=login');
             exit;
         }
 

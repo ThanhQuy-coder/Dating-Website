@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Kiem tra xac nhan mat khau
     if (password !== confirmPassword) {
-      alert("Mật khẩu xác nhận không khớp!");
+      alert("Confirmation password does not match!");
       return;
     }
 
@@ -21,14 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        alert("Đăng ký thành công!");
-        window.location.href = "index.php?page=login";
+        showNotification("Registration successful");
+        setTimeout(() => {
+          window.location.href = "index.php?page=login";
+        }, 3000);
       } else {
-        alert(result.message || "Đăng ký thất bại");
+        showNotification("Registration failed. Please try again!", true);
       }
     } catch (err) {
       console.error("Lỗi đăng ký: ", err);
-      alert("Đã xảy ra lỗi khi đăng ký.");
+      alert("An error occurred while registering.");
     }
   });
 });
+
+function showNotification(message, isError = false) {
+  const notification = document.getElementById("notification");
+  const messageElement = document.getElementById("notification-message");
+
+  messageElement.textContent = message;
+
+  // Thêm hoặc xóa class error
+  notification.classList.toggle("error", isError);
+  notification.classList.remove("hidden");
+
+  // Tự động ẩn sau 3 giây
+  setTimeout(() => {
+    notification.classList.add("hidden");
+  }, 3000);
+}

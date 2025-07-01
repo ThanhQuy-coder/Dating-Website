@@ -14,14 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        alert("Đăng nhập thành công!");
-        window.location.href = "index.php?page=match";
+        showNotification("Login successful!");
+        setTimeout(() => {
+          window.location.href = "index.php?page=match";
+        }, 3000);
       } else {
-        alert(result.message || "Sai tài khoản hoặc mật khẩu!");
+        showNotification("Login failed. Please try again!", true);
       }
     } catch (err) {
       console.error("Lỗi đăng nhập: ", err);
-      alert("Đã xảy ra lỗi khi đăng nhập.");
+      alert("An error occurred while logging in.");
     }
   });
 });
@@ -30,3 +32,19 @@ document.getElementById("google-login-btn").addEventListener("click", () => {
   window.location.href =
     "http://localhost/Dating-Website/backend/api/auth/googleLogin.php";
 });
+
+function showNotification(message, isError = false) {
+  const notification = document.getElementById("notification");
+  const messageElement = document.getElementById("notification-message");
+
+  messageElement.textContent = message;
+
+  // Thêm hoặc xóa class error
+  notification.classList.toggle("error", isError);
+  notification.classList.remove("hidden");
+
+  // Tự động ẩn sau 3 giây
+  setTimeout(() => {
+    notification.classList.add("hidden");
+  }, 3000);
+}
