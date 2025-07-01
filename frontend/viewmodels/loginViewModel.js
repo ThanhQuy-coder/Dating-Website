@@ -33,6 +33,11 @@ document.getElementById("google-login-btn").addEventListener("click", () => {
     "http://localhost/Dating-Website/backend/api/auth/googleLogin.php";
 });
 
+document.getElementById("fb-login-btn").addEventListener("click", () => {
+  window.location.href =
+    "http://localhost/Dating-Website/backend/api/auth/fb-login.php";
+});
+
 function showNotification(message, isError = false) {
   const notification = document.getElementById("notification");
   const messageElement = document.getElementById("notification-message");
