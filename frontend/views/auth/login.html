@@ -44,9 +44,9 @@
       </div>
       <div class="center">
         <nav class="navmenu">
-          <a href="#">Premium</a>
-          <a href="#">About</a>
-          <a href="#">Support</a>
+          <a href="index.php?page=premium">Premium</a>
+          <a href="index.php?page=about">About</a>
+          <a href="index.php?page=support">Support</a>
           <div class="dropdown">
             <span class="language">Language <span class="arrow">▼</span></span>
             <div class="down-item">
@@ -71,6 +71,7 @@
             <i class="fa fa-lock"></i>
             <input type="password" placeholder="Password" id="login-pass" />
           </section>
+          <!-- Note -->
           <a href="#">Forget password</a>
           <section class="signin-btn">
             <button type="submit">Sign in</button>
@@ -79,14 +80,16 @@
         <!-- Link Sign up now -->
         <p class="signup-text">
           Don't have an account?
-          <a href="frontend/views/register.html">Sign up now</a>
+          <a href="index.php?page=register">Sign up now</a>
         </p>
         <div class="or-divider"><span>Or</span></div>
         <section class="logofb">
           <button><i class="fab fa-facebook-f"></i> Login With Facebook</button>
         </section>
         <section class="logogg">
-          <button><i class="fab fa-google"></i> Login With Google</button>
+          <button id="google-login-btn">
+            <i class="fab fa-google"></i> Login With Google
+          </button>
         </section>
       </div>
     </main>

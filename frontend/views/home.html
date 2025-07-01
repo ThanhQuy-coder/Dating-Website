@@ -1,486 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/Dating-Website/" />
     <title>Choco Dating - Find Your Sweet Connection</title>
-    <meta name="description" content="Choco Dating - Where sweet connections begin. Fun dating and easy connections in a relaxed environment.">
-    
+    <meta
+      name="description"
+      content="Choco Dating - Where sweet connections begin. Fun dating and easy connections in a relaxed environment."
+    />
+
     <!-- Preload critical fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="frontend/assets/css/home.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="frontend/assets/css/home.css" />
+  </head>
+  <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">Choco</div>
-            <div class="loading-hearts">
-                <span class="heart">💕</span>
-                <span class="heart">❤️</span>
-                <span class="heart">💖</span>
-            </div>
-            <div class="loading-text">Finding your sweet connection...</div>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
-            </div>
+      <div class="loading-content">
+        <div class="loading-logo">Choco</div>
+        <div class="loading-hearts">
+          <span class="heart">💕</span>
+          <span class="heart">❤️</span>
+          <span class="heart">💖</span>
         </div>
+        <div class="loading-text">Finding your sweet connection...</div>
+        <div class="loading-progress">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
     </div>
 
-    
     <!-- Main Content -->
     <div id="main-content" class="main-content hidden">
-        <!-- Header -->
-        <header class="header" id="header">
-            <div class="header-container">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="#" class="logo-link">Choco</a>
-                </div>
+      <!-- Header -->
+      <header class="header" id="header">
+        <div class="header-container">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="#" class="logo-link">Choco</a>
+          </div>
 
-                <!-- Desktop Navigation -->
-                <nav class="nav desktop-nav">
-                    <a href="#" class="nav-link">Premium</a>
-                    <a href="" class="nav-link">About</a>
-                    <a href="" class="nav-link active">Support</a>
-                    
-                    <!-- Language Dropdown -->
-                    <div class="dropdown">
-                        <button class="dropdown-toggle">
-                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">English</a>
-                            <a href="#" class="dropdown-item">Tiếng Việt</a>
+          <!-- Desktop Navigation -->
+          <nav class="nav desktop-nav">
+            <a href="index.php?page=premium" class="nav-link">Premium</a>
+            <a href="index.php?page=about" class="nav-link">About</a>
+            <a href="index.php?page=support" class="nav-link active">Support</a>
+
+            <!-- Language Dropdown -->
+            <div class="dropdown">
+              <button class="dropdown-toggle">
+                Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">English</a>
+                <a href="#" class="dropdown-item">Tiếng Việt</a>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Right Side Controls -->
+          <div class="header-controls">
+            <!-- Dark Mode Toggle -->
+            <button
+              class="theme-toggle"
+              id="theme-toggle"
+              aria-label="Toggle dark mode"
+            >
+              <i class="fas fa-moon theme-icon"></i>
+            </button>
+
+            <!-- Sign In Button (Desktop) -->
+            <a href="index.php?page=login" class="sign-in-btn desktop-only"
+              >Sign in</a
+            >
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+          <nav class="mobile-nav">
+            <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+            <a href="index.php?page=about" class="mobile-nav-link">About</a>
+            <a href="index.php?page=support" class="mobile-nav-link active"
+              >Support</a
+            >
+            <div class="mobile-dropdown">
+              <button class="mobile-dropdown-toggle">Language</button>
+              <div class="mobile-dropdown-menu">
+                <a href="#" class="mobile-dropdown-item">English</a>
+                <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+              </div>
+            </div>
+            <a href="index.php?page=login" class="mobile-sign-in">Sign in</a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Divider -->
+      <hr class="header-divider" />
+
+      <!-- Hero Section with Video Background -->
+      <section id="home" class="hero-home">
+        <div class="hero-video-bg">
+          <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-content-wrapper">
+          <!-- Floating Elements -->
+          <div class="floating-elements">
+            <div class="float-heart">💕</div>
+            <div class="float-heart">💖</div>
+            <div class="float-heart">💝</div>
+            <div class="float-heart">❤️</div>
+          </div>
+
+          <div class="hero-main-content">
+            <div class="hero-text-section">
+              <div class="hero-badge">
+                <span class="badge-icon">✨</span>
+                <span>New Dating Experience</span>
+              </div>
+
+              <h1 class="hero-title">
+                <span class="title-line-1">Sweet</span>
+                <span class="title-line-2">Connections</span>
+                <span class="title-line-3">Start Here</span>
+              </h1>
+
+              <p class="hero-description">
+                Discover meaningful relationships in our chocolate-sweet
+                community. Where every match is crafted with care and every
+                conversation leads to something beautiful.
+              </p>
+
+              <div class="hero-actions">
+                <button class="btn-primary-home">
+                  <span class="btn-text">Find Your Match</span>
+                  <span class="btn-icon">💘</span>
+                  <div class="btn-shine"></div>
+                </button>
+              </div>
+            </div>
+            <div class="hero-visual-section">
+              <div class="phone-mockup">
+                <div class="phone-frame">
+                  <div class="phone-screen">
+                    <div class="app-interface">
+                      <div class="profile-card active">
+                        <img
+                          src="frontend/assets/images/sarah.jpg"
+                          alt="Profile"
+                        />
+                        <div class="profile-info">
+                          <h3>Sarah, 25</h3>
+                          <p>Coffee lover ☕</p>
                         </div>
+                      </div>
+                      <div class="action-buttons">
+                        <button class="btn-pass">✕</button>
+                        <button class="btn-like">💖</button>
+                      </div>
                     </div>
-                </nav>
-
-                <!-- Right Side Controls -->
-                <div class="header-controls">
-                    <!-- Dark Mode Toggle -->
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon theme-icon"></i>
-                    </button>
-
-                    <!-- Sign In Button (Desktop) -->
-                    <a href="#" class="sign-in-btn desktop-only">Sign in</a>
-
-                    <!-- Mobile Menu Toggle -->
-                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
+                  </div>
                 </div>
+                <div class="phone-glow"></div>
+              </div>
+
+              <!-- Floating UI Elements -->
+              <div class="floating-ui-elements">
+                <div class="ui-element match-popup">
+                  <div class="match-content">
+                    <span class="match-icon">💕</span>
+                    <span>It's a Match!</span>
+                  </div>
+                </div>
+
+                <div class="ui-element message-bubble">
+                  <div class="message-content">
+                    <span>Hey! How's your day? 😊</span>
+                  </div>
+                </div>
+
+                <div class="ui-element notification-badge">
+                  <span class="badge-number">3</span>
+                  <span class="badge-text">New Matches</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span>Scroll to explore</span>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Love Stories</h2>
+            <p class="section-subtitle">
+              Real couples, real stories, real happiness
+            </p>
+          </div>
+
+          <div class="testimonials-slider" id="testimonials-slider">
+            <div class="testimonial-card active">
+              <div class="testimonial-content">
+                <div class="quote-icon">
+                  <i class="fas fa-quote-left"></i>
+                </div>
+                <p>
+                  "I never believed in online dating until I found Choco. Within
+                  a month, I met my soulmate. We're getting married next year!"
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="frontend/assets/images/sarah.jpg"
+                    alt="Sarah Johnson"
+                  />
+                  <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <span>New York, USA</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobile-menu">
-                <nav class="mobile-nav">
-                    <a href="#" class="mobile-nav-link">Premium</a>
-                    <a href="#" class="mobile-nav-link">About</a>
-                    <a href="#" class="mobile-nav-link active">Support</a>
-                    <div class="mobile-dropdown">
-                        <button class="mobile-dropdown-toggle">Language</button>
-                        <div class="mobile-dropdown-menu">
-                            <a href="#" class="mobile-dropdown-item">English</a>
-                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
-                        </div>
-                    </div>
-                    <a href="#" class="mobile-sign-in">Sign in</a>
-                </nav>
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="quote-icon">
+                  <i class="fas fa-quote-left"></i>
+                </div>
+                <p>
+                  "The video chat feature helped us connect on a deeper level
+                  before our first date. It felt like we already knew each
+                  other!"
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="frontend/assets/images/michecl.jpg"
+                    alt="Michael Chen"
+                  />
+                  <div class="author-info">
+                    <h4>Michael Chen</h4>
+                    <span>San Francisco, USA</span>
+                  </div>
+                </div>
+              </div>
             </div>
-        </header>
 
-        <!-- Divider -->
-        <hr class="header-divider">
-
-        <!-- Hero Section with Video Background -->
-        <section id="home" class="hero-home">
-            <div class="hero-video-bg">
-                <div class="hero-overlay"></div>
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="quote-icon">
+                  <i class="fas fa-quote-left"></i>
+                </div>
+                <p>
+                  "Choco's matching algorithm is incredible. It connected me
+                  with someone who shares all my interests and values."
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="frontend/assets/images/emma.jpg"
+                    alt="Emma Wilson"
+                  />
+                  <div class="author-info">
+                    <h4>Emma Wilson</h4>
+                    <span>London, UK</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div class="hero-content-wrapper">
-                <!-- Floating Elements -->
-                <div class="floating-elements">
-                    <div class="float-heart">💕</div>
-                    <div class="float-heart">💖</div>
-                    <div class="float-heart">💝</div>
-                    <div class="float-heart">❤️</div>
-                </div>
-                
-                <div class="hero-main-content">
-                    <div class="hero-text-section">
-                        <div class="hero-badge">
-                            <span class="badge-icon">✨</span>
-                            <span>New Dating Experience</span>
-                        </div>
-                        
-                        <h1 class="hero-title">
-                            <span class="title-line-1">Sweet</span>
-                            <span class="title-line-2">Connections</span>
-                            <span class="title-line-3">Start Here</span>
-                        </h1>
-                        
-                        <p class="hero-description">
-                            Discover meaningful relationships in our chocolate-sweet community. 
-                            Where every match is crafted with care and every conversation 
-                            leads to something beautiful.
-                        </p>
-                        
-                        <div class="hero-actions">
-                            <button class="btn-primary-home">
-                                <span class="btn-text">Find Your Match</span>
-                                <span class="btn-icon">💘</span>
-                                <div class="btn-shine"></div>
-                            </button>
-                          
-                        </div> 
-                     
-                    </div>
-                    <div class="hero-visual-section">
-                        <div class="phone-mockup">
-                            <div class="phone-frame">
-                                <div class="phone-screen">
-                                    <div class="app-interface">
-                                        <div class="profile-card active">
-                                            <img src="frontend/assets/images/sarah.jpg" alt="Profile">
-                                            <div class="profile-info">
-                                                <h3>Sarah, 25</h3>
-                                                <p>Coffee lover ☕</p>
-                                            </div>
-                                        </div>
-                                        <div class="action-buttons">
-                                            <button class="btn-pass">✕</button>
-                                            <button class="btn-like">💖</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="phone-glow"></div>
-                        </div>
-                        
-                        <!-- Floating UI Elements -->
-                        <div class="floating-ui-elements">
-                            <div class="ui-element match-popup">
-                                <div class="match-content">
-                                    <span class="match-icon">💕</span>
-                                    <span>It's a Match!</span>
-                                </div>
-                            </div>
-                            
-                            <div class="ui-element message-bubble">
-                                <div class="message-content">
-                                    <span>Hey! How's your day? 😊</span>
-                                </div>
-                            </div>
-                            
-                            <div class="ui-element notification-badge">
-                                <span class="badge-number">3</span>
-                                <span class="badge-text">New Matches</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="testimonial-controls">
+            <button class="testimonial-btn prev" id="prev-testimonial">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="testimonial-dots" id="testimonial-dots">
+              <span class="dot active" data-slide="0"></span>
+              <span class="dot" data-slide="1"></span>
+              <span class="dot" data-slide="2"></span>
             </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
+            <button class="testimonial-btn next" id="next-testimonial">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section with Interactive Elements -->
+      <section class="cta-home">
+        <div class="cta-bg-pattern"></div>
+        <div class="container">
+          <div class="cta-content-home">
+            <div class="cta-text">
+              <h2>Ready to Find Your Sweet Connection?</h2>
+              <p>Join thousands of singles who found love on Choco Dating</p>
+
+              <div class="cta-features">
+                <div class="cta-feature">
+                  <span class="check-icon">✓</span>
+                  <span>Free to join</span>
                 </div>
-                <span>Scroll to explore</span>
+                <div class="cta-feature">
+                  <span class="check-icon">✓</span>
+                  <span>Instant matching</span>
+                </div>
+                <div class="cta-feature">
+                  <span class="check-icon">✓</span>
+                  <span>Safe & secure</span>
+                </div>
+              </div>
+
+              <div class="cta-actions">
+                <button class="btn-cta-primary">
+                  <span>Start Dating Now</span>
+                  <span class="btn-arrow">→</span>
+                </button>
+              </div>
             </div>
-        </section>
-       
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Love Stories</h2>
-                    <p class="section-subtitle">Real couples, real stories, real happiness</p>
+            <div class="cta-visual">
+              <div class="success-counter">
+                <div class="counter-item">
+                  <span class="counter-number" data-target="10000">0</span>
+                  <span class="counter-label">Matches Made</span>
                 </div>
-
-                <div class="testimonials-slider" id="testimonials-slider">
-                    <div class="testimonial-card active">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>"I never believed in online dating until I found Choco. Within a month, I met my soulmate. We're getting married next year!"</p>
-                            <div class="testimonial-author">
-                                <img src="frontend/assets/images/sarah.jpg" alt="Sarah Johnson">
-                                <div class="author-info">
-                                    <h4>Sarah Johnson</h4>
-                                    <span>New York, USA</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>"The video chat feature helped us connect on a deeper level before our first date. It felt like we already knew each other!"</p>
-                            <div class="testimonial-author">
-                                <img src="frontend/assets/images/michecl.jpg" alt="Michael Chen">
-                                <div class="author-info">
-                                    <h4>Michael Chen</h4>
-                                    <span>San Francisco, USA</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>"Choco's matching algorithm is incredible. It connected me with someone who shares all my interests and values."</p>
-                            <div class="testimonial-author">
-                                <img src="frontend/assets/images/emma.jpg" alt="Emma Wilson">
-                                <div class="author-info">
-                                    <h4>Emma Wilson</h4>
-                                    <span>London, UK</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            
+                <div class="counter-item">
+                  <span class="counter-number" data-target="5000">0</span>
+                  <span class="counter-label">Success Stories</span>
                 </div>
-                <div class="testimonial-controls">
-                    <button class="testimonial-btn prev" id="prev-testimonial">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="testimonial-dots" id="testimonial-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
-                    </div>
-                    <button class="testimonial-btn next" id="next-testimonial">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+              </div>
+
+              <div class="floating-hearts-cta">
+                <span class="heart-float">💕</span>
+                <span class="heart-float">💖</span>
+                <span class="heart-float">💝</span>
+              </div>
             </div>
-        </section>
-        <!-- CTA Section with Interactive Elements -->
-        <section class="cta-home">
-            <div class="cta-bg-pattern"></div>
-            <div class="container">
-                <div class="cta-content-home">
-                    <div class="cta-text">
-                        <h2>Ready to Find Your Sweet Connection?</h2>
-                        <p>Join thousands of singles who found love on Choco Dating</p>
-                        
-                        <div class="cta-features">
-                            <div class="cta-feature">
-                                <span class="check-icon">✓</span>
-                                <span>Free to join</span>
-                            </div>
-                            <div class="cta-feature">
-                                <span class="check-icon">✓</span>
-                                <span>Instant matching</span>
-                            </div>
-                            <div class="cta-feature">
-                                <span class="check-icon">✓</span>
-                                <span>Safe & secure</span>
-                            </div>
-                        </div>
-                        
-                        <div class="cta-actions">
-                            <button class="btn-cta-primary">
-                                <span>Start Dating Now</span>
-                                <span class="btn-arrow">→</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="cta-visual">
-                        <div class="success-counter">
-                            <div class="counter-item">
-                                <span class="counter-number" data-target="10000">0</span>
-                                <span class="counter-label">Matches Made</span>
-                            </div>
-                            <div class="counter-item">
-                                <span class="counter-number" data-target="5000">0</span>
-                                <span class="counter-label">Success Stories</span>
-                            </div>
-                        </div>
-                        
-                        <div class="floating-hearts-cta">
-                            <span class="heart-float">💕</span>
-                            <span class="heart-float">💖</span>
-                            <span class="heart-float">💝</span>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Ready to Find Your Sweet Connection?</h2>
+            <p>
+              Join thousands of singles who have found love on Choco Dating.
+              Your perfect match is waiting!
+            </p>
+            <div class="cta-buttons">
+              <button class="button-main">
+                <a href="index.php?page=login">Get Started</a>
+              </button>
             </div>
-        </section>
+          </div>
+          <div class="cta-image">
+            <img src="frontend/assets/images/home1.jpg" alt="Happy couple" />
+          </div>
+        </div>
+      </section>
 
-     
-        
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Ready to Find Your Sweet Connection?</h2>
-                    <p>Join thousands of singles who have found love on Choco Dating. Your perfect match is waiting!</p>
-                    <div class="cta-buttons">
-                        <button class="button-main">
-                            <a href="#signup">Get Started</a>
-                        </button>
-                    </div>
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">
+              Have questions? We'd love to hear from you
+            </p>
+          </div>
+
+          <div class="contact-content">
+            <div class="contact-info">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
                 </div>
-                <div class="cta-image">
-                    <img src="frontend/assets/images/home1.jpg" alt="Happy couple">
+                <div class="contact-details">
+                  <h4>Email Us</h4>
+                  <p>support@chocodating.com</p>
                 </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Call Us</h4>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Visit Us</h4>
+                  <p>123 Love Street, Heart City, HC 12345</p>
+                </div>
+              </div>
+
+              <div class="social-links">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-facebook"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-youtube"></i
+                  ></a>
+                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Get in Touch</h2>
-                    <p class="section-subtitle">Have questions? We'd love to hear from you</p>
-                </div>
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <input type="text" id="name" name="name" required />
+                <label for="name">Your Name</label>
+              </div>
 
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email Us</h4>
-                                <p>support@chocodating.com</p>
-                            </div>
-                        </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" required />
+                <label for="email">Your Email</label>
+              </div>
 
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Call Us</h4>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
+              <div class="form-group">
+                <input type="text" id="subject" name="subject" required />
+                <label for="subject">Subject</label>
+              </div>
 
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Visit Us</h4>
-                                <p>123 Love Street, Heart City, HC 12345</p>
-                            </div>
-                        </div>
+              <div class="form-group">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+                <label for="message">Your Message</label>
+              </div>
 
-                        <div class="social-links">
-                            <h4>Follow Us</h4>
-                            <div class="social-icons">
-                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                       
-                            </div>
-                        </div>
-                    </div>
+              <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
 
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Your Name</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Your Email</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
-                            <label for="subject">Subject</label>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-section">
+              <div class="footer-logo">Choco</div>
+              <p>
+                Where sweet connections begin. Find your perfect match in a safe
+                and welcoming environment.
+              </p>
+              <div class="footer-social">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
             </div>
-        </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <div class="footer-logo">Choco</div>
-                        <p>Where sweet connections begin. Find your perfect match in a safe and welcoming environment.</p>
-                        <div class="footer-social">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                     
-                        </div>
-                    </div>
-
-                    <div class="footer-section">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#testimonials">Support</a></li>
-                       
-                        </ul>
-                    </div>
-
-                    <div class="footer-section">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Safety Tips</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Choco Dating. All rights reserved. Made with ❤️ for love seekers worldwide.</p>
-                </div>
+            <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Support</a></li>
+              </ul>
             </div>
-        </footer>
+
+            <div class="footer-section">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="index.php?page=help">Help Center</a></li>
+                <li><a href="index.php?page=termsOfUse">Safety Tips</a></li>
+                <li>
+                  <a href="index.php?page=privacyPolicy">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="index.php?page=termsOfUse">Terms of Service</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>
+              &copy; 2025 Choco Dating. All rights reserved. Made with ❤️ for
+              love seekers worldwide.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <!-- Floating Hearts Background -->
@@ -488,9 +570,9 @@
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
+      <i class="fas fa-chevron-up"></i>
     </button>
 
     <script src="frontend/viewmodels/home.js"></script>
-</body>
+  </body>
 </html>

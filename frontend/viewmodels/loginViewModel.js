@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok && result.success) {
         alert("Đăng nhập thành công!");
-        window.location.href = "../frontend/views/home.html";
+        window.location.href = "../frontend/views/match.html";
       } else {
         alert(result.message || "Sai tài khoản hoặc mật khẩu!");
       }
@@ -24,4 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Đã xảy ra lỗi khi đăng nhập.");
     }
   });
+});
+
+document.getElementById("google-login-btn").addEventListener("click", () => {
+  window.location.href =
+    "http://localhost/Dating-Website/backend/api/auth/googleLogin.php";
 });

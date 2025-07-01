@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Help Center</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #ddb1c7;
+        color: rgb(226, 225, 225);
+        font-family: Arial, sans-serif;
+        padding: 30px;
+      }
+
+      .section {
+        background-color: #3f2e2e;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+      }
+
+      .section h2 {
+        color: #ff69b4;
+        margin-bottom: 10px;
+      }
+
+      a.back {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #f13895;
+        text-decoration: none;
+      }
+
+      a.back:hover {
+        text-decoration: underline;
+      }
+      /* Thêm hiệu ứng mờ và trượt lên */
+      .section {
+        background-color: #2e2e2e;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      /* Khi xuất hiện thì hiện lên mượt */
+      .section.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#" href="#" onclick="history.back(); return false;" class="back">
+      ← Back to Home
+    </a>
+    <div class="section" id="recover">
+      <h2>🔑 Recover Your Account</h2>
+
+      <p>
+        If you’re having trouble accessing your account, don’t worry — we’re
+        here to help. Follow the steps below to recover your Choco account:
+      </p>
+
+      <h3>Step-by-Step Recovery Process:</h3>
+      <ol>
+        <li>Go to the <strong>Sign In</strong> page.</li>
+        <li>
+          Click on <strong>“Forgot Password?”</strong> below the login form.
+        </li>
+        <li>
+          Enter the <strong>email address or phone number</strong> associated
+          with your account.
+        </li>
+        <li>
+          Check your inbox (or SMS) for a <strong>password reset link</strong>.
+        </li>
+        <li>
+          Click the link and follow the instructions to create a new password.
+        </li>
+      </ol>
+
+      <h3>If You No Longer Have Access to Your Email or Phone:</h3>
+      <p>
+        If you can’t access your recovery email or phone, please contact our
+        support team directly with the following:
+      </p>
+      <ul>
+        <li>Your full name</li>
+        <li>Username (if you remember)</li>
+        <li>Approximate date of account creation</li>
+        <li>Any transaction ID or order number (if you've made purchases)</li>
+      </ul>
+      <p>
+        Our team will verify your identity and assist with account recovery.
+      </p>
+
+      <h3>Tips for a Successful Recovery:</h3>
+      <ul>
+        <li>Use the device and network you normally use to access Choco.</li>
+        <li>
+          Check spam/junk folders if you don't see the email within a few
+          minutes.
+        </li>
+        <li>
+          Don’t request multiple reset emails in a short time — it may delay the
+          process.
+        </li>
+      </ul>
+
+      <h3>Need Further Help?</h3>
+      <p>
+        If you're still having issues, please reach out via our
+        <a href="index.php?page=support">Contact Form</a> or email us at
+        <strong>support@chocoapp.com</strong>. We’re available 24/7 and
+        typically respond within 24 hours.
+      </p>
+    </div>
+
+    <div class="section" id="forgot">
+      <h2>🔒 Forgot Username/Password</h2>
+      <p>It's easy to reset your login details:</p>
+      <ul>
+        <li>Click on “Forgot Password” at the login screen.</li>
+        <li>We’ll send you an email with a link to reset your password.</li>
+        <li>
+          If you forgot your username, try checking any old emails from us — it
+          may appear there.
+        </li>
+        <li>
+          If you can't find it, contact our team and provide the email you used
+          during registration.
+        </li>
+      </ul>
+      <p>
+        Tip: Use a password manager to safely store your credentials and avoid
+        losing them again.
+      </p>
+    </div>
+
+    <div class="section" id="refund">
+      <h2>🔁 Refund Policy</h2>
+
+      <p>
+        We understand that things don’t always work out. Here's how our refund
+        process works:
+      </p>
+
+      <ul>
+        <li>
+          You may request a refund within <strong>7 days of purchase</strong> if
+          the service or product hasn’t been used fully.
+        </li>
+        <li>
+          Refunds may take <strong>5–10 business days</strong> depending on your
+          bank or card issuer.
+        </li>
+        <li>
+          To request a refund, contact our support team and include your
+          <strong>order number and reason</strong> for the refund.
+        </li>
+      </ul>
+
+      <h3>Important Notes:</h3>
+      <ul>
+        <li>
+          Refunds are <strong>not guaranteed</strong> for digital goods that
+          have already been accessed, downloaded, or consumed.
+        </li>
+        <li>
+          <strong>Multiple refund requests</strong> within a short time frame
+          may affect your account standing or result in limitations.
+        </li>
+        <li>
+          We reserve the right to <strong>deny a refund</strong> if the terms of
+          use have been violated.
+        </li>
+      </ul>
+
+      <h3>Special Cases:</h3>
+      <ul>
+        <li>
+          If you were charged multiple times for the same item, you are eligible
+          for a full refund of the duplicate charges.
+        </li>
+        <li>
+          If your account was compromised and unauthorized purchases were made,
+          please report immediately for investigation and potential refund.
+        </li>
+        <li>
+          Refunds for subscription-based services will only apply to the most
+          recent charge and not for previous billing periods.
+        </li>
+      </ul>
+
+      <h3>How to Contact Us:</h3>
+      <p>
+        You can request a refund by reaching out to our support team via the
+        <a href="index.php?page=support">Contact Form</a> or emailing us at
+        <strong>support@chocoapp.com</strong>. Please allow up to 24–48 hours
+        for a response.
+      </p>
+
+      <p>
+        If your refund is approved, the amount will be returned to your original
+        payment method. For credit card payments, it may take additional time
+        for the bank to reflect the refund on your statement.
+      </p>
+
+      <h3>Friendly Reminder:</h3>
+      <p>
+        Please read our
+        <a href="index.php?page=termsOfUse">Terms of Use</a> and
+        <a href="index.php?page=privacyPolicy">Privacy Policy</a> to fully
+        understand our refund guidelines and your rights as a user.
+      </p>
+    </div>
+
+    <div class="section" id="chargebacks">
+      <h2>⛔ Chargebacks</h2>
+      <p>
+        We’re here to help, so please reach out before contacting your bank.
+      </p>
+      <ul>
+        <li>Chargebacks should be a last resort after contacting us.</li>
+        <li>
+          If you submit a chargeback without first attempting to resolve the
+          issue with us, your account may be
+          <strong>temporarily restricted</strong> or permanently
+          <strong>suspended</strong>.
+        </li>
+        <li>
+          We investigate every claim carefully and may request proof of misuse
+          or error.
+        </li>
+        <li>
+          We aim to be fair and transparent — help us help you by reaching out
+          first.
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" id="history">
+      <h2>📄 Purchase History</h2>
+      <p>You can always review your purchases:</p>
+      <ul>
+        <li>
+          Log in to your account and go to the <strong>Dashboard</strong>.
+        </li>
+        <li>
+          Navigate to the <strong>Billing</strong> or
+          <strong>Orders</strong> section.
+        </li>
+        <li>There you can view:</li>
+        <ul>
+          <li>Date and time of each purchase</li>
+          <li>Item or service details</li>
+          <li>Amount charged</li>
+          <li>Downloadable invoices or receipts</li>
+        </ul>
+        <li>
+          If you notice any suspicious activity, please notify our support team
+          immediately.
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" id="request">
+      <h2>📥 Request Account Data</h2>
+      <p>We believe in transparency. You have the right to access your data:</p>
+      <ul>
+        <li>
+          Go to <strong>Settings > Privacy</strong> and select
+          <strong>Request My Data</strong>.
+        </li>
+        <li>
+          We will gather your data and send it to your email as a downloadable
+          file (.zip or .json).
+        </li>
+        <li>
+          The process may take up to <strong>14 days</strong> depending on
+          request volume.
+        </li>
+        <li>Your data will include:</li>
+        <ul>
+          <li>Account details</li>
+          <li>Login activity</li>
+          <li>Purchase history</li>
+          <li>Messages or content you’ve shared</li>
+        </ul>
+      </ul>
+      <p>
+        We take your privacy seriously and comply with relevant data protection
+        laws (e.g. GDPR).
+      </p>
+    </div>
+
+    <div class="section" id="delete">
+      <h2>🗑️ Delete Account</h2>
+      <p>
+        You can permanently delete your account at any time — but this action is
+        <strong>irreversible</strong>.
+      </p>
+      <ul>
+        <li>Go to <strong>Settings > Delete Account</strong>.</li>
+        <li>Confirm your password and acknowledge the deletion warning.</li>
+        <li>Once confirmed, all your data will be scheduled for deletion.</li>
+      </ul>
+      <p>Before you delete:</p>
+      <ul>
+        <li>
+          Download any personal data you want to keep (via the Privacy tab).
+        </li>
+        <li>
+          Make sure you don’t have any active subscriptions or unresolved
+          payments.
+        </li>
+        <li>
+          Note: Deletion may take up to 30 days to fully complete in our
+          systems.
+        </li>
+      </ul>
+      <p>
+        If you delete by mistake, contact us as soon as possible — recovery is
+        only possible within the first 24 hours.
+      </p>
+    </div>
+    <script>
+      const sections = document.querySelectorAll(".section");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>
