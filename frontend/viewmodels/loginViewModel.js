@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok && result.success) {
         alert("Đăng nhập thành công!");
-        window.location.href = "../frontend/views/match.html";
+        window.location.href = "index.php?page=match";
       } else {
         alert(result.message || "Sai tài khoản hoặc mật khẩu!");
       }

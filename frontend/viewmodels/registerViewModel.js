@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok && result.success) {
         alert("Đăng ký thành công!");
-        window.location.href = "../frontend/views/login.html";
+        window.location.href = "index.php?page=login";
       } else {
         alert(result.message || "Đăng ký thất bại");
       }

@@ -48,11 +48,11 @@ if (isset($_GET['code'])) {
         ];
 
         // Đăng nhập thành công → chuyển đến trang match
-        header('Location: /Dating-Website/frontend/views/match.html');
+        header('Location: /Dating-Website/index.php?page=match');
         exit;
     } catch (Exception $e) {
         // Có lỗi xảy ra trong quá trình xác thực
-        header('Location: /Dating-Website/frontend/views/login.html');
+        header('Location: /Dating-Website/index.php?page=login&error=' . urlencode($e->getMessage()));
         exit;
     }
 } else {

@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 // load .env file
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 $host = $_ENV['DB_HOST'];
@@ -17,4 +17,3 @@ try {
 } catch (PDOException $e) {
     echo "Lỗi kết nối: " . $e->getMessage();
 }
-?>
