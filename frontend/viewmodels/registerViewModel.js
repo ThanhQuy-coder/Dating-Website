@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok && result.success) {
         showNotification("Registration successful");
         setTimeout(() => {
-          window.location.href = "index.php?page=login";
+          window.location.href = "index.php?page=create-profile";
         }, 3000);
       } else {
         showNotification("Registration failed. Please try again!", true);
