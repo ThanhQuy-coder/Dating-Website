@@ -1153,3 +1153,8 @@ function showNotification(message, type = "info") {
     }
   }, 3000)
 }
+
+chatBody.scrollTop = chatBody.scrollHeight;
+chatBody.appendChild(messageElement);
+chatBody.scrollTop = chatBody.scrollHeight;
+chatBody.scrollTop = chatBody.scrollHeight;
