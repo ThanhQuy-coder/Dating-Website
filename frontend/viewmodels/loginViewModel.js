@@ -53,3 +53,13 @@ function showNotification(message, isError = false) {
     notification.classList.add("hidden");
   }, 3000);
 }
+
+// Nếu có lỗi được truyền từ server, hiển thị lên
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const errorMessage = params.get("error");
+
+  if (errorMessage) {
+    showNotification(decodeURIComponent(errorMessage), true);
+  }
+});
