@@ -58,3 +58,4 @@ coverage/
 secret.json
 config.local.js
 firebase-config.js
+/storage/uploads/

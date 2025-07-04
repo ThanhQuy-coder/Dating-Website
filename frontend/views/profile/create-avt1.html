@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="frontend/assets/css/create-profile.css">
     <link rel="stylesheet" href="frontend/assets/css/about.css">
+    <link rel="stylesheet" href="frontend/assets/css/notification.css">
     
 </head>
 <body>
@@ -63,14 +64,14 @@
             <div class="header-container">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="#home" class="logo-link">Choco</a>
+                    <a href="index.php?page" class="logo-link">Choco</a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="nav desktop-nav" role="navigation">
-                    <a href="#premium" class="nav-link">Premium</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#support" class="nav-link">Support</a>
+                    <a href="index.php?page=premium" class="nav-link">Premium</a>
+                    <a href="index.php?page=about" class="nav-link">About</a>
+                    <a href="index.php?page=support" class="nav-link">Support</a>
                     
                     <!-- Language Dropdown -->
                     <div class="dropdown">
@@ -92,7 +93,7 @@
                     </button>
 
                     <!-- Sign In Button (Desktop) -->
-                    <a href="#signin" class="sign-in-btn desktop-only">Sign in</a>
+                    <a href="index.php?page" class="sign-in-btn desktop-only">Sign in</a>
 
                     <!-- Mobile Menu Toggle -->
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -106,9 +107,9 @@
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
                 <nav class="mobile-nav" role="navigation">
-                    <a href="#premium" class="mobile-nav-link">Premium</a>
-                    <a href="#about" class="mobile-nav-link">About</a>
-                    <a href="#support" class="mobile-nav-link">Support</a>
+                    <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+                    <a href="index.php?page=about" class="mobile-nav-link">About</a>
+                    <a href="index.php?page=support" class="mobile-nav-link">Support</a>
                     <div class="mobile-dropdown">
                         <button class="mobile-dropdown-toggle">Language</button>
                         <div class="mobile-dropdown-menu">
@@ -116,11 +117,12 @@
                             <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
                         </div>
                     </div>
-                    <a href="#signin" class="mobile-sign-in">Sign in</a>
+                    <a href="index.php?page=login" class="mobile-sign-in">Sign in</a>
                 </nav>
             </div>
         </header>
     <hr>
+
     <main class="main-signup">
         <div class="box">
             <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
@@ -136,8 +138,8 @@
                         <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display:none;">
                     </label>
                 </section>
-                <section class="signup-btn">
-                    <button type="submit" class="submit-btn">
+                <section class="uploadAvatarButton" id="uploadAvatarButton">
+                    <button type="submit" class="submit-btn signup-btn">
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </section>
@@ -145,8 +147,12 @@
             </form>
         </div>
     </main>
-    <script src="frontend/viewmodels/create-avt1.js"></script>
-    <script src="frontend/viewmodels/about.js"></script>
 
+    <!-- Phần thông báo cho người dùng -->
+    <div id="notification" class="notification hidden">
+      <p id="notification-message">Registration successful!</p>
+    </div>
+    <script type="module" src="frontend/viewmodels/create-avt1.js"></script>
+    <script src="frontend/viewmodels/about.js"></script>
 </body>
 </html> 

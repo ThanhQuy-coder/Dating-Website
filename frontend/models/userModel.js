@@ -24,19 +24,30 @@ export async function createProfile(
   gender = null,
   birth_day = null,
   bio = null,
-  imageProfile = null
+  imageFile = null
 ) {
+  const formData = new FormData();
+  if (displayName) formData.append("displayName", displayName);
+  if (hobbies) formData.append("hobbies", hobbies);
+  if (gender) formData.append("gender", gender);
+  if (birth_day) formData.append("birth_day", birth_day);
+  if (bio) formData.append("bio", bio);
+  if (imageFile) formData.append("image", imageFile);
+
   const res = await fetch(BASE_URL + "user/profile.php", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      displayName,
-      hobbies,
-      gender,
-      birth_day,
-      bio,
-      imageProfile,
-    }),
+    body: formData,
+  });
+  return res;
+}
+
+export async function updateProfileImage(imageFile) {
+  const formData = new FormData();
+  formData.append("image", imageFile);
+
+  const res = await fetch(BASE_URL + "user/profile.php", {
+    method: "POST",
+    body: formData,
   });
   return res;
 }
