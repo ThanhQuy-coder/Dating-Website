@@ -3,60 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Help Center</title>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background-color: #ddb1c7;
-        color: rgb(226, 225, 225);
-        font-family: Arial, sans-serif;
-        padding: 30px;
-      }
-
-      .section {
-        background-color: #3f2e2e;
-        padding: 25px;
-        border-radius: 10px;
-        margin-bottom: 40px;
-      }
-
-      .section h2 {
-        color: #ff69b4;
-        margin-bottom: 10px;
-      }
-
-      a.back {
-        display: inline-block;
-        margin-bottom: 20px;
-        color: #f13895;
-        text-decoration: none;
-      }
-
-      a.back:hover {
-        text-decoration: underline;
-      }
-      /* Thêm hiệu ứng mờ và trượt lên */
-      .section {
-        background-color: #2e2e2e;
-        padding: 25px;
-        border-radius: 10px;
-        margin-bottom: 40px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease;
-      }
-
-      /* Khi xuất hiện thì hiện lên mượt */
-      .section.animate {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    </style>
+    
   </head>
-  <body>
-    <a href="#" href="#" onclick="history.back(); return false;" class="back">
+    <a href="index.php?page" href="Support-button" onclick="history.back(); return false;" class="back">
       ← Back to Home
     </a>
     <div class="section" id="recover">
@@ -330,25 +279,9 @@
         only possible within the first 24 hours.
       </p>
     </div>
-    <script>
-      const sections = document.querySelectorAll(".section");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("animate");
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-        }
-      );
-
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-    </script>
+    
   </body>
+<link rel="stylesheet" href="frontend/assets/css/help.css">
+  <script src="frontend/viewmodels/help.js"></script>
+
 </html>

@@ -6,37 +6,109 @@
     <base href="/Dating-Website/" />
     <link rel="stylesheet" href="frontend/assets/css/register.css" />
     <link rel="stylesheet" href="frontend/assets/css/notification.css">
+    <link rel="stylesheet" href="frontend/assets/css/about.css">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
     
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+      rel="stylesheet"
+    />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" 
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <header class="header-home">
-      <div class="logo">
-        <a
-          href="frontend/views/home.html"
-          style="color: inherit; text-decoration: none"
-          >Choco</a
-        >
-      </div>
-      <div class="center">
-        <nav class="navmenu">
-          <a href="index.php?page=premium">Premium</a>
-          <a href="index.php?page=about">About</a>
-          <a href="index.php?page=support">Support</a>
-          <div class="dropdown">
-            <span class="language">Language <span class="arrow">▼</span></span>
-            <div class="down-item">
-              <a href="#" class="drop_down_item">English</a>
-              <a href="#" class="drop_down_item">Tiếng Việt</a>
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.php?page" class="logo-link">Choco</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav desktop-nav" role="navigation">
+                    <a href="index.php?page=premium" class="nav-link">Premium</a>
+                    <a href="index.php?page=about" class="nav-link">About</a>
+                    <a href="index.php?page=support" class="nav-link">Support</a>
+                    
+                    <!-- Language Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Language <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                            <a href="#" class="dropdown-item" role="menuitem">English</a>
+                            <a href="#" class="dropdown-item" role="menuitem">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Right Side Controls -->
+                <div class="header-controls">
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+
+                    
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
             </div>
-          </div>
-        </nav>
-      </div>
-    </header>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav" role="navigation">
+                    <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+                    <a href="index.php?page=about" class="mobile-nav-link">About</a>
+                    <a href="index.php?page=support" class="mobile-nav-link">Support</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle">Language</button>
+                        <div class="mobile-dropdown-menu">
+                            <a href="#" class="mobile-dropdown-item">English</a>
+                            <a href="#" class="mobile-dropdown-item">Tiếng Việt</a>
+                        </div>
+                    </div>
+                    
+                </nav>
+            </div>
+        </header>
     <hr />
     <main class="main-signup">
       <div class="box">
@@ -87,5 +159,6 @@
       type="module"
       src="frontend/viewmodels/registerViewModel.js"
     ></script>
+    <script src="frontend/viewmodels/login.js"></script>
   </body>
 </html>
