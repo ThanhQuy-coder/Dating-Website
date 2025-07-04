@@ -11,6 +11,7 @@ session_start();
 // Load biến môi trường
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
 $dotenv->load();
+$frontendUrl = $_ENV['FRONTEND_URL'];
 
 $client = new Google_Client();
 $client->setClientId($_ENV['GOOGLE_CLIENT_ID']);
@@ -24,7 +25,7 @@ if (isset($_GET['code'])) {
         $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
         if (isset($token['error'])) {
-            header('Location: /Dating-Website/index.php?page=login');
+            header("Location: $frontendUrl/index.php?page=login");
             exit;
         }
 
@@ -73,10 +74,10 @@ if (isset($_GET['code'])) {
             'avatar' => $avatar
         ];
 
-        header('Location: /Dating-Website/index.php?page=match');
+        header("Location: $frontendUrl/index.php?page=match");
         exit;
     } catch (Exception $e) {
-        header('Location: /Dating-Website/index.php?page=login&error=' . urlencode($e->getMessage()));
+        header("Location: $frontendUrl/index.php?page=login&error=" . urlencode($e->getMessage()));
         exit;
     }
 } else {

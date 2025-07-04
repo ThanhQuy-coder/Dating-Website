@@ -1,4 +1,4 @@
-const BASE_URL = "/Dating-Website/backend/api/";
+const BASE_URL = "/api/";
 
 export async function register(email, password) {
   const res = await fetch(BASE_URL + "auth/register.php", {

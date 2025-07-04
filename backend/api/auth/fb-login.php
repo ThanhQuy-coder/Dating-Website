@@ -7,6 +7,7 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
 $dotenv->load();
+$frontendUrl = $_ENV['FRONTEND_URL'];
 
 define('FB_APP_ID', $_ENV['FACEBOOK_APP_ID']);
 define('FB_APP_SECRET', $_ENV['FACEBOOK_APP_SECRET']);
@@ -46,7 +47,7 @@ try {
     $email = $user->getField('email');
 
     if (!$email) {
-        header('Location: /Dating-Website/index.php?page=login&error=' . urlencode("Your Facebook account does not provide email. Please use another account."));
+        header("Location: $frontendUrl/index.php?page=login&error=" . urlencode("Your Facebook account does not provide email. Please use another account."));
         exit;
     }
 
@@ -87,7 +88,7 @@ try {
     ];
 
     // Chuyển hướng sang trang match
-    header('Location: /Dating-Website/index.php?page=match');
+    header("Location: $frontendUrl/index.php?page=match");
     exit;
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     http_response_code(400);

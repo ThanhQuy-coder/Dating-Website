@@ -29,13 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("google-login-btn").addEventListener("click", () => {
-  window.location.href =
-    "http://localhost/Dating-Website/backend/api/auth/googleLogin.php";
+  window.location.href = "http://localhost/api/auth/googleLogin.php";
 });
 
 document.getElementById("fb-login-btn").addEventListener("click", () => {
-  window.location.href =
-    "http://localhost/Dating-Website/backend/api/auth/fb-login.php";
+  window.location.href = "http://localhost/api/auth/fb-login.php";
 });
 
 function showNotification(message, isError = false) {
