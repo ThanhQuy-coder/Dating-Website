@@ -2,15 +2,76 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/Dating-Website/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Perfect Match - Complete Pro Dating App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="frontend/assets/css/match.css">
-     
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header mobile-only">
+        <div class="mobile-header-content">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="mobile-logo">Perfect Match</h1>
+            <button class="mobile-notifications-btn" onclick="showTab('notifications')">
+                <i class="fas fa-bell"></i>
+                <span class="badge">5</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Enhanced Mobile Menu -->
+    <nav class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-profile">
+                <img src="https://i.pinimg.com/736x/7b/af/0f/7baf0f18f4e35c21e8a14365ee05a960.jpg" alt="Profile" class="mobile-profile-avatar">
+                <div class="mobile-profile-info">
+                    <h3>Minh Hoàng</h3>
+                    <p>Online now</p>
+                </div>
+            </div>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu-items">
+            <div class="mobile-menu-item" onclick="showTab('profile'); closeMobileMenu();">
+                <i class="fas fa-user"></i>
+                <span>My Profile</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="mobile-menu-item" onclick="showTab('premium'); closeMobileMenu();">
+                <i class="fas fa-crown"></i>
+                <span>Premium</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="mobile-menu-item" onclick="showTab('settings'); closeMobileMenu();">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="mobile-menu-item" onclick="toggleDarkMode(); closeMobileMenu();">
+                <i class="fas fa-moon" id="mobile-theme-icon"></i>
+                <span id="mobile-theme-text">Dark Mode</span>
+                <div class="toggle-switch">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="mobile-menu-item" onclick="showHelp(); closeMobileMenu();">
+                <i class="fas fa-question-circle"></i>
+                <span>Help & Support</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </nav>
+
     <!-- Desktop Sidebar -->
     <aside class="sidebar desktop-only">
         <!-- Profile Section -->
@@ -49,7 +110,7 @@
             <div id="matches-sidebar" class="tab-pane active">
                 <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">Your Matches</h3>
                 
-                <div class="match-item" onclick="openChat('Hà My')">
+                <div class="match-item" onclick="openChatFromMatch('Hà My')">
                     <div style="position: relative;">
                         <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Match" class="match-avatar">
                         <div class="online-indicator"></div>
@@ -61,7 +122,7 @@
                     <div class="match-time">2h</div>
                 </div>
 
-                <div class="match-item" onclick="openChat('Linh Tran')">
+                <div class="match-item" onclick="openChatFromMatch('Linh Tran')">
                     <div style="position: relative;">
                         <img src="https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg" alt="Match" class="match-avatar">
                         <div class="online-indicator"></div>
@@ -73,7 +134,7 @@
                     <div class="match-time">1d</div>
                 </div>
 
-                <div class="match-item" onclick="openChat('Thu Nguyen')">
+                <div class="match-item" onclick="openChatFromMatch('Thu Nguyen')">
                     <img src="https://i.pinimg.com/736x/38/fd/07/38fd076e6cf0e13ba30b44034ea5f2b9.jpg" alt="Match" class="match-avatar">
                     <div class="match-info">
                         <h4>Thu Nguyen</h4>
@@ -82,20 +143,18 @@
                     <div class="match-time">3d</div>
                 </div>
 
-              <div class="match-item" onclick="openChat('Mai Anh')">
-               <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Match" class="match-avatar">
-                <div class="match-info">
-                 <h4>Mai Anh</h4>
-                <p>Love your photos!</p>
+                <div class="match-item" onclick="openChatFromMatch('Mai Anh')">
+                    <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Match" class="match-avatar">
+                        <div class="match-info">
+                            <h4>Mai Anh</h4>
+                            <p>Love your photos!</p>
+                        </div>
+                        <div class="match-time">1w</div>
                 </div>
-                  <div class="match-time">1w</div>
-                 </div>
             </div>
 
-         
-
             <!-- Notifications Sidebar -->
-            <div id="notifications-sidebar" class="tab-pane ">
+            <div id="notifications-sidebar" class="tab-pane">
                 <h3 style="margin-bottom: 20px; color: var(--text-primary); font-weight: 600;">Notifications</h3>
                 
                 <div class="match-item">
@@ -127,7 +186,7 @@
                 <!-- Search Bar -->
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Search for someone special...">
+                    <input type="text" class="search-input" placeholder="Search for someone special..." onclick="openSearchModal()">
                 </div>
 
                 <!-- Dating Card -->
@@ -372,12 +431,88 @@
 
         <!-- Enhanced Messages Tab -->
         <div id="messages-tab" class="tab-pane">
-            <div class="messages-content">
+            <!-- Chat List View -->
+            <div class="chat-list-view" id="chat-list-view">
+                <div class="chat-list-header">
+                    <h2>Messages</h2>
+                    <div class="chat-list-actions">
+                        <button class="chat-list-btn" onclick="openSearchModal()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="chat-list-btn" onclick="showNewChatModal()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-list-content">
+                    <div class="chat-list-item active" onclick="openChatFromList('Hà My')">
+                        <div class="chat-list-avatar-container">
+                            <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Hà My" class="chat-list-avatar">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="chat-list-info">
+                            <div class="chat-list-name">Hà My</div>
+                            <div class="chat-list-message">Perfect! How about 4 PM today?</div>
+                        </div>
+                        <div class="chat-list-meta">
+                            <div class="chat-list-time">2h</div>
+                            <div class="unread-badge">2</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="openChatFromList('Linh Tran')">
+                        <div class="chat-list-avatar-container">
+                            <img src="https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg" alt="Linh Tran" class="chat-list-avatar">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="chat-list-info">
+                            <div class="chat-list-name">Linh Tran</div>
+                            <div class="chat-list-message">Not yet, but it's on my bucket list! 🏖️</div>
+                        </div>
+                        <div class="chat-list-meta">
+                            <div class="chat-list-time">1d</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="openChatFromList('Thu Nguyen')">
+                        <div class="chat-list-avatar-container">
+                            <img src="https://i.pinimg.com/736x/38/fd/07/38fd076e6cf0e13ba30b44034ea5f2b9.jpg" alt="Thu Nguyen" class="chat-list-avatar">
+                        </div>
+                        <div class="chat-list-info">
+                            <div class="chat-list-name">Thu Nguyen</div>
+                            <div class="chat-list-message">Watercolor painting is my passion! 🎨</div>
+                        </div>
+                        <div class="chat-list-meta">
+                            <div class="chat-list-time">3d</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="openChatFromList('Mai Anh')">
+                        <div class="chat-list-avatar-container">
+                            <img src="https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg" alt="Mai Anh" class="chat-list-avatar">
+                        </div>
+                        <div class="chat-list-info">
+                            <div class="chat-list-name">Mai Anh</div>
+                            <div class="chat-list-message">Just as a hobby for now, but I'm thinking about it!</div>
+                        </div>
+                        <div class="chat-list-meta">
+                            <div class="chat-list-time">1w</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual Chat View -->
+            <div class="messages-content" id="individual-chat-view" style="display: none;">
                 <div class="chat-header">
+                    <button class="back-to-list-btn mobile-only" onclick="showChatList()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                     <img src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg" alt="Chat Avatar" class="chat-avatar">
                     <div class="chat-info">
-                        <h3>Hà My</h3>
-                        <div class="chat-status">Active now</div>
+                        <h3 id="current-chat-name">Hà My</h3>
+                        <div class="chat-status" id="current-chat-status">Active now</div>
                     </div>
                     <div class="chat-actions">
                         <button class="chat-action-btn" title="Voice Call">
@@ -421,7 +556,6 @@
                         Perfect! How about 4 PM today?
                         <div class="message-time">2:39 PM</div>
                     </div>
-                       
                 </div>
 
                 <div class="chat-footer">
@@ -431,7 +565,7 @@
                     <button class="chat-action-btn" title="Send Photo">
                         <i class="fas fa-image"></i>
                     </button>
-                    <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
+                    <textarea class="chat-input" id="chat-input" placeholder="Type a message..." rows="1"></textarea>
                     <button class="chat-send-btn" id="chat-send-btn">
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -648,7 +782,7 @@
         </div>
     </main>
 
-    <!-- Mobile Bottom Navigation -->
+    <!-- Enhanced Mobile Bottom Navigation -->
     <nav class="bottom-nav mobile-only">
         <div class="bottom-nav-items">
             <div class="bottom-nav-item" onclick="showTab('premium')">

@@ -1,0 +1,50 @@
+  html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #ddb1c7;
+        color: rgb(226, 225, 225);
+        font-family: Arial, sans-serif;
+        padding: 30px;
+      }
+
+      .section {
+        background-color: #3f2e2e;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+      }
+
+      .section h2 {
+        color: #ff69b4;
+        margin-bottom: 10px;
+      }
+
+      a.back {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #f13895;
+        text-decoration: none;
+      }
+
+      a.back:hover {
+        text-decoration: underline;
+      }
+      /* Thêm hiệu ứng mờ và trượt lên */
+      .section {
+        background-color: #2e2e2e;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      /* Khi xuất hiện thì hiện lên mượt */
+      .section.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
