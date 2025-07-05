@@ -2,6 +2,8 @@
 header("Content-Type: application/json");
 require_once dirname(__DIR__, 2) . "/core/db.php";
 
+session_start();
+
 $data = json_decode(file_get_contents("php://input"), true);
 $email = $data["email"] ?? null;
 $password = $data["password"] ?? null;
@@ -20,6 +22,11 @@ if (password_verify($password, $user["password_hash"])) {
     // Cập nhật thời gian đăng nhập cuối
     $updateStmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
     $updateStmt->execute([$user["id"]]);
+
+    // Lưu vào session
+    $_SESSION['user'] = [
+        'id' => $user["id"]
+    ];
 
     echo json_encode([
         "success" => true,

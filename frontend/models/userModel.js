@@ -51,3 +51,14 @@ export async function updateProfileImage(imageFile) {
   });
   return res;
 }
+
+export async function showProfile() {
+  const res = await fetch(BASE_URL + "user/profile.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+  return res;
+}

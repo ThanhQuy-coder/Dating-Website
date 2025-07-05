@@ -126,7 +126,29 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
         INSERT INTO profiles (user_id, full_name, gender, birth_date, bio, hobbies, avatar_url)
         VALUES (:user_id, :full_name, :gender, :birth_date, :bio, :hobbies, :avatar_url)
     ");
-} else {
+} elseif(!empty($userId)){
+    // Lấy thông tin hồ sơ
+    $stmt = $conn->prepare("
+    SELECT full_name, gender, birth_date, bio, hobbies, avatar_url 
+    FROM profiles 
+    WHERE user_id = ?");
+    $stmt->execute([$userId]);
+    $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($profile) {
+        echo json_encode([
+            "success" => true,
+            "data" => $profile
+        ]);
+    } else {
+        echo json_encode([
+            "success" => false,
+            "message" => "Profile not found"
+        ]);
+    }
+    exit;
+}
+else {
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "No valid data provided"]);
     exit;
