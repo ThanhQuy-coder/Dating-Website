@@ -8,12 +8,12 @@ header("Content-Type: application/json");
 require_once dirname(__DIR__, 2) . "/core/db.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
-$email = $data["email"];
+$username = $data["username"];
 $password = $data["password"];
 
-//Kiem tra trung email
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute([$email]);
+//Kiem tra trung username
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->execute([$username]);
 if ($stmt->rowCount() > 0) {
     echo json_encode(["success" => false, "message" => "Account already exits"]);
     exit;
@@ -23,8 +23,8 @@ if ($stmt->rowCount() > 0) {
 $hashed = password_hash($password, PASSWORD_DEFAULT);
 
 //Them DB
-$stmt = $conn->prepare("INSERT INTO users (email, password_hash) VALUES (?,?)");
-$stmt->execute([$email, $hashed]);
+$stmt = $conn->prepare("INSERT INTO users (username, password_hash) VALUES (?,?)");
+$stmt->execute([$username, $hashed]);
 
 $userId = $conn->lastInsertId();
 
@@ -32,6 +32,10 @@ $userId = $conn->lastInsertId();
 $_SESSION['user'] = [
     'id' => $userId
 ];
+
+// Xóa session cụ thể
+unset($_SESSION['profile_created']);
+unset($_SESSION['avatar_uploaded']);
 
 echo json_encode(["success" => true]);
 exit;

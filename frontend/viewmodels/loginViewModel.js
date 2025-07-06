@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("login-email").value;
+    const username = document.getElementById("login").value;
     const password = document.getElementById("login-pass").value;
 
     try {
-      const response = await login(email, password);
+      const response = await login(username, password);
       const result = await response.json();
 
       if (response.ok && result.success) {

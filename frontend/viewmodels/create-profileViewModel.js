@@ -12,6 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const birth_day = document.getElementById("date-of-birth").value;
     const bio = document.getElementById("description").value;
 
+    // Kiểm tra ràng buộc
+    // hobbies
+    const hobbiesPattern = /^([\p{L}\d ]+)(, [\p{L}\d ]+)*$/u;
+
+    if (!hobbiesPattern.test(hobbies.trim())) {
+      showNotification(
+        "Invalid preference format. Please use ',' between preferences",
+        true
+      );
+      return;
+    }
+
+    // birth_day (Phải đủ 18 tuổi)
+    const birthDate = new Date(birth_day);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+    console.log(age);
+    const isOver18 =
+      age > 18 ||
+      (age === 18 && (monthDiff > 0 || (monthDiff === 0 && dayDiff >= 0)));
+
+    if (!isOver18) {
+      showNotification("You must be 18 years of age to register.", true);
+      return;
+    }
+
     try {
       const response = await createProfile(
         displayName,
@@ -42,10 +70,12 @@ function showNotification(message, isError = false) {
 
   messageElement.textContent = message;
 
+  // Thêm hoặc xóa class error
   notification.classList.toggle("error", isError);
   notification.classList.remove("hidden");
 
+  // Tự động ẩn sau 3 giây
   setTimeout(() => {
     notification.classList.add("hidden");
-  }, 3000);
+  }, 2000);
 }

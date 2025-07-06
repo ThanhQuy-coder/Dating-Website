@@ -37,7 +37,7 @@ uploadButton.addEventListener("click", async () => {
     if (response.ok && result.success) {
       showNotification("Profile photo has been uploaded successfully!");
       setTimeout(() => {
-        window.location.href = "index.php?page=match"; // Chuyển hướng
+        window.location.href = "index.php?page=login"; // Chuyển hướng
       }, 2000);
     } else {
       showNotification("Image upload failed!", true);

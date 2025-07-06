@@ -5,17 +5,17 @@ require_once dirname(__DIR__, 2) . "/core/db.php";
 session_start();
 
 $data = json_decode(file_get_contents("php://input"), true);
-$email = $data["email"] ?? null;
+$username = $data["username"] ?? null;
 $password = $data["password"] ?? null;
 
-if (!$email || !$password) {
-    echo json_encode(["success" => false, "error" => "Missing email or password."]);
+if (!$username || !$password) {
+    echo json_encode(["success" => false, "error" => "Missing username or password."]);
     exit;
 }
 
 // Tim nguoi dung
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute(["$email"]);
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->execute(["$username"]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (password_verify($password, $user["password_hash"])) {
@@ -34,5 +34,5 @@ if (password_verify($password, $user["password_hash"])) {
         "lastLogin" => $user["last_login"]
     ]);
 } else {
-    echo json_encode(["success" => false, "error" => "Wrong email or password."]);
+    echo json_encode(["success" => false, "error" => "Wrong username or password."]);
 }

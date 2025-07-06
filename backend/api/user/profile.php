@@ -126,7 +126,7 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
         INSERT INTO profiles (user_id, full_name, gender, birth_date, bio, hobbies, avatar_url)
         VALUES (:user_id, :full_name, :gender, :birth_date, :bio, :hobbies, :avatar_url)
     ");
-} elseif(!empty($userId)){
+} elseif (!empty($userId)) {
     // Lấy thông tin hồ sơ
     $stmt = $conn->prepare("
     SELECT full_name, gender, birth_date, bio, hobbies, avatar_url 
@@ -147,8 +147,7 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
         ]);
     }
     exit;
-}
-else {
+} else {
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "No valid data provided"]);
     exit;
@@ -165,6 +164,12 @@ $stmt->bindParam(':avatar_url', $imagePath);
 
 // Thực thi
 $stmt->execute();
+
+$_SESSION['profile_created'] = true;
+
+if ($imagePath) {
+    $_SESSION['avatar_uploaded'] = true;
+}
 
 // Trả về phản hồi
 echo json_encode(["success" => true, "message" => "Profile updated successfully"]);

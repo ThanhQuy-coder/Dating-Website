@@ -1,5 +1,6 @@
-import { showProfile } from "../models/userModel.js";
+import { showProfile, logout } from "../models/userModel.js";
 
+// Phần lấy dữ liệu người dùng
 document.addEventListener("DOMContentLoaded", async () => {
   const avatarSection = document.getElementsByClassName("avatarSection");
   const displayName = document.getElementById("displayName");
@@ -54,7 +55,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   } catch (error) {
     console.error("Lỗi khi tải hồ sơ:", error);
-    showNotification("Đã xảy ra lỗi khi tải thông tin hồ sơ!", true);
+    showNotification(
+      "An error occurred while loading profile information!",
+      true
+    );
   }
 });
 
@@ -62,3 +66,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 function basename(path) {
   return path.split("/").pop();
 }
+
+// Phần đăng xuất
+document.addEventListener("DOMContentLoaded", async () => {
+  const logoutBtn = document.querySelector(".settings-item.danger");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        const response = await logout();
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showNotification("Logout successful!");
+          setTimeout(() => {
+            window.location.href = "index.php?page";
+          }, 2000);
+        } else {
+          showNotification("failed. Please try again!");
+        }
+      } catch (error) {
+        console.error("Lỗi khi tải hồ sơ:", error);
+        showNotification(
+          "An error occurred while loading profile information!",
+          true
+        );
+      }
+    });
+  }
+});

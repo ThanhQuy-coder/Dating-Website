@@ -6,18 +6,28 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("register-email").value;
+    const username = document.getElementById("register").value;
     const password = document.getElementById("register-pass").value;
     const confirmPassword = document.getElementById("confirm-password").value;
 
-    // Kiem tra xac nhan mat khau
+    // Kiểm tra ràng buộc
+    // Kiểm tra độ dài của mật khẩu
+    if (password.length < 5) {
+      showNotification(
+        "Password length must be greater than 5 characters",
+        true
+      );
+      return;
+    }
+
+    // Kiểm tra lại mật khẩu người dùng đăng ký
     if (password !== confirmPassword) {
-      alert("Confirmation password does not match!");
+      showNotification("Confirmation password does not match!", true);
       return;
     }
 
     try {
-      const response = await register(email, password);
+      const response = await register(username, password);
       const result = await response.json();
 
       if (response.ok && result.success) {

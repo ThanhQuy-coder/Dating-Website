@@ -1,19 +1,19 @@
 const BASE_URL = "/api/";
 
-export async function register(email, password) {
+export async function register(username, password) {
   const res = await fetch(BASE_URL + "auth/register.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ username, password }),
   });
   return res;
 }
 
-export async function login(email, password) {
+export async function login(username, password) {
   const res = await fetch(BASE_URL + "auth/login.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ username, password }),
   });
   return res;
 }
@@ -58,6 +58,15 @@ export async function showProfile() {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({}),
+  });
+  return res;
+}
+
+export async function logout() {
+  const res = await fetch(BASE_URL + "auth/logout.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({}),
   });
   return res;
