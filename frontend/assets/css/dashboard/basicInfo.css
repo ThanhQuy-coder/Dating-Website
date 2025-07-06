@@ -1,0 +1,65 @@
+.save-btn,
+.cancel-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* CSS cho chế độ chỉnh sửa của Basic Info */
+.profile-section.edit-mode input[type="text"],
+.profile-section.edit-mode input[type="date"],
+.profile-section.edit-mode input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-section.edit-mode input[type="text"]:focus,
+.profile-section.edit-mode input[type="date"]:focus,
+.profile-section.edit-mode input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+/* Tùy chọn nếu muốn khoảng cách giữa các hàng rộng hơn khi edit */
+.profile-section.edit-mode .info-row {
+  margin-bottom: 20px;
+}
+
+/* Chỉ áp dụng style khi ở chế độ edit */
+.profile-section.edit-mode .basic-info-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.profile-section.edit-mode .basic-info-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}

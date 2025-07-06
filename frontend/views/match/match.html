@@ -16,6 +16,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/match.css" />
+    <link rel="stylesheet" href="assets\css\dashboard\bioEditor.css" />
+    <link rel="stylesheet" href="assets\css\dashboard\basicInfo.css" />
   </head>
   <body>
     <!-- Mobile Header -->
@@ -329,10 +331,23 @@
             </button>
 
             <div style="position: relative; display: inline-block">
-              <div class="avatarSection"></div>
+              <div class="avatarSection">
+                <img
+                  id="avatar-image"
+                  src=""
+                  alt="Avatar"
+                  style="width: 100px; height: 100px; border-radius: 50%"
+                />
+              </div>
               <button class="camera-btn">
                 <i class="fas fa-camera"></i>
               </button>
+              <input
+                type="file"
+                id="avatar-input"
+                accept="image/*"
+                style="display: none"
+              />
             </div>
 
             <div class="profile-name-section">
@@ -425,7 +440,7 @@
             <div class="profile-section">
               <div class="section-header">
                 <h3 class="section-title">About Me</h3>
-                <button class="edit-btn">
+                <button class="edit-btn" id="edit-btn-aboutMe">
                   <i class="fas fa-edit"></i> Edit
                 </button>
               </div>
@@ -438,7 +453,7 @@
             </div>
 
             <!-- Basic Info Section -->
-            <div class="profile-section">
+            <div class="profile-section" id="edit-basic-info-btn">
               <div class="section-header">
                 <h3 class="section-title">Basic Info</h3>
                 <button class="edit-btn">

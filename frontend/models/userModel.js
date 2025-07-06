@@ -23,7 +23,10 @@ export async function createProfile(
   hobbies = null,
   gender = null,
   birth_day = null,
+  location = null,
   bio = null,
+  occupation = null,
+  education = null,
   imageFile = null
 ) {
   const formData = new FormData();
@@ -33,6 +36,9 @@ export async function createProfile(
   if (birth_day) formData.append("birth_day", birth_day);
   if (bio) formData.append("bio", bio);
   if (imageFile) formData.append("image", imageFile);
+  if (location) formData.append("location", location);
+  if (occupation) formData.append("occupation", occupation);
+  if (education) formData.append("education", education);
 
   const res = await fetch(BASE_URL + "user/profile.php", {
     method: "POST",

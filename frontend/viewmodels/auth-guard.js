@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.error === "Unauthorized") {
-        window.location.href = "/login.html";
+        window.location.href = "/index.php?page=login";
         return;
       }
 

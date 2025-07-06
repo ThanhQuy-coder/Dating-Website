@@ -28,7 +28,10 @@ $userId = $_SESSION['user']['id'];
 $displayName = $_POST['displayName'] ?? null;
 $gender = $_POST['gender'] ?? null;
 $dob = $_POST['birth_day'] ?? null;
+$location = $_POST['location'] ?? null;
 $bio = $_POST['bio'] ?? null;
+$occupation = $_POST['occupation'] ?? null;
+$education = $_POST['education'] ?? null;
 $hobbies = $_POST['hobbies'] ?? null;
 $imagePath = null;
 
@@ -115,6 +118,9 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
             full_name = COALESCE(:full_name, full_name),
             gender = COALESCE(:gender, gender),
             birth_date = COALESCE(:birth_date, birth_date),
+            location = COALESCE(:location, location),
+            occupation = COALESCE(:occupation, occupation),
+            education = COALESCE(:education, education),
             bio = COALESCE(:bio, bio),
             hobbies = COALESCE(:hobbies, hobbies),
             avatar_url = COALESCE(:avatar_url, avatar_url)
@@ -123,13 +129,13 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
 } elseif (!$profileExists && !empty($displayName)) {
     // Tạo mới
     $stmt = $conn->prepare("
-        INSERT INTO profiles (user_id, full_name, gender, birth_date, bio, hobbies, avatar_url)
-        VALUES (:user_id, :full_name, :gender, :birth_date, :bio, :hobbies, :avatar_url)
+        INSERT INTO profiles (user_id, full_name, gender, birth_date, bio, hobbies, avatar_url, location, occupation, education)
+        VALUES (:user_id, :full_name, :gender, :birth_date, :bio, :hobbies, :avatar_url, :location, :occupation, :education)
     ");
 } elseif (!empty($userId)) {
     // Lấy thông tin hồ sơ
     $stmt = $conn->prepare("
-    SELECT full_name, gender, birth_date, bio, hobbies, avatar_url 
+    SELECT full_name, gender, birth_date, bio, hobbies, avatar_url, location, occupation, education
     FROM profiles 
     WHERE user_id = ?");
     $stmt->execute([$userId]);
@@ -161,6 +167,9 @@ $stmt->bindParam(':birth_date', $dob);
 $stmt->bindParam(':bio', $bio);
 $stmt->bindParam(':hobbies', $hobbies);
 $stmt->bindParam(':avatar_url', $imagePath);
+$stmt->bindParam(':location', $location);
+$stmt->bindParam(':occupation', $occupation);
+$stmt->bindParam(':education', $education);
 
 // Thực thi
 $stmt->execute();

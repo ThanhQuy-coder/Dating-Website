@@ -12,10 +12,16 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+$response = ["status" => "ok"];
+
 if (empty($_SESSION['profile_created'])) {
-    echo json_encode(["next" => "create-profile"]);
+    $response["next"] = "create-profile";
 } elseif (empty($_SESSION['avatar_uploaded'])) {
-    echo json_encode(["next" => "create-avt1"]);
+    $response["next"] = "create-avt1";
 } else {
-    echo json_encode(["next" => "home"]);
+    $response["next"] = "home";
 }
+
+
+// Gửi JSON về client
+echo json_encode($response);
