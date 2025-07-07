@@ -1,4 +1,4 @@
-import { updateProfileImage } from "../../models/userModel.js";
+import { updateProfileImage } from "../../../models/userModel.js";
 
 export async function setupAvatarUpload() {
   const cameraBtn = document.querySelector(".camera-btn");

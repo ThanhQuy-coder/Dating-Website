@@ -18,7 +18,7 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
 $stmt->execute(["$username"]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (password_verify($password, $user["password_hash"])) {
+if ($user && password_verify($password, $user["password_hash"])) {
     // Cập nhật thời gian đăng nhập cuối
     $updateStmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
     $updateStmt->execute([$user["id"]]);

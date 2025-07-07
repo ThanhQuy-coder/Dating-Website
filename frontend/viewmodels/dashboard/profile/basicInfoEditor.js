@@ -1,4 +1,4 @@
-import { createProfile } from "../../models/userModel.js";
+import { createProfile } from "../../../models/userModel.js";
 
 export function setupBasicInfoEditor() {
   const displayName = document.getElementById("displayName");

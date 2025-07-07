@@ -1,4 +1,5 @@
-import { showProfile } from "../../models/userModel.js";
+import { showProfile } from "../../../models/userModel.js";
+import { setupHobbiesEditor, updateHobbiesDisplay } from "./hobbiesEditor.js";
 
 export async function loadProfile() {
   const avatarSection = document.getElementsByClassName("avatarSection");
@@ -6,7 +7,7 @@ export async function loadProfile() {
   //   const gender = document.getElementById("gender");
   const birthDate = document.getElementById("birthDate");
   const bio = document.getElementById("bio");
-  //   const hobbies = document.getElementById("hobbies");
+  const hobbies = document.getElementsByClassName("hobbies");
   const location = document.getElementById("location");
   const occupation = document.getElementById("occupation");
   const education = document.getElementById("education");
@@ -14,6 +15,7 @@ export async function loadProfile() {
   try {
     const response = await showProfile();
     const result = await response.json();
+    window.profile = result.data || {};
 
     if (response.ok && result.success) {
       const profile = result.data;
@@ -38,10 +40,11 @@ export async function loadProfile() {
       }
 
       displayName.textContent = profile.full_name || "Not updated yet";
+      updateHobbiesDisplay(window.profile.hobbies || "");
+      setupHobbiesEditor();
       //   gender.textContent = profile.gender || "Not updated yet";
       birthDate.textContent = profile.birth_date || "Not updated yet";
       bio.textContent = profile.bio || "Not updated yet";
-      //   hobbies.textContent = profile.hobbies || "Not updated yet";
       location.textContent = profile.location || "Not updated yet";
       occupation.textContent = profile.occupation || "Not updated yet";
       education.textContent = profile.education || "Not updated yet";

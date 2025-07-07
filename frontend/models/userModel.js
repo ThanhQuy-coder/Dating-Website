@@ -77,3 +77,25 @@ export async function logout() {
   });
   return res;
 }
+
+export async function setSocialLinks(socialLinks) {
+  const res = await fetch(BASE_URL + "user/social_links.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ links: socialLinks }),
+  });
+  return res;
+}
+
+export async function getSocialLinks() {
+  const res = await fetch(BASE_URL + "user/social_links.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ action: "get" }),
+  });
+  return res;
+}

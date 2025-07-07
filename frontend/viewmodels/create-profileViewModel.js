@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hobbies,
         gender,
         birth_day,
+        null,
         bio
       );
       const result = await response.json();

@@ -6,7 +6,7 @@ USE dating_app;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NULL,
+    password_hash VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_login DATETIME
 );
@@ -131,6 +131,26 @@ CREATE TABLE blocks (
     FOREIGN KEY (blocked_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE KEY unique_block (blocker_id, blocked_id)
 );
+
+-- Thêm cột vào bảng
+ALTER TABLE users
+ADD COLUMN username VARCHAR(255),
+ADD COLUMN status BOOLEAN;
+
+-- Ràng buộc cho hobbies của profile
+ALTER TABLE profiles
+ADD CONSTRAINT chk_hobbies_format
+CHECK (hobbies REGEXP '^[A-Za-zÀ-ỹà-ỹ0-9 ,]*$');
+
+-- Đổi tên facebook thành bio
+ALTER TABLE users MODIFY password_hash VARCHAR(255) NULL;
+ALTER TABLE profiles
+RENAME COLUMN facebook TO bio;
+
+-- Thêm cột occupation, education vào profile
+ALTER TABLE profiles 
+ADD COLUMN occupation VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+ADD COLUMN education VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Tạo indexes để tối ưu hiệu năng
 CREATE INDEX idx_photos_user ON photos(user_id);
