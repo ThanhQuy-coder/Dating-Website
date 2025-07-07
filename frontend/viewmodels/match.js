@@ -62,256 +62,256 @@ function closeMobileMenu() {
   document.body.style.overflow = "";
 }
 
-// Enhanced tab switching for mobile
-function showTab(tabName) {
-  // Close mobile menu if open
-  closeMobileMenu();
+// // Enhanced tab switching for mobile
+// function showTab(tabName) {
+//   // Close mobile menu if open
+//   closeMobileMenu();
 
-  // Remove active class from all nav icons (desktop)
-  document.querySelectorAll(".nav-icon").forEach((icon) => {
-    icon.classList.remove("active");
-  });
+//   // Remove active class from all nav icons (desktop)
+//   document.querySelectorAll(".nav-icon").forEach((icon) => {
+//     icon.classList.remove("active");
+//   });
 
-  // Remove active class from all bottom nav items (mobile)
-  document.querySelectorAll(".bottom-nav-item").forEach((item) => {
-    item.classList.remove("active");
-  });
+//   // Remove active class from all bottom nav items (mobile)
+//   document.querySelectorAll(".bottom-nav-item").forEach((item) => {
+//     item.classList.remove("active");
+//   });
 
-  // Add active class to clicked element
-  if (event && event.target) {
-    const clickedElement =
-      event.target.closest(".nav-icon") ||
-      event.target.closest(".bottom-nav-item");
-    if (clickedElement) {
-      clickedElement.classList.add("active");
-    }
-  }
+//   // Add active class to clicked element
+//   if (event && event.target) {
+//     const clickedElement =
+//       event.target.closest(".nav-icon") ||
+//       event.target.closest(".bottom-nav-item");
+//     if (clickedElement) {
+//       clickedElement.classList.add("active");
+//     }
+//   }
 
-  // Hide all main tab panes
-  document.querySelectorAll(".main-content .tab-pane").forEach((pane) => {
-    pane.classList.remove("active");
-  });
+//   // Hide all main tab panes
+//   document.querySelectorAll(".main-content .tab-pane").forEach((pane) => {
+//     pane.classList.remove("active");
+//   });
 
-  // Hide all sidebar tab panes
-  document.querySelectorAll(".tab-content .tab-pane").forEach((pane) => {
-    pane.classList.remove("active");
-  });
+//   // Hide all sidebar tab panes
+//   document.querySelectorAll(".tab-content .tab-pane").forEach((pane) => {
+//     pane.classList.remove("active");
+//   });
 
-  // Show selected main tab
-  const targetTab = document.getElementById(tabName + "-tab");
-  if (targetTab) {
-    targetTab.classList.add("active");
-  }
+//   // Show selected main tab
+//   const targetTab = document.getElementById(tabName + "-tab");
+//   if (targetTab) {
+//     targetTab.classList.add("active");
+//   }
 
-  // Show corresponding sidebar content
-  if (tabName === "dating") {
-    const matchesSidebar = document.getElementById("matches-sidebar");
-    if (matchesSidebar) matchesSidebar.classList.add("active");
-  } else if (tabName === "notifications") {
-    const notificationsSidebar = document.getElementById(
-      "notifications-sidebar"
-    );
-    if (notificationsSidebar) notificationsSidebar.classList.add("active");
-  } else {
-    const matchesSidebar = document.getElementById("matches-sidebar");
-    if (matchesSidebar) matchesSidebar.classList.add("active");
-  }
+//   // Show corresponding sidebar content
+//   if (tabName === "dating") {
+//     const matchesSidebar = document.getElementById("matches-sidebar");
+//     if (matchesSidebar) matchesSidebar.classList.add("active");
+//   } else if (tabName === "notifications") {
+//     const notificationsSidebar = document.getElementById(
+//       "notifications-sidebar"
+//     );
+//     if (notificationsSidebar) notificationsSidebar.classList.add("active");
+//   } else {
+//     const matchesSidebar = document.getElementById("matches-sidebar");
+//     if (matchesSidebar) matchesSidebar.classList.add("active");
+//   }
 
-  // Special handling for messages tab
-  if (tabName === "messages") {
-    showChatList();
-  }
-}
+//   // Special handling for messages tab
+//   if (tabName === "messages") {
+//     showChatList();
+//   }
+// }
 
-// Enhanced Chat Functions
-function showChatList() {
-  const chatListView = document.getElementById("chat-list-view");
-  const individualChatView = document.getElementById("individual-chat-view");
+// // Enhanced Chat Functions
+// function showChatList() {
+//   const chatListView = document.getElementById("chat-list-view");
+//   const individualChatView = document.getElementById("individual-chat-view");
 
-  if (chatListView && individualChatView) {
-    chatListView.style.display = "flex";
-    individualChatView.style.display = "none";
-  }
-}
+//   if (chatListView && individualChatView) {
+//     chatListView.style.display = "flex";
+//     individualChatView.style.display = "none";
+//   }
+// }
 
-function showIndividualChat() {
-  const chatListView = document.getElementById("chat-list-view");
-  const individualChatView = document.getElementById("individual-chat-view");
+// function showIndividualChat() {
+//   const chatListView = document.getElementById("chat-list-view");
+//   const individualChatView = document.getElementById("individual-chat-view");
 
-  if (chatListView && individualChatView) {
-    chatListView.style.display = "none";
-    individualChatView.style.display = "flex";
-  }
-}
+//   if (chatListView && individualChatView) {
+//     chatListView.style.display = "none";
+//     individualChatView.style.display = "flex";
+//   }
+// }
 
-function openChatFromList(name) {
-  // Remove active class from all chat list items
-  document.querySelectorAll(".chat-list-item").forEach((item) => {
-    item.classList.remove("active");
-  });
+// function openChatFromList(name) {
+//   // Remove active class from all chat list items
+//   document.querySelectorAll(".chat-list-item").forEach((item) => {
+//     item.classList.remove("active");
+//   });
 
-  // Add active class to clicked item
-  event.target.closest(".chat-list-item").classList.add("active");
+//   // Add active class to clicked item
+//   event.target.closest(".chat-list-item").classList.add("active");
 
-  // Open the individual chat
-  openChat(name);
-  showIndividualChat();
-}
+//   // Open the individual chat
+//   openChat(name);
+//   showIndividualChat();
+// }
 
 // Chat profiles data
-const chatProfiles = {
-  "Hà My": {
-    avatar:
-      "https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg",
-    status: "Active now",
-    messages: [
-      { type: "other", text: "Hi! Nice to meet you 😊", time: "2:30 PM" },
-      { type: "self", text: "Hey! Same here 😄", time: "2:32 PM" },
-      { type: "other", text: "How's your day going?", time: "2:33 PM" },
-      {
-        type: "self",
-        text: "Pretty good! Just finished work. How about you?",
-        time: "2:35 PM",
-      },
-      {
-        type: "other",
-        text: "Great! I'm planning to go to that new coffee shop downtown. Want to join? ☕",
-        time: "2:37 PM",
-      },
-      {
-        type: "self",
-        text: "That sounds amazing! I'd love to 💕",
-        time: "2:38 PM",
-      },
-      {
-        type: "other",
-        text: "Perfect! How about 4 PM today?",
-        time: "2:39 PM",
-      },
-    ],
-  },
-  "Linh Tran": {
-    avatar:
-      "https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg",
-    status: "Online",
-    messages: [
-      { type: "other", text: "Thanks for the match! 💕", time: "Yesterday" },
-      {
-        type: "self",
-        text: "You're welcome! Nice to meet you",
-        time: "Yesterday",
-      },
-      {
-        type: "other",
-        text: "I love your photos! Where was that beach pic taken?",
-        time: "Yesterday",
-      },
-      {
-        type: "self",
-        text: "That was in Da Nang! Have you been there?",
-        time: "Yesterday",
-      },
-      {
-        type: "other",
-        text: "Not yet, but it's on my bucket list! 🏖️",
-        time: "Yesterday",
-      },
-    ],
-  },
-  "Thu Nguyen": {
-    avatar:
-      "https://i.pinimg.com/736x/38/fd/07/38fd076e6cf0e13ba30b44034ea5f2b9.jpg",
-    status: "Last seen 2 hours ago",
-    messages: [
-      { type: "other", text: "Nice to meet you! 😊", time: "3 days ago" },
-      { type: "self", text: "Nice to meet you too!", time: "3 days ago" },
-      {
-        type: "other",
-        text: "I see you're into art too! What's your favorite medium?",
-        time: "3 days ago",
-      },
-      {
-        type: "self",
-        text: "I love digital art and photography. How about you?",
-        time: "3 days ago",
-      },
-      {
-        type: "other",
-        text: "Watercolor painting is my passion! 🎨",
-        time: "3 days ago",
-      },
-    ],
-  },
-  "Mai Anh": {
-    avatar:
-      "https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg",
-    status: "Last seen 1 week ago",
-    messages: [
-      {
-        type: "other",
-        text: "Love your photos! You have great taste 📸",
-        time: "1 week ago",
-      },
-      {
-        type: "self",
-        text: "Thank you so much! That means a lot",
-        time: "1 week ago",
-      },
-      {
-        type: "other",
-        text: "Do you do professional photography?",
-        time: "1 week ago",
-      },
-      {
-        type: "self",
-        text: "Just as a hobby for now, but I'm thinking about it!",
-        time: "1 week ago",
-      },
-    ],
-  },
-};
-// Function to open chat from match item
-function openChatFromMatch(name) {
-  openChat(name);
-  showTab("messages");
-  showIndividualChat();
-}
-// Update openChat function
-function openChat(name) {
-  currentChatUser = name;
+// const chatProfiles = {
+//   "Hà My": {
+//     avatar:
+//       "https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg",
+//     status: "Active now",
+//     messages: [
+//       { type: "other", text: "Hi! Nice to meet you 😊", time: "2:30 PM" },
+//       { type: "self", text: "Hey! Same here 😄", time: "2:32 PM" },
+//       { type: "other", text: "How's your day going?", time: "2:33 PM" },
+//       {
+//         type: "self",
+//         text: "Pretty good! Just finished work. How about you?",
+//         time: "2:35 PM",
+//       },
+//       {
+//         type: "other",
+//         text: "Great! I'm planning to go to that new coffee shop downtown. Want to join? ☕",
+//         time: "2:37 PM",
+//       },
+//       {
+//         type: "self",
+//         text: "That sounds amazing! I'd love to 💕",
+//         time: "2:38 PM",
+//       },
+//       {
+//         type: "other",
+//         text: "Perfect! How about 4 PM today?",
+//         time: "2:39 PM",
+//       },
+//     ],
+//   },
+//   "Linh Tran": {
+//     avatar:
+//       "https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg",
+//     status: "Online",
+//     messages: [
+//       { type: "other", text: "Thanks for the match! 💕", time: "Yesterday" },
+//       {
+//         type: "self",
+//         text: "You're welcome! Nice to meet you",
+//         time: "Yesterday",
+//       },
+//       {
+//         type: "other",
+//         text: "I love your photos! Where was that beach pic taken?",
+//         time: "Yesterday",
+//       },
+//       {
+//         type: "self",
+//         text: "That was in Da Nang! Have you been there?",
+//         time: "Yesterday",
+//       },
+//       {
+//         type: "other",
+//         text: "Not yet, but it's on my bucket list! 🏖️",
+//         time: "Yesterday",
+//       },
+//     ],
+//   },
+//   "Thu Nguyen": {
+//     avatar:
+//       "https://i.pinimg.com/736x/38/fd/07/38fd076e6cf0e13ba30b44034ea5f2b9.jpg",
+//     status: "Last seen 2 hours ago",
+//     messages: [
+//       { type: "other", text: "Nice to meet you! 😊", time: "3 days ago" },
+//       { type: "self", text: "Nice to meet you too!", time: "3 days ago" },
+//       {
+//         type: "other",
+//         text: "I see you're into art too! What's your favorite medium?",
+//         time: "3 days ago",
+//       },
+//       {
+//         type: "self",
+//         text: "I love digital art and photography. How about you?",
+//         time: "3 days ago",
+//       },
+//       {
+//         type: "other",
+//         text: "Watercolor painting is my passion! 🎨",
+//         time: "3 days ago",
+//       },
+//     ],
+//   },
+//   "Mai Anh": {
+//     avatar:
+//       "https://i.pinimg.com/736x/51/4e/34/514e34ef914b74aff29eab6d6f51f077.jpg",
+//     status: "Last seen 1 week ago",
+//     messages: [
+//       {
+//         type: "other",
+//         text: "Love your photos! You have great taste 📸",
+//         time: "1 week ago",
+//       },
+//       {
+//         type: "self",
+//         text: "Thank you so much! That means a lot",
+//         time: "1 week ago",
+//       },
+//       {
+//         type: "other",
+//         text: "Do you do professional photography?",
+//         time: "1 week ago",
+//       },
+//       {
+//         type: "self",
+//         text: "Just as a hobby for now, but I'm thinking about it!",
+//         time: "1 week ago",
+//       },
+//     ],
+//   },
+// };
+// // Function to open chat from match item
+// function openChatFromMatch(name) {
+//   openChat(name);
+//   showTab("messages");
+//   showIndividualChat();
+// }
+// // Update openChat function
+// function openChat(name) {
+//   currentChatUser = name;
 
-  const chatName = document.getElementById("current-chat-name");
-  const chatStatus = document.getElementById("current-chat-status");
-  const chatAvatar = document.querySelector(".chat-avatar");
-  const chatBody = document.getElementById("chat-body");
+//   const chatName = document.getElementById("current-chat-name");
+//   const chatStatus = document.getElementById("current-chat-status");
+//   const chatAvatar = document.querySelector(".chat-avatar");
+//   const chatBody = document.getElementById("chat-body");
 
-  // Get profile info
-  const profile = chatProfiles[name];
+//   // Get profile info
+//   const profile = chatProfiles[name];
 
-  if (profile) {
-    // Update header info
-    if (chatName) chatName.textContent = name;
-    if (chatStatus) chatStatus.textContent = profile.status;
-    if (chatAvatar) chatAvatar.src = profile.avatar;
+//   if (profile) {
+//     // Update header info
+//     if (chatName) chatName.textContent = name;
+//     if (chatStatus) chatStatus.textContent = profile.status;
+//     if (chatAvatar) chatAvatar.src = profile.avatar;
 
-    // Clear and update messages
-    if (chatBody) {
-      chatBody.innerHTML = "";
+//     // Clear and update messages
+//     if (chatBody) {
+//       chatBody.innerHTML = "";
 
-      profile.messages.forEach((msg) => {
-        const messageElement = document.createElement("div");
-        messageElement.className = `message ${msg.type}`;
-        messageElement.innerHTML = `
-          ${msg.text}
-          <div class="message-time">${msg.time}</div>
-        `;
-        chatBody.appendChild(messageElement);
-      });
+//       profile.messages.forEach((msg) => {
+//         const messageElement = document.createElement("div");
+//         messageElement.className = `message ${msg.type}`;
+//         messageElement.innerHTML = `
+//           ${msg.text}
+//           <div class="message-time">${msg.time}</div>
+//         `;
+//         chatBody.appendChild(messageElement);
+//       });
 
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  }
-}
+//       chatBody.scrollTop = chatBody.scrollHeight;
+//     }
+//   }
+// }
 
 // // Enhanced card swiping with touch support
 // let startX = 0;

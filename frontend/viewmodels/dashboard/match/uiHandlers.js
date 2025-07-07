@@ -1,3 +1,5 @@
+import { openChatFromMatch } from "../message/messageUI.js";
+
 // ==============================
 // Hiển thị thẻ hồ sơ người dùng
 // ==============================
@@ -117,7 +119,7 @@ export function showSuperLikeAnimation() {
   showFloatingIcon("⭐", "#74b9ff");
 }
 
-export function showMatchAnimation(name = "your match") {
+export function showMatchAnimation(name = "your match", userId = null) {
   const overlay = document.createElement("div");
   overlay.className = "match-overlay";
   overlay.innerHTML = `
@@ -147,12 +149,13 @@ export function showMatchAnimation(name = "your match") {
 
   document.body.appendChild(overlay);
 
-  document
-    .getElementById("keepSwipingBtn")
-    ?.addEventListener("click", closeMatchOverlay);
+  document.getElementById("keepSwipingBtn")?.addEventListener("click", () => {
+    overlay.remove();
+  });
+
   document.getElementById("sendMessageBtn")?.addEventListener("click", () => {
-    openChatFromMatch(name);
-    closeMatchOverlay();
+    overlay.remove();
+    openChatFromMatch(name); // Tên người dùng từ hồ sơ match
   });
 }
 

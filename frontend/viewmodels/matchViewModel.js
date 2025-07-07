@@ -7,11 +7,13 @@ import { setupBioEditor } from "./dashboard/profile/bioEditor.js";
 import { setupBasicInfoEditor } from "./dashboard/profile/basicInfoEditor.js";
 import { setupSocialMedia } from "./dashboard/profile/socialMediaEditor.js";
 import { loadUsers, swipeCard } from "./dashboard/match/loadUsers.js";
+import { initMessages } from "./dashboard/message/messageLoader.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initAuth();
   initProfileSection();
   initMatchSection();
+  initMessages();
 });
 
 function initAuth() {
