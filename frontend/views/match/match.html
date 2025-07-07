@@ -285,7 +285,7 @@
 
           <!-- Dating Card -->
           <div class="card-container floating">
-            <div class="dating-card" id="dating-card">
+            <!-- <div class="dating-card" id="dating-card">
               <img
                 src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg"
                 alt="Profile"
@@ -302,9 +302,9 @@
                   <span class="hobby-tag">Coffee</span>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <!-- Mobile Swipe Hint -->
+            <!-- Mobile Swipe Hint  -->
             <div class="swipe-hint mobile-only">
               ← Swipe left to pass • Swipe right to like →
             </div>
@@ -312,7 +312,7 @@
 
           <!-- Action Buttons -->
           <div class="action-buttons">
-            <button
+            <!-- <button
               class="action-btn dislike touch-feedback"
               onclick="swipeCard('dislike')"
             >
@@ -327,8 +327,16 @@
             <button
               class="action-btn like touch-feedback"
               onclick="swipeCard('like')"
-            >
-              <i class="fas fa-heart"></i>
+            > -->
+              <button id="dislikeBtn" class="action-btn dislike touch-feedback">
+                <i class="fas fa-times"></i>
+              </button>
+              <button id="superLikeBtn" class="action-btn super-like touch-feedback">
+                <i class="fas fa-star"></i>
+              </button>
+              <button id="likeBtn" class="action-btn like touch-feedback">
+                <i class="fas fa-heart"></i>
+              </button>
             </button>
           </div>
         </div>

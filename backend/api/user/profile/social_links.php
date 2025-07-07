@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 header("Content-Type: application/json");
 session_start();
-require_once dirname(__DIR__, 2) . "/core/db.php";
+require_once dirname(__DIR__, 3) . "/core/db.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

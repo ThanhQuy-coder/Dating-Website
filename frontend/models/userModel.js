@@ -18,6 +18,15 @@ export async function login(username, password) {
   return res;
 }
 
+export async function logout() {
+  const res = await fetch(BASE_URL + "auth/logout.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({}),
+  });
+  return res;
+}
+
 export async function createProfile(
   displayName = null,
   hobbies = null,
@@ -40,7 +49,7 @@ export async function createProfile(
   if (occupation) formData.append("occupation", occupation);
   if (education) formData.append("education", education);
 
-  const res = await fetch(BASE_URL + "user/profile.php", {
+  const res = await fetch(BASE_URL + "user/profile/profile.php", {
     method: "POST",
     body: formData,
   });
@@ -51,7 +60,7 @@ export async function updateProfileImage(imageFile) {
   const formData = new FormData();
   formData.append("image", imageFile);
 
-  const res = await fetch(BASE_URL + "user/profile.php", {
+  const res = await fetch(BASE_URL + "user/profile/profile.php", {
     method: "POST",
     body: formData,
   });
@@ -59,7 +68,7 @@ export async function updateProfileImage(imageFile) {
 }
 
 export async function showProfile() {
-  const res = await fetch(BASE_URL + "user/profile.php", {
+  const res = await fetch(BASE_URL + "user/profile/profile.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -69,17 +78,8 @@ export async function showProfile() {
   return res;
 }
 
-export async function logout() {
-  const res = await fetch(BASE_URL + "auth/logout.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({}),
-  });
-  return res;
-}
-
 export async function setSocialLinks(socialLinks) {
-  const res = await fetch(BASE_URL + "user/social_links.php", {
+  const res = await fetch(BASE_URL + "user/profile/social_links.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export async function setSocialLinks(socialLinks) {
 }
 
 export async function getSocialLinks() {
-  const res = await fetch(BASE_URL + "user/social_links.php", {
+  const res = await fetch(BASE_URL + "user/profile/social_links.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

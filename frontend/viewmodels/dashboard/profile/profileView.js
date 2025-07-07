@@ -21,9 +21,11 @@ export async function loadProfile() {
       const profile = result.data;
       if (profile.avatar_url) {
         // Sử dụng serve_image.php để truy cập ảnh từ /storage/uploads/
-        const imageUrl = `/api/user/serve_image.php?file=${encodeURIComponent(
-          basename(profile.avatar_url)
-        )}`;
+        const imageUrl = `/api/user/profile/serve_image.php?user=${
+          profile.user_id
+        }&file=${encodeURIComponent(basename(profile.avatar_url))}`;
+
+        // Hiển thị ảnh
         Array.from(avatarSection).forEach((section, index) => {
           section.innerHTML = `<img src="${imageUrl}" alt="Profile" class="profile-avatar">`;
           // DEBUG

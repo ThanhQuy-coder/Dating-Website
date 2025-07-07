@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 header("Content-Type: application/json");
 session_start();
 
-require_once dirname(__DIR__, 2) . "/core/db.php";
+require_once dirname(__DIR__, 3) . "/core/db.php";
 
 // Chỉ chấp nhận phương thức POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -66,7 +66,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     }
 
     // Tạo thư mục theo id
-    $uploadDir = dirname(__DIR__, 3) . '/storage/uploads/' . $userId . '/';
+    $uploadDir = dirname(__DIR__, 4) . '/storage/uploads/' . $userId . '/';
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
@@ -75,8 +75,8 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $stmt = $conn->prepare("SELECT avatar_url FROM profiles WHERE user_id = ?");
     $stmt->execute([$userId]);
     $oldImage = $stmt->fetchColumn();
-    if ($oldImage && file_exists(dirname(__DIR__, 3) . $oldImage)) {
-        unlink(dirname(__DIR__, 3) . $oldImage);
+    if ($oldImage && file_exists(dirname(__DIR__, 4) . $oldImage)) {
+        unlink(dirname(__DIR__, 4) . $oldImage);
     }
 
     // Vệ sinh tên file
@@ -135,7 +135,7 @@ if ($profileExists && ($imagePath || !empty($displayName))) {
 } elseif (!empty($userId)) {
     // Lấy thông tin hồ sơ
     $stmt = $conn->prepare("
-    SELECT full_name, gender, birth_date, bio, hobbies, avatar_url, location, occupation, education
+    SELECT user_id, full_name, gender, birth_date, bio, hobbies, avatar_url, location, occupation, education
     FROM profiles 
     WHERE user_id = ?");
     $stmt->execute([$userId]);
