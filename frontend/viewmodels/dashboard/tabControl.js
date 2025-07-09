@@ -43,13 +43,14 @@ export function showTab(tabName, event = null) {
     notificationsSidebar?.classList.remove("active");
   }
 
-  if (tabName === "messages") {
+  if (
+    tabName === "messages" ||
+    tabName === "profile" ||
+    tabName === "settings" ||
+    tabName === "premium"
+  ) {
     matchesSidebar?.classList.add("active");
     showChatList();
-  }
-
-  if (tabName === "settings") {
-    matchesSidebar?.classList.add("active");
   }
 }
 

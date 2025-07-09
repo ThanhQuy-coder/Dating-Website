@@ -1,5 +1,57 @@
+import { fetchCurrentUser } from "../../../models/messageModel.js";
 import { setCurrentChatUser, getChatProfiles } from "./messageHandler.js";
+import { sendMessage, listenForMessages } from "./chatService.js";
 import { showTab } from "../tabControl.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await getCurrentUser();
+});
+
+let currentUserId = null;
+window.currentChatUserId = null; // người đang chat
+
+// Lấy thông tin user hiện tại
+async function getCurrentUser() {
+  try {
+    const data = await fetchCurrentUser();
+    if (data.success) {
+      currentUserId = data.user.id;
+      console.log("Bạn là user ID:", currentUserId);
+    } else {
+      console.error("Lỗi xác thực:", data.error);
+    }
+  } catch (err) {
+    console.error("Lỗi khi gọi get-user.php:", err);
+  }
+}
+
+// Gửi tin nhắn
+document.getElementById("chat-send-btn").addEventListener("click", () => {
+  const input = document.getElementById("chat-input");
+  const text = input.value.trim();
+  if (text && currentUserId && window.currentChatUserId) {
+    const chatId = [currentUserId, window.currentChatUserId].sort().join("_");
+    sendMessage(chatId, currentUserId, text);
+    input.value = "";
+  }
+});
+
+// UI: Hiển thị chat mới
+function showNewMessage(msg) {
+  const chatBody = document.getElementById("chat-body");
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `message ${
+    msg.sender == currentUserId ? "self" : "other"
+  }`;
+  messageDiv.innerHTML = `
+    ${msg.text}
+    <div class="message-time">${new Date(
+      msg.timestamp
+    ).toLocaleTimeString()}</div>
+  `;
+  chatBody.appendChild(messageDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
 
 // UI: Show chat list
 export function showChatList() {
@@ -32,14 +84,16 @@ export function openChatFromList(name, event = window.event) {
   showIndividualChat();
 }
 
-// Load nội dung chat vào UI
+// Mở 1 cuộc chat
 export function openChat(name) {
-  setCurrentChatUser(name); // ✅ Sử dụng hàm thay vì biến toàn cục
-
+  setCurrentChatUser(name);
   const chatProfiles = getChatProfiles();
   const profile = chatProfiles[name];
   if (!profile) return;
 
+  window.currentChatUserId = profile.user_id;
+
+  const chatId = [currentUserId, profile.user_id].sort().join("_");
   const chatName = document.getElementById("current-chat-name");
   const chatStatus = document.getElementById("current-chat-status");
   const chatAvatar = document.querySelector(".chat-avatar");
@@ -48,22 +102,10 @@ export function openChat(name) {
   if (chatName) chatName.textContent = name;
   if (chatStatus) chatStatus.textContent = profile.status;
   if (chatAvatar) chatAvatar.src = profile.avatar;
+  if (chatBody) chatBody.innerHTML = "";
 
-  if (chatBody) {
-    chatBody.innerHTML = "";
-
-    profile.messages.forEach((msg) => {
-      const messageElement = document.createElement("div");
-      messageElement.className = `message ${msg.type}`;
-      messageElement.innerHTML = `
-        ${msg.text}
-        <div class="message-time">${msg.time}</div>
-      `;
-      chatBody.appendChild(messageElement);
-    });
-
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
+  // Lắng nghe tin nhắn
+  listenForMessages(chatId, showNewMessage);
 }
 
 export function renderChatList(profiles) {
@@ -73,7 +115,7 @@ export function renderChatList(profiles) {
   Object.entries(profiles).forEach(([name, profile]) => {
     const div = document.createElement("div");
     div.className = "chat-list-item";
-    div.onclick = () => openChatFromList(name, event);
+    div.onclick = (e) => openChatFromList(name, e);
 
     div.innerHTML = `
       <div class="chat-list-avatar-container">
@@ -93,6 +135,7 @@ export function renderChatList(profiles) {
   });
 }
 
+// Hiển thị thời gian
 function formatTime(timestamp) {
   if (!timestamp) return "";
   const date = new Date(timestamp);
@@ -105,6 +148,7 @@ function formatTime(timestamp) {
   return date.toLocaleDateString();
 }
 
+// render danh sách match
 export function renderMatchesSidebar() {
   const matchContainer = document.getElementById("matches-sidebar");
   if (!matchContainer) return;

@@ -1,5 +1,5 @@
 let currentChatUser = null;
-let chatProfiles = {}; // lấy từ server khi load trang
+let chatProfiles = {};
 
 export function setCurrentChatUser(name) {
   currentChatUser = name;

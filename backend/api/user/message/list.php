@@ -44,8 +44,8 @@ foreach ($matches as $row) {
   // Giả sử không có bảng messages thì trả về messages rỗng
   $response[$name] = [
     "avatar_url" => $row['avatar_url'],
-    "status" => "Active now", // có thể cập nhật bằng online-tracking sau
-    "messages" => [], // bạn có thể fill bằng các tin nhắn thật sau
+    "status" => "Active now",
+    "messages" => [],
     "user_id" => $matchedUserId
   ];
 }
