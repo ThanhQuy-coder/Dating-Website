@@ -3,6 +3,8 @@ import { setupHobbiesEditor, updateHobbiesDisplay } from "./hobbiesEditor.js";
 import { setupImageUpload, reloadPhotos } from "./photos.js";
 
 export async function loadProfile() {
+  const nameNav = document.getElementsByClassName("profile-name");
+  const avatarSectionMobile = document.getElementById("avatarSectionMobile");
   const avatarSection = document.getElementsByClassName("avatarSection");
   const displayName = document.getElementById("displayName");
   //   const gender = document.getElementById("gender");
@@ -29,12 +31,15 @@ export async function loadProfile() {
         // Hiển thị ảnh
         Array.from(avatarSection).forEach((section, index) => {
           section.innerHTML = `<img src="${imageUrl}" alt="Profile" class="profile-avatar">`;
-          // DEBUG
-          //   console.log(
-          //     `Da chen anh vao phan tu ${index + 1}: `,
-          //     section.innerHTML
-          //   );
         });
+        
+        avatarSectionMobile.innerHTML = `<img src="${imageUrl}" alt="Profile" class="mobile-profile-avatar">`;
+
+        // Hiển thị tên
+        Array.from(nameNav).forEach((section, index) => {
+          section.innerHTML = `<p>${profile.full_name}</p>`;
+        });
+
       } else {
         // avatarSection.innerHTML = "<p>Chưa có ảnh đại diện.</p>";
         Array.from(avatarSection).forEach((section, index) => {

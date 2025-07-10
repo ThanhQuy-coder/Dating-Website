@@ -1,4 +1,7 @@
 import { getDatingUsers, sendLike } from "../../../models/matchModel.js";
+import { listenForMessages } from "../message/chatService.js";
+import { fetchCurrentUser } from "../../../models/messageModel.js";
+import { notificationUpload } from "../../../models/notificationModel.js";
 import {
   renderUserCard,
   attachSwipeHandlers,
@@ -63,6 +66,23 @@ export async function swipeCard(action) {
   // 3. Animation phản hồi
   if (result.match) {
     showMatchAnimation(name);
+
+    const data = await fetchCurrentUser();
+    const currentUserId = data.user.id;
+    // console.log(currentUserId);
+    const otherUserId = users[currentIndex]["user_id"];
+    const chatId =
+      currentUserId < otherUserId
+        ? `${currentUserId}_${otherUserId}`
+        : `${otherUserId}_${currentUserId}`;
+
+    listenForMessages(chatId, null, currentUserId);
+    await notificationUpload("new_match", {
+      chatId,
+      sender: otherUserId,
+      timestamp: Date.now(),
+      text: `${name} just matched with you!`,
+    });
   } else if (action === "like") {
     showLikeAnimation();
   } else if (action === "super-like") {

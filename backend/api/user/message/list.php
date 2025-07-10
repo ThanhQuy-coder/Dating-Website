@@ -40,8 +40,7 @@ foreach ($matches as $row) {
   $name = $row['full_name'];
   $matchedUserId = $row['matched_user_id'];
 
-  // Lấy tin nhắn cuối cùng nếu có (nếu bạn có bảng messages thì thêm đoạn này)
-  // Giả sử không có bảng messages thì trả về messages rỗng
+  // Lấy tin nhắn cuối cùng nếu có 
   $response[$name] = [
     "avatar_url" => $row['avatar_url'],
     "status" => "Active now",

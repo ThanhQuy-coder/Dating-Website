@@ -45,7 +45,7 @@
           onclick="showTab('notifications')"
         >
           <i class="fas fa-bell"></i>
-          <span class="badge">5</span>
+          <!-- <span class="badge"></span> -->
         </button>
       </div>
     </header>
@@ -61,14 +61,15 @@
     <nav class="mobile-menu" id="mobile-menu">
       <div class="mobile-menu-header">
         <div class="mobile-profile">
-          <img
+          <div id="avatarSectionMobile"></div>
+          <!-- <img
             src="https://i.pinimg.com/736x/7b/af/0f/7baf0f18f4e35c21e8a14365ee05a960.jpg"
             alt="Profile"
             class="mobile-profile-avatar"
-          />
+          /> -->
           <div class="mobile-profile-info">
-            <h3>Minh Hoàng</h3>
-            <p>Online now</p>
+            <h3 class="profile-name "></h3>
+            <!-- <p>Online now</p> -->
           </div>
         </div>
         <button class="mobile-menu-close" onclick="closeMobileMenu()">
@@ -125,10 +126,10 @@
       <div class="profile" onclick="showTab('profile')">
         <div class="avatarSection"></div>
         <div>
-          <div class="profile-name"><span id="avatarSection"></span></div>
-          <div class="profile-status">
+          <div class="profile-name"></div>
+          <!-- <div class="profile-status">
             <span id="showStatus">Online now</span>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -142,11 +143,10 @@
         </button>
         <button class="nav-icon" onclick="showTab('messages')">
           <i class="fas fa-comments"></i>
-          <span class="badge">3</span>
         </button>
         <button class="nav-icon" onclick="showTab('notifications')">
           <i class="fas fa-bell"></i>
-          <span class="badge">5</span>
+          <!-- <span class="badge"></span> -->
         </button>
         <button class="nav-icon" onclick="showTab('settings')">
           <i class="fas fa-cog"></i>
@@ -196,7 +196,8 @@
             Notifications
           </h3>
 
-          <div class="match-item">
+          <!-- Mẫu thông báo -->
+          <!-- <div class="match-item">
             <img
               src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg"
               alt="Notification"
@@ -207,20 +208,7 @@
               <p>You and Hà My liked each other</p>
             </div>
             <div class="match-time">1h</div>
-          </div>
-
-          <div class="match-item">
-            <img
-              src="https://i.pinimg.com/736x/5d/0e/75/5d0e7559bfa500cf385382ef6147655f.jpg"
-              alt="Notification"
-              class="match-avatar"
-            />
-            <div class="match-info">
-              <h4>Super Like</h4>
-              <p>Someone super liked you!</p>
-            </div>
-            <div class="match-time">3h</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </aside>
@@ -827,7 +815,8 @@
             </p>
           </div>
 
-          <div class="notification-item">
+          <!-- Mẫu thông báo chi tiết -->
+          <!-- <div class="notification-item">
             <img
               src="https://i.pinimg.com/736x/e5/fc/a5/e5fca56c7194668b0e4c8a47f0f0b64a.jpg"
               alt="Notification"
@@ -842,32 +831,6 @@
 
           <div class="notification-item">
             <img
-              src="https://i.pinimg.com/736x/5d/0e/75/5d0e7559bfa500cf385382ef6147655f.jpg"
-              alt="Notification"
-              class="notification-avatar"
-            />
-            <div class="notification-content">
-              <h4>Super Like Received ⭐</h4>
-              <p>Someone super liked your profile!</p>
-            </div>
-            <div class="notification-time">3 hours ago</div>
-          </div>
-
-          <div class="notification-item">
-            <img
-              src="https://i.pinimg.com/736x/21/71/01/2171015c4685f52aafc7d630f404da86.jpg"
-              alt="Notification"
-              class="notification-avatar"
-            />
-            <div class="notification-content">
-              <h4>Profile Views 👀</h4>
-              <p>5 people viewed your profile today</p>
-            </div>
-            <div class="notification-time">1 day ago</div>
-          </div>
-
-          <div class="notification-item">
-            <img
               src="https://i.pinimg.com/736x/06/22/c7/0622c7b35454a3916004f7f3b56e52ad.jpg"
               alt="Notification"
               class="notification-avatar"
@@ -877,20 +840,7 @@
               <p>Linh Tran sent you a message</p>
             </div>
             <div class="notification-time">2 days ago</div>
-          </div>
-
-          <div class="notification-item">
-            <img
-              src="https://i.pinimg.com/736x/ca/8d/4d/ca8d4dab44097df42a07c0e7a4d649a8.jpg"
-              alt="Notification"
-              class="notification-avatar"
-            />
-            <div class="notification-content">
-              <h4>Profile Boost 🚀</h4>
-              <p>Your profile was boosted and got 15 more views</p>
-            </div>
-            <div class="notification-time">1 week ago</div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -947,7 +897,6 @@
         <div class="bottom-nav-item" onclick="showTab('messages')">
           <i class="fas fa-comments"></i>
           <span>Messages</span>
-          <div class="badge">3</div>
         </div>
         <div class="bottom-nav-item" onclick="showTab('profile')">
           <i class="fas fa-user"></i>

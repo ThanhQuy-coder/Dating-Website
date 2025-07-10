@@ -105,7 +105,7 @@ export function openChat(name) {
   if (chatBody) chatBody.innerHTML = "";
 
   // Lắng nghe tin nhắn
-  listenForMessages(chatId, showNewMessage);
+  listenForMessages(chatId, showNewMessage, currentUserId);
 }
 
 export function renderChatList(profiles) {

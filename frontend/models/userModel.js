@@ -1,5 +1,6 @@
 const BASE_URL = "/api/";
 
+// Phần đăng nhập, đăng ký, đăng xuất
 export async function register(username, password) {
   const res = await fetch(BASE_URL + "auth/register.php", {
     method: "POST",
@@ -27,6 +28,7 @@ export async function logout() {
   return res;
 }
 
+// Tạo, xem,sửa profile
 export async function createProfile(
   displayName = null,
   hobbies = null,
@@ -67,6 +69,18 @@ export async function updateProfileImage(imageFile) {
   return res;
 }
 
+export async function showProfile() {
+  const res = await fetch(BASE_URL + "user/profile/profile.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+  return res;
+}
+
+// Phần cập nhật, chỉnh sửa, xóa ảnh
 export async function uploadPhotos(formData) {
   const res = await fetch(BASE_URL + "user/profile/photos/photosUpload.php", {
     method: "POST",
@@ -113,17 +127,7 @@ export async function getListImage(user_id) {
   return res;
 }
 
-export async function showProfile() {
-  const res = await fetch(BASE_URL + "user/profile/profile.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({}),
-  });
-  return res;
-}
-
+// Phần thêm sửa social link
 export async function setSocialLinks(socialLinks) {
   const res = await fetch(BASE_URL + "user/profile/social_links.php", {
     method: "POST",

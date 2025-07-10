@@ -6,7 +6,17 @@ import {
   onChildAdded,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// Gửi tin nhắn
+import {
+  notificationUpload,
+  getListNotification,
+} from "../../../models/notificationModel.js";
+
+/**
+ * Gửi tin nhắn vào Firebase Realtime Database
+ * @param {string} chatId
+ * @param {string} sender
+ * @param {string} text
+ */
 export function sendMessage(chatId, sender, text) {
   const chatRef = ref(db, `messages/${chatId}`);
   const message = {
@@ -15,25 +25,72 @@ export function sendMessage(chatId, sender, text) {
     timestamp: Date.now(),
   };
 
-  console.log("Sending message:", message); // Debug trước khi gửi
-
   return push(chatRef, message)
-    .then((res) => {
-      console.log("Message sent successfully:", res.key); // Key của message mới
+    .then(() => {
+      console.log("Message sent");
     })
     .catch((err) => {
       console.error("Error sending message:", err);
     });
 }
 
-// Lắng nghe tin nhắn mới
-export function listenForMessages(chatId, callback) {
+/**
+ * Lắng nghe tin nhắn mới trong đoạn chat
+ * @param {string} chatId
+ * @param {Function} callback – Gọi mỗi khi có tin nhắn mới
+ * @param {string|null} currentUserId – ID người dùng hiện tại để không gửi thông báo cho chính mình
+ * @param {Function|null} onNotify – Hàm để xử lý khi cần hiển thị thông báo
+ * @param {Object} chatProfiles – Danh sách user đã match
+ */
+export async function listenForMessages(
+  chatId,
+  callback = null,
+  currentUserId = null,
+) {
   const chatRef = ref(db, `messages/${chatId}`);
-  console.log(`Listening for messages in chat: ${chatId}`);
 
-  onChildAdded(chatRef, (snapshot) => {
+  // Lấy danh sách thông báo hiện tại để kiểm tra trùng (nếu cần)
+  let existingNotificationIds = [];
+
+  const res = await getListNotification();
+  const result = await res;
+
+  if (result.success && result.notifications.length > 0) {
+    result.notifications.forEach((notification) => {
+      if (notification.id) {
+        existingNotificationIds.push(notification.id); // Lấy ID
+      }
+    });
+
+    // console.log("Get Notification IDs:", existingNotificationIds);
+  } else {
+    console.log("No notifications found");
+  }
+
+  onChildAdded(chatRef, async (snapshot) => {
     const message = snapshot.val();
-    console.log("New message received:", message); // Debug mỗi lần nhận tin
-    callback(message);
+    if (!message) return;
+
+    if (callback) {
+      callback(message); // Gọi hàm callback nếu có
+    }
+
+    // Nếu người gửi khác với người dùng hiện tại → thông báo
+    if (message.sender !== currentUserId) {
+      try {
+        await notificationUpload(
+          "new_message",
+          {
+            chatId,
+            sender: message.sender,
+            text: message.text,
+            timestamp: message.timestamp,
+          },
+          existingNotificationIds
+        );
+      } catch (error) {
+        console.error("Error handling notification:", error);
+      }
+    }
   });
 }

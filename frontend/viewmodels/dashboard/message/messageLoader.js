@@ -1,11 +1,17 @@
-import { fetchMessageList } from "../../../models/messageModel.js";
+import {
+  fetchMessageList,
+  fetchCurrentUser,
+} from "../../../models/messageModel.js";
 import { setChatProfiles } from "./messageHandler.js";
 import { renderChatList, renderMatchesSidebar } from "./messageUI.js";
+import { listenForMessages } from "./chatService.js";
+import { loadNotifications } from "../notification/notificationLoader.js";
 
 export async function initMessages() {
   try {
     const res = await fetchMessageList();
     const data = await res.json();
+    let currentUserId = null;
 
     if (data.error) throw new Error(data.error);
 
@@ -29,6 +35,34 @@ export async function initMessages() {
       };
     });
 
+    // Lấy thông tin user hiện tại
+    try {
+      const data = await fetchCurrentUser();
+      if (data.success) {
+        currentUserId = data.user.id;
+        console.log("Lấy id hiện tại thành công");
+      } else {
+        console.error("Lỗi xác thực:", data.error);
+      }
+    } catch (err) {
+      console.error("Lỗi khi gọi get-user.php:", err);
+    }
+
+    Object.values(profiles).forEach((profile) => {
+      const chatId = [currentUserId, profile.user_id].sort().join("_");
+
+      // Lắng nghe tất cả các cuộc chat để biết có tin nhắn mới
+      listenForMessages(
+        chatId,
+        null,
+        currentUserId,
+        (senderName, message) => {
+          loadNotifications(profiles);
+        },
+        profiles
+      );
+    });
+
     setChatProfiles(profiles);
     renderChatList(profiles);
     renderMatchesSidebar();
@@ -37,7 +71,7 @@ export async function initMessages() {
   }
 }
 
-function basename(path) {
+export function basename(path) {
   if (!path || typeof path !== "string") return "";
   return path.split("/").pop();
 }

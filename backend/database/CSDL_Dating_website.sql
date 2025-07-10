@@ -164,3 +164,4 @@ CREATE INDEX idx_subscriptions_user ON user_subscriptions(user_id);
 CREATE INDEX idx_subscriptions_status ON user_subscriptions(status);
 CREATE INDEX idx_verifications_user ON verifications(user_id);
 CREATE INDEX idx_verifications_status ON verifications(status);
+

@@ -1,3 +1,6 @@
+import { loadNotifications } from "./notification/notificationLoader.js";
+import { getChatProfiles } from "./message/messageHandler.js";
+
 export function showTab(tabName, event = null) {
   closeMobileMenu();
 
@@ -33,11 +36,13 @@ export function showTab(tabName, event = null) {
 
   const matchesSidebar = document.getElementById("matches-sidebar");
   const notificationsSidebar = document.getElementById("notifications-sidebar");
+  const chatProfiles = getChatProfiles();
 
   if (tabName === "dating") {
     matchesSidebar?.classList.add("active");
   } else if (tabName === "notifications") {
     notificationsSidebar?.classList.add("active");
+    loadNotifications(chatProfiles);
   } else {
     matchesSidebar?.classList.remove("active");
     notificationsSidebar?.classList.remove("active");
