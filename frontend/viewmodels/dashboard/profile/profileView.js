@@ -1,5 +1,6 @@
 import { showProfile } from "../../../models/userModel.js";
 import { setupHobbiesEditor, updateHobbiesDisplay } from "./hobbiesEditor.js";
+import { setupImageUpload, reloadPhotos } from "./photos.js";
 
 export async function loadProfile() {
   const avatarSection = document.getElementsByClassName("avatarSection");
@@ -42,7 +43,12 @@ export async function loadProfile() {
       }
 
       displayName.textContent = profile.full_name || "Not updated yet";
+      // Cập nhật hobbies
       updateHobbiesDisplay(window.profile.hobbies || "");
+      // Hiển thị ảnh cá nhân
+      reloadPhotos(window.profile.user_id);
+      setupImageUpload(window.profile.user_id);
+
       setupHobbiesEditor();
       //   gender.textContent = profile.gender || "Not updated yet";
       birthDate.textContent = profile.birth_date || "Not updated yet";

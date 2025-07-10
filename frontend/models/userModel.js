@@ -67,6 +67,52 @@ export async function updateProfileImage(imageFile) {
   return res;
 }
 
+export async function uploadPhotos(formData) {
+  const res = await fetch(BASE_URL + "user/profile/photos/photosUpload.php", {
+    method: "POST",
+    body: formData,
+  });
+  return res;
+}
+
+export async function updatePhotos(formData) {
+  const res = await fetch(BASE_URL + "user/profile/photos/photosUpdate.php", {
+    method: "POST",
+    body: formData,
+  });
+  return res;
+}
+
+export async function deletePhotos(user_id, filename, idImage) {
+  const res = await fetch(BASE_URL + `user/profile/photos/photosUpdate.php`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id,
+      filename,
+      idImage,
+    }),
+  });
+
+  return res.json();
+}
+
+export async function getListImage(user_id) {
+  const res = await fetch(
+    BASE_URL + `user/profile/photos/listImage.php?user_id=${user_id}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    }
+  );
+  return res;
+}
+
 export async function showProfile() {
   const res = await fetch(BASE_URL + "user/profile/profile.php", {
     method: "POST",
