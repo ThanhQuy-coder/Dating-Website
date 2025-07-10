@@ -149,3 +149,23 @@ export async function getSocialLinks() {
   });
   return res;
 }
+
+// Phần Báo cáo người dùng
+export async function sendReportUser(reported_id, reason) {
+  const res = await fetch(BASE_URL + "user/message/reportUsers/report.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ reported_id, reason }),
+  });
+  return await res.json();
+}
+
+// Phần chặn người dùng
+export async function sendBlockUser(blocked_id) {
+  const res = await fetch(BASE_URL + "user/message/blockUsers/block.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ blocked_id }),
+  });
+  return await res.json();
+}

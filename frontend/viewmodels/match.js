@@ -844,45 +844,6 @@ function showSearchResults(interests, distance) {
   }, 3000);
 }
 
-// Chat options menu
-function toggleChatOptions() {
-  const existingMenu = document.querySelector(".chat-options-menu");
-  if (existingMenu) {
-    closeChatOptions();
-    return;
-  }
-
-  const menu = document.createElement("div");
-  menu.className = "chat-options-menu";
-  menu.innerHTML = `
-    <div class="chat-options-overlay" onclick="closeChatOptions()"></div>
-    <div class="chat-options-content">
-      <div class="chat-option-item" onclick="viewProfile()">
-        <i class="fas fa-user"></i>
-        <span>View Profile</span>
-      </div>
-      <div class="chat-option-item" onclick="muteChat()">
-        <i class="fas fa-bell-slash"></i>
-        <span>Mute Notifications</span>
-      </div>
-      <div class="chat-option-item" onclick="archiveChat()">
-        <i class="fas fa-archive"></i>
-        <span>Archive Chat</span>
-      </div>
-      <div class="chat-option-item danger" onclick="blockUser()">
-        <i class="fas fa-ban"></i>
-        <span>Block User</span>
-      </div>
-      <div class="chat-option-item danger" onclick="reportUser()">
-        <i class="fas fa-flag"></i>
-        <span>Report User</span>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(menu);
-}
-
 function closeChatOptions() {
   const menu = document.querySelector(".chat-options-menu");
   if (menu) {
@@ -912,25 +873,25 @@ function archiveChat() {
   );
 }
 
-function blockUser() {
-  closeChatOptions();
-  if (confirm(`Are you sure you want to block ${currentChatUser}?`)) {
-    showNotification(
-      "User blocked",
-      `${currentChatUser} has been blocked and removed from your matches`
-    );
-  }
-}
+// function blockUser() {
+//   closeChatOptions();
+//   if (confirm(`Are you sure you want to block ${currentChatUser}?`)) {
+//     showNotification(
+//       "User blocked",
+//       `${currentChatUser} has been blocked and removed from your matches`
+//     );
+//   }
+// }
 
-function reportUser() {
-  closeChatOptions();
-  if (confirm(`Report ${currentChatUser} for inappropriate behavior?`)) {
-    showNotification(
-      "Report submitted",
-      "Thank you for helping keep our community safe"
-    );
-  }
-}
+// function reportUser() {
+//   closeChatOptions();
+//   if (confirm(`Report ${currentChatUser} for inappropriate behavior?`)) {
+//     showNotification(
+//       "Report submitted",
+//       "Thank you for helping keep our community safe"
+//     );
+//   }
+// }
 
 function showNotification(title, message) {
   const notification = document.createElement("div");

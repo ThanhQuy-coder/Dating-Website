@@ -32,6 +32,7 @@ export async function initMessages() {
         user_id: profile.user_id,
         lastMessage: profile.last_message || "",
         time: profile.last_time || "",
+        block: profile.blocked || false,
       };
     });
 

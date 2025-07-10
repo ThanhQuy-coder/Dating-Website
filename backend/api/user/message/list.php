@@ -40,14 +40,30 @@ foreach ($matches as $row) {
   $name = $row['full_name'];
   $matchedUserId = $row['matched_user_id'];
 
-  // Lấy tin nhắn cuối cùng nếu có 
+  // Kiểm tra xem có bị block không (một chiều: người dùng hiện tại đã block người kia)
+  $blockStmt = $conn->prepare("
+  SELECT COUNT(*) FROM blocks 
+  WHERE 
+    (blocker_id = :uid AND blocked_id = :other)
+    OR
+    (blocker_id = :other AND blocked_id = :uid)
+");
+
+  $blockStmt->execute([
+    'uid' => $userId,
+    'other' => $matchedUserId
+  ]);
+  $isBlocked = $blockStmt->fetchColumn() > 0;
+
   $response[$name] = [
     "avatar_url" => $row['avatar_url'],
     "status" => "Active now",
     "messages" => [],
-    "user_id" => $matchedUserId
+    "user_id" => $matchedUserId,
+    "blocked" => $isBlocked
   ];
 }
+
 
 header('Content-Type: application/json');
 echo json_encode($response);

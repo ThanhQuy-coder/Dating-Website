@@ -1,7 +1,15 @@
 import { fetchCurrentUser } from "../../../models/messageModel.js";
 import { setCurrentChatUser, getChatProfiles } from "./messageHandler.js";
 import { sendMessage, listenForMessages } from "./chatService.js";
+import { initReportUsers } from "./reportUser/reportViewModel.js";
+import { initBlockUsers } from "./blockUser/blockViewModel.js";
 import { showTab } from "../tabControl.js";
+import { listenToBlockStatus } from "../message/blockUser/blockService.js";
+import {
+  ref,
+  set,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { db } from "../../../assets/js/firebase_config.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getCurrentUser();
@@ -26,15 +34,53 @@ async function getCurrentUser() {
 }
 
 // Gửi tin nhắn
-document.getElementById("chat-send-btn").addEventListener("click", () => {
+let listenersAttached = false; // Cờ kiểm tra đã gắn sự kiện chưa
+
+function setupMessageInputListeners() {
+  const sendBtn = document.getElementById("chat-send-btn");
+  const input = document.getElementById("chat-input");
+
+  // Đảm bảo không gắn trùng listener
+  if (sendBtn && !sendBtn.dataset.listenerAttached) {
+    sendBtn.addEventListener("click", handleSendMessage);
+    sendBtn.dataset.listenerAttached = "true";
+  }
+
+  if (input && !input.dataset.listenerAttached) {
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        handleSendMessage();
+      }
+    });
+    input.dataset.listenerAttached = "true";
+  }
+}
+
+setupMessageInputListeners();
+
+
+function handleSendMessage() {
   const input = document.getElementById("chat-input");
   const text = input.value.trim();
-  if (text && currentUserId && window.currentChatUserId) {
-    const chatId = [currentUserId, window.currentChatUserId].sort().join("_");
-    sendMessage(chatId, currentUserId, text);
-    input.value = "";
+
+  if (!text || !currentUserId || !window.currentChatUserId) return;
+
+  const profiles = getChatProfiles();
+  const currentChatProfile = Object.values(profiles).find(
+    (profile) => profile.user_id === window.currentChatUserId
+  );
+
+  // Kiểm tra block
+  if (currentChatProfile?.block === true) {
+    alert("You can't message this person because they have been blocked.");
+    return;
   }
-});
+
+  const chatId = [currentUserId, window.currentChatUserId].sort().join("_");
+  sendMessage(chatId, currentUserId, text);
+  input.value = "";
+}
 
 // UI: Hiển thị chat mới
 function showNewMessage(msg) {
@@ -44,7 +90,7 @@ function showNewMessage(msg) {
     msg.sender == currentUserId ? "self" : "other"
   }`;
   messageDiv.innerHTML = `
-    ${msg.text}
+     <div class="message-content">${msg.text}</div>
     <div class="message-time">${new Date(
       msg.timestamp
     ).toLocaleTimeString()}</div>
@@ -92,6 +138,18 @@ export function openChat(name) {
   if (!profile) return;
 
   window.currentChatUserId = profile.user_id;
+
+  listenToBlockStatus(currentUserId, profile.user_id, (isBlocked) => {
+    const input = document.getElementById("chat-input");
+    if (isBlocked) {
+      alert("You have been blocked by this user.");
+      input.disabled = true;
+      input.placeholder = "You are blocked";
+    } else {
+      input.disabled = false;
+      input.placeholder = "Type your message...";
+    }
+  });
 
   const chatId = [currentUserId, profile.user_id].sort().join("_");
   const chatName = document.getElementById("current-chat-name");
@@ -180,3 +238,83 @@ export function renderMatchesSidebar() {
     matchContainer.appendChild(matchItem);
   });
 }
+
+// Chat options menu
+export function toggleChatOptions() {
+  const existingMenu = document.querySelector(".chat-options-menu");
+  if (existingMenu) {
+    closeChatOptions();
+    return;
+  }
+
+  const menu = document.createElement("div");
+  menu.className = "chat-options-menu";
+  menu.innerHTML = `
+    <div class="chat-options-overlay" onclick="closeChatOptions()"></div>
+    <div class="chat-options-content">
+      <div class="chat-option-item" onclick="viewProfile()">
+        <i class="fas fa-user"></i>
+        <span>View Profile</span>
+      </div>
+      <div class="chat-option-item danger" onclick="blockUser()">
+        <i class="fas fa-ban"></i>
+        <span>Block User</span>
+      </div>
+      <div class="chat-option-item danger" id="report-user" onclick="reportUser()">
+        <i class="fas fa-flag"></i>
+        <span>Report User</span>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(menu);
+}
+
+window.toggleChatOptions = toggleChatOptions;
+
+export function blockUser() {
+  closeChatOptions();
+
+  if (!window.currentChatUserId) {
+    console.error("Không có user đang được chọn để báo cáo.");
+    return;
+  }
+
+  const confirmed = confirm(`Are you sure?`);
+
+  if (confirmed) {
+    initBlockUsers(window.currentChatUserId);
+    blockOnFirebase(currentUserId, window.currentChatUserId);
+  }
+}
+
+export function reportUser() {
+  closeChatOptions();
+
+  if (!window.currentChatUserId) {
+    console.error("Không có user đang được chọn để báo cáo.");
+    return;
+  }
+
+  const confirmed = confirm(
+    `Report ${currentChatUser} for inappropriate behavior?`
+  );
+
+  if (confirmed) {
+    initReportUsers(window.currentChatUserId, null);
+  }
+}
+
+function closeChatOptions() {
+  const menu = document.querySelector(".chat-options-menu");
+  if (menu) {
+    document.body.removeChild(menu);
+  }
+}
+
+function blockOnFirebase(currentUserId, blockedId) {
+  const blockRef = ref(db, `blocks/${currentUserId}/${blockedId}`);
+  return set(blockRef, true);
+}
+
+window.reportUser = reportUser;
+window.blockUser = blockUser;

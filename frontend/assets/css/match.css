@@ -1330,7 +1330,7 @@ body {
 
 .chat-body {
   flex: 1;
-  padding: 15px;
+  padding: 15px 15px 150px 15px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -1360,8 +1360,13 @@ body {
   line-height: 1.4;
   position: relative;
   animation: slideInMessage 0.3s ease-out;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   word-wrap: break-word;
   hyphens: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .message.other {
@@ -1383,8 +1388,10 @@ body {
 
 .message-time {
   font-size: 11px;
-  opacity: 0.7;
-  margin-top: 4px;
+  opacity: 0.6;
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
 }
 
 .typing-indicator {
@@ -1457,6 +1464,7 @@ body:not([data-theme="dark"]) .chat-send-btn i {
   transition: var(--transition);
   background: var(--secondary);
   color: var(--text-primary);
+  resize: none;
 }
 
 .chat-input:focus {
@@ -2444,9 +2452,11 @@ body:not([data-theme="dark"]) .chat-send-btn i {
 
   .chat-body {
     background: #f0f2f5;
-    padding: 10px;
+    padding: 10px 10px 150px 10px;
     flex: 1;
     min-height: 0;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .chat-footer {
