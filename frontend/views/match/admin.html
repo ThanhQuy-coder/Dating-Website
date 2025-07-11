@@ -1,0 +1,237 @@
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard - Dating Website</title>
+        <link rel="stylesheet" href="assets/css/admin.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chartist@1.0.0/dist/chartist.min.css">
+
+        <!-- JS -->
+        <script src="https://cdn.jsdelivr.net/npm/chartist@1.0.0/dist/chartist.min.js"></script>
+    </head>
+    <body>
+        <div class="admin-container">
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>💕 Admin Panel</h2>
+                    <p>Dating Website Management</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-link active" data-section="dashboard">
+                        <span class="icon">📊</span> Dashboard
+                    </a>
+                    </a>
+                    <a href="#" class="nav-link" data-section="users">
+                        <span class="icon">👥</span> Quản lý người dùng
+                    </a>
+                    <a href="#" class="nav-link" data-section="reports">
+                        <span class="icon">⚠️</span> Báo cáo vi phạm
+                    </a>
+                </nav>
+                <div class="sidebar-footer">
+                    <button class="btn btn-logout" id="logoutBtn">Đăng xuất</button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Header -->
+                <header class="header">
+                    <div class="header-left">
+                        <h1 id="pageTitle">Dashboard</h1>
+                        <p id="pageSubtitle">Tổng quan hệ thống</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="admin-profile">
+                            <img class="admin-avatar" src="https://images3.alphacoders.com/131/1310203.png" alt="Admin">
+                            <div class="admin-info-text">
+                                <span class="admin-name">Aizen</span>
+                                <span class="admin-role-badge">Quản trị viên</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon users">👥</div>
+                            <div class="stat-info">
+                                <h3 id="totalUsers">Loading...</h3>
+                                <p>Tổng người dùng</p>
+                                <span class="stat-change positive" id="userGrowth">+ so với tháng trước</span>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="stat-card">
+                            <div class="stat-icon active">✅</div>
+                            <div class="stat-info">
+                                <h3 id="activeUsers">Loading...</h3>
+                                <p>Người dùng hoạt động</p>
+                                <span class="stat-change positive" id="activeGrowth">+ so với tuần trước</span>
+                            </div>
+                        </div>
+                        -->
+                        <div class="stat-card">
+                            <div class="stat-icon matches">💕</div>
+                            <div class="stat-info">
+                                <h3 id="totalMatches">Loading...</h3>
+                                <p>Tổng kết nối thành công</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon reports">⚠️</div>
+                            <div class="stat-info">
+                                <h3 id="pendingReports">Loading...</h3>
+                                <p>Báo cáo chờ xử lý</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Người dùng mới theo thời gian</h3>
+                            <canvas id="userGrowthChart" width="400" height="200"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Hoạt động hàng ngày</h3>
+                            <canvas id="dailyActivityChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>Hoạt động gần đây</h3>
+                        <div class="activity-list" id="recentActivity">
+                            <!-- Activities will be populated by API -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Management Section -->
+                <section id="users" class="content-section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <h2>Quản lý người dùng</h2>
+                            <p>Quản lý tài khoản và thông tin người dùng</p>
+                        </div>
+                        <div class="section-actions">
+                            <select class="filter-select" id="userFilter">
+                                <option value="all">Tất cả</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                                <option value="banned">Bị cấm</option>
+                                <option value="verified">Đã xác thực</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th>Người dùng</th>
+                                    <th class="hide-mobile">Email</th>
+                                    <th class="hide-mobile">Ngày sinh</th>
+                                    <th class="hide-mobile">Địa điểm</th>
+                                    <th>Trạng thái</th>
+                                    <th class="hide-mobile">Ngày tham gia</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Users will be populated by API -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="btn btn-secondary" onclick="previousPage()" id="prevBtn">« Trước</button>
+                        <span class="page-info" id="pageInfo">Trang 1 / 1</span>
+                        <button class="btn btn-secondary" onclick="nextPage()" id="nextBtn">Sau »</button>
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="content-section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <h2>Báo cáo vi phạm</h2>
+                            <p>Xử lý các báo cáo từ người dùng</p>
+                        </div>
+                        <div class="section-actions">
+                            <select class="filter-select" id="reportFilter">
+                                <option value="all">Tất cả báo cáo</option>
+                                <option value="pending">Chờ xử lý</option>
+                                <option value="resolved">Đã xử lý</option>
+                                <option value="dismissed">Đã bỏ qua</option>
+                            </select>
+                            <select class="filter-select" id="reportTypeFilter">
+                                <option value="all">Tất cả loại</option>
+                                <option value="spam">Spam</option>
+                                <option value="harassment">Quấy rối</option>
+                                <option value="fake">Tài khoản giả</option>
+                                <option value="inappropriate">Nội dung không phù hợp</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="reports-grid" id="reportsGrid">
+                        <!-- Reports will be populated by API -->
+                    </div>
+                </section>
+            </main>
+        </div>
+         <!-- ✅ Modal xem người dùng -->
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('userModal')">&times;</span>
+      <div id="userModalBody">Đang tải...</div>
+    </div>
+  </div>
+
+  <!-- ✅ Modal sửa người dùng -->
+  <div id="editUserModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('editUserModal')">&times;</span>
+    <h3>Chỉnh sửa người dùng</h3>
+    <form id="editUserForm" class="form-modern">
+      <input type="hidden" id="editUserId" />
+      
+      <label>👤 Username</label>
+      <input type="text" id="editUsername" required />
+
+      <label>📧 Email</label>
+      <input type="email" id="editEmail" required />
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">💾 Lưu</button>
+        <button type="button" onclick="closeModal('editUserModal')" class="btn btn-secondary">❌ Huỷ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <!-- ✅ Scripts -->
+  <script type="module" src="/viewmodels/admin.js"></script>
+  <script type="module" src="viewmodels/admin/dashboardViewModel.js"></script>
+  <script type="module" src="viewmodels/admin/usersViewModel.js"></script>
+  <script type="module" src="viewmodels/admin/reportsViewModel.js"></script>
+
+</body>
+</html>

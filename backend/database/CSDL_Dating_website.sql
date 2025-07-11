@@ -117,6 +117,7 @@ CREATE TABLE reports (
     reported_id INT NOT NULL,
     reason VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'resolved', 'dismissed') DEFAULT 'pending', -- Thêm cột status
     FOREIGN KEY (reporter_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (reported_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -131,6 +132,24 @@ CREATE TABLE blocks (
     FOREIGN KEY (blocked_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE KEY unique_block (blocker_id, blocked_id)
 );
+ -- Phân loại
+ALTER TABLE users
+ADD COLUMN username VARCHAR(255),
+ADD COLUMN status ENUM('active', 'banned') DEFAULT 'active', -- Dòng cập nhật cột status từ BOOLEAN DEFAULT 1 thành ENUM('active', 'banned') DEFAULT 'active'.
+ADD COLUMN phan_loai ENUM('user', 'admin') DEFAULT 'user';
+
+-- Tạo user admin
+
+INSERT INTO users (email, username, password_hash, created_at, phan_loai, status)
+VALUES (
+  'admin_final@fake.local',
+  'admin',
+  '$2y$10$w5xz2qTnmkiPwfqerWfBUe1apmLLrZroDyjS2kcS0ZAsKdcd65eAu',
+  NOW(),
+  'admin',
+  1
+);
+
 
 -- Thêm cột vào bảng
 ALTER TABLE users

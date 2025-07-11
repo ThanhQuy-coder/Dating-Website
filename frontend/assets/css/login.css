@@ -1,5 +1,4 @@
 /* Font import */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Stick+No+Bills:wght@400;700&family=Zeyada&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Zeyada&display=swap");
 
 /* Reset and base styles */
@@ -11,7 +10,7 @@
 
 /* Body with original background */
 body {
-  font-family: "Stick No Bills", sans-serif;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   background: url("assets/images/web.png") no-repeat
     center center fixed;background-size: cover;
@@ -76,7 +75,7 @@ input[type="password"] {
   border: 2px solid #ff6090;
   border-radius: 15px;
   font-size: 16px;
-  font-family: "Stick No Bills", sans-serif;
+  font-family: "Poppins", sans-serif;
   background: rgba(255, 255, 255, 0.3);
   color: black;
 }
