@@ -28,6 +28,8 @@ $userId = $_SESSION['user']['id'];
 $input = json_decode(file_get_contents("php://input"), true);
 $type = $input['type'] ?? null;
 $data = $input['data'] ?? null;
+$chatId = $data['chatId'] ?? null;
+$senderId = $data['sender'] ?? null;
 $existingIds = $input['existingIds'] ?? [];
 
 if (!$type || !is_array($data)) {
@@ -35,6 +37,15 @@ if (!$type || !is_array($data)) {
     echo json_encode([
         "success" => false,
         "message" => "Missing or invalid notification type or data",
+    ]);
+    exit;
+}
+
+if (!$chatId || !$senderId) {
+    http_response_code(400);
+    echo json_encode([
+        "success" => false,
+        "message" => "Missing chatId or sender in data"
     ]);
     exit;
 }
@@ -52,37 +63,46 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-if (!empty($existingIds)) {
-    // Kiểm tra xem trong bảng đã có thông báo nào trong mảng này chưa
-    $placeholders = implode(',', array_fill(0, count($existingIds), '?'));
-    $sql = "SELECT id FROM notifications WHERE id IN ($placeholders) AND user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([...$existingIds, $userId]);
-    $duplicate = $stmt->fetch();
+// Kiểm tra xem đã có thông báo tương tự chưa (dựa vào chatId và sender trong JSON)
+$sql = "SELECT id FROM notifications 
+        WHERE user_id = ? 
+        AND type = ? 
+        AND JSON_UNQUOTE(JSON_EXTRACT(data, '$.chatId')) = ? 
+        AND JSON_UNQUOTE(JSON_EXTRACT(data, '$.sender')) = ?
+        AND is_read IN (0, 1)";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$userId, $type, $chatId, $senderId]);
+$duplicate = $stmt->fetch();
 
-    if ($duplicate) {
-        echo json_encode([
-            "success" => false,
-            "message" => "Notification already exists",
-            "notificationId" => $duplicate['id']
-        ]);
-        exit;
-    }
+if ($duplicate) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Notification already exists",
+        "notificationId" => null
+    ]);
+    exit;
 }
 
 // Tạo thông báo mới
 try {
-    $stmt = $conn->prepare("
-        INSERT INTO notifications (user_id, type, data) 
-        VALUES (:user_id, :type, :data)
-    ");
-    $stmt->execute([
-        ":user_id" => $userId,
-        ":type" => $type,
-        ":data" => $jsonData
-    ]);
+    $data = [
+        "chatId" => $chatId,
+        "sender" => $senderId,
+        // bạn có thể thêm "content" nếu cần
+    ];
+    $dataJson = json_encode($data);
 
-    echo json_encode(["success" => true, "message" => "Notification created successfully"]);
+    $insertSql = "INSERT INTO notifications (user_id, type, data, is_read, created_at) 
+              VALUES (?, ?, ?, 0, NOW())";
+    $insertStmt = $conn->prepare($insertSql);
+    $insertStmt->execute([$userId, $type, $dataJson]);
+    $notificationId = $conn->lastInsertId();
+
+    echo json_encode([
+        "success" => true,
+        "message" => "Notification created successfully",
+        "notificationId" => $notificationId
+    ]);
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode([

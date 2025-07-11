@@ -45,7 +45,7 @@ export function sendMessage(chatId, sender, text) {
 export async function listenForMessages(
   chatId,
   callback = null,
-  currentUserId = null,
+  currentUserId = null
 ) {
   const chatRef = ref(db, `messages/${chatId}`);
 
@@ -55,21 +55,27 @@ export async function listenForMessages(
   const res = await getListNotification();
   const result = await res;
 
-  if (result.success && result.notifications.length > 0) {
+  if (result.success && result.notifications.length >= 0) {
     result.notifications.forEach((notification) => {
-      if (notification.id) {
+      if (notification.id && notification.is_read !== 1) {
         existingNotificationIds.push(notification.id); // Lấy ID
       }
     });
 
-    // console.log("Get Notification IDs:", existingNotificationIds);
+    console.log("Get Notification IDs:", existingNotificationIds);
   } else {
     console.log("No notifications found");
   }
 
+  const notifiedMessageKeys = new Set();
+
   onChildAdded(chatRef, async (snapshot) => {
     const message = snapshot.val();
+    const messageKey = snapshot.key;
     if (!message) return;
+
+    // Đã gửi thông báo cho tin nhắn này chưa?
+    if (notifiedMessageKeys.has(messageKey)) return;
 
     if (callback) {
       callback(message); // Gọi hàm callback nếu có
@@ -78,7 +84,7 @@ export async function listenForMessages(
     // Nếu người gửi khác với người dùng hiện tại → thông báo
     if (message.sender !== currentUserId) {
       try {
-        await notificationUpload(
+        const newNotificationId = await notificationUpload(
           "new_message",
           {
             chatId,
@@ -88,6 +94,10 @@ export async function listenForMessages(
           },
           existingNotificationIds
         );
+        if (newNotificationId) {
+          existingNotificationIds.push(newNotificationId);
+          notifiedMessageKeys.add(messageKey); // vẫn giữ cái này
+        }
       } catch (error) {
         console.error("Error handling notification:", error);
       }

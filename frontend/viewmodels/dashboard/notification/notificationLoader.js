@@ -113,7 +113,7 @@ function basename(path) {
 export async function handleNotificationClick(username, id) {
   // 1. Chuyển sang tab messages
   showTab("messages");
-  console.log(id);
+  // console.log(id);
   // 2. Mở giao diện chat cá nhân
   showIndividualChat();
 
