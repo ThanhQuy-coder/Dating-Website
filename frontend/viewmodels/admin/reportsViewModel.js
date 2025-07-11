@@ -6,11 +6,23 @@ let currentReportTypeFilter = 'all';
 
 export async function loadReports() {
   try {
-    const reports = await adminModel.getReports();
-    allReports = reports;
-    filterReports(); // Hiển thị theo bộ lọc hiện tại
+    const response = await adminModel.getReports();
+    allReports = Array.isArray(response.reports) ? response.reports : [];
+
+    // Kiểm tra và gán đúng dữ liệu
+    if (Array.isArray(response)) {
+      // Trường hợp API trả trực tiếp mảng
+      allReports = response;
+    } else if (response && Array.isArray(response.reports)) {
+      // Trường hợp API trả về dạng { success: true, reports: [...] }
+      allReports = response.reports;
+    } else {
+      throw new Error('Dữ liệu trả về không đúng định dạng');
+    }
+
+    filterReports(); // Áp dụng lọc sau khi load
   } catch (error) {
-    console.error('Lỗi khi tải báo cáo:', error);
+    console.error('❌ Lỗi khi tải báo cáo:', error);
     alert('❌ Không thể tải danh sách báo cáo.');
   }
 }
@@ -48,9 +60,7 @@ async function resolveReport(id) {
   const res = await adminModel.updateReportStatus(id, 'resolved');
   if (res.success) {
     alert('✅ Đã giải quyết!');
-    const reports = await adminModel.getReports();
-    allReports = reports;
-    filterReports();
+    await reloadReports();
   } else {
     alert('❌ Lỗi khi cập nhật!');
   }
@@ -62,20 +72,30 @@ async function dismissReport(id) {
   const res = await adminModel.updateReportStatus(id, 'dismissed');
   if (res.success) {
     alert('✅ Đã bỏ qua!');
-    const reports = await adminModel.getReports();
-    allReports = reports;
-    filterReports();
-    console.log('▶ Lọc theo trạng thái:', currentReportFilter);
-    console.log('▶ Lọc theo lý do:', currentReportTypeFilter);
+    await reloadReports();
   } else {
     alert('❌ Lỗi khi cập nhật!');
+    allReports = allReports.filter(report => report.id != id);
+
+    // 🔥 Render lại UI ngay
+    filterReports();
   }
+}
+
+async function reloadReports() {
+  const response = await adminModel.getReports();
+  if (Array.isArray(response)) {
+    allReports = response;
+  } else {
+    allReports = response.reports || [];
+  }
+  filterReports();
 }
 
 function renderReportsGrid(reports) {
   const grid = document.getElementById('reportsGrid');
 
-   if (!grid) {
+  if (!grid) {
     console.warn("❌ Không tìm thấy #reportsGrid trong DOM!");
     return;
   }
@@ -113,28 +133,25 @@ function renderReportsGrid(reports) {
 
 function filterReports() {
   console.log('▶️ Bắt đầu lọc...');
-  console.log('🔍 Bộ lọc trạng thái:', currentReportFilter);
-  console.log('🔍 Bộ lọc loại:', currentReportTypeFilter);
-  console.log('📦 Dữ liệu allReports:', allReports);
+  console.log('🔍 Trạng thái:', currentReportFilter);
+  console.log('🔍 Lý do:', currentReportTypeFilter);
+  console.log('📦 Dữ liệu gốc:', allReports);
 
   const filtered = allReports.filter(report => {
     const status = (report.status || 'pending').trim();
     const reason = (report.reason || '').trim().toLowerCase();
     const type = currentReportTypeFilter.trim().toLowerCase();
 
-    const statusMatch =
-      currentReportFilter === 'all' || status === currentReportFilter;
-
+    const statusMatch = currentReportFilter === 'all' || status === currentReportFilter;
     const typeMatch = type === 'all' || reason === type;
 
     return statusMatch && typeMatch;
   });
 
-  console.log('✅ Sau khi lọc, còn lại:', filtered.length);
+  console.log('✅ Sau lọc:', filtered.length);
   renderReportsGrid(filtered);
 }
 
-// Gắn sự kiện cho dropdown sau DOM load
 document.addEventListener('DOMContentLoaded', () => {
   const statusFilter = document.getElementById('reportFilter');
   const typeFilter = document.getElementById('reportTypeFilter');
@@ -154,10 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  loadReports(); // gọi khi page load
+  loadReports(); // Load ban đầu
 });
-
-
 
 function ensureReportsVisible() {
   document.querySelectorAll('.content-section').forEach(section => {
@@ -171,7 +186,7 @@ function ensureReportsVisible() {
   document.querySelector('[data-section="reports"]')?.classList.add('active');
 }
 
-// Export hoặc gán window (nếu dùng inline onclick)
+// Xuất ra global cho onclick HTML nếu dùng inline
 window.resolveReport = resolveReport;
 window.dismissReport = dismissReport;
 window.renderReportsGrid = renderReportsGrid;

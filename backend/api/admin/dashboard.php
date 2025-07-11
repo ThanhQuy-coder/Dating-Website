@@ -6,9 +6,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 try {
-    $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE phan_loai = 'user'")->fetchColumn();
-    $totalMatches = $pdo->query("SELECT COUNT(*) FROM matches")->fetchColumn();
-    $pendingReports = $pdo->query("SELECT COUNT(*) FROM reports")->fetchColumn(); // ✅ Sửa ở đây
+    $totalUsers = $conn->query("SELECT COUNT(*) FROM users WHERE phan_loai = 'user'")->fetchColumn();
+    $totalMatches = $conn->query("SELECT COUNT(*) FROM matches")->fetchColumn();
+    $pendingReports = $conn->query("SELECT COUNT(*) FROM reports")->fetchColumn(); // ✅ Sửa ở đây
 
     echo json_encode([
         'success' => true,

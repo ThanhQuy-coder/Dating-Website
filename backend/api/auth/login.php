@@ -5,8 +5,10 @@ require_once dirname(__DIR__, 2) . "/core/db.php";
 session_start();
 
 $data = json_decode(file_get_contents("php://input"), true);
-$username = $data["username"] ?? null;
-$password = $data["password"] ?? null;
+$username = trim($data["username"] ?? '');
+$password = trim($data["password"] ?? '');
+
+
 
 if (!$username || !$password) {
     echo json_encode(["success" => false, "error" => "Missing username or password."]);
@@ -14,8 +16,8 @@ if (!$username || !$password) {
 }
 
 // Tim nguoi dung
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->execute(["$username"]);
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+$stmt->execute(['username' => $username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (password_verify($password, $user["password_hash"])) {
@@ -25,12 +27,15 @@ if (password_verify($password, $user["password_hash"])) {
 
     // Lưu vào session
     $_SESSION['user'] = [
-        'id' => $user["id"]
+        'id' => $user["id"],
+        'username' => $user["username"],
+        'phan_loai' => $user["phan_loai"]
     ];
 
     echo json_encode([
         "success" => true,
         "userId" => $user["id"],
+        "phan_loai" => $user["phan_loai"],
         "lastLogin" => $user["last_login"]
     ]);
 } else {

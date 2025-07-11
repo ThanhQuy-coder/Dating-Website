@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 try {
     // Thống kê số hoạt động theo từng giờ hôm nay
-    $stmt = $pdo->prepare("
+    $stmt = $conn->prepare("
         SELECT HOUR(created_at) as hour, COUNT(*) as total
         FROM activity_logs
         WHERE DATE(created_at) = CURDATE()
@@ -15,13 +15,16 @@ try {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Init mảng 7 giờ chính
-    $hours = ['6h', '9h', '12h', '15h', '18h', '21h', '24h'];
+    $hours = [6, 9, 12, 15, 18, 21, 24];
     $data = array_fill(0, count($hours), 0);
 
     foreach ($results as $row) {
         $hour = (int)$row['hour'];
-        foreach ([6, 9, 12, 15, 18, 21, 24] as $i => $h) {
-            if ($hour == $h) $data[$i] = (int)$row['total'];
+        foreach ($hours as $i => $h) {
+            if ($hour == $h) {
+                $data[$i] = (int)$row['total'];
+                break;
+            }
         }
     }
 
@@ -36,4 +39,3 @@ try {
         'message' => $e->getMessage()
     ]);
 }
-echo json_encode($data); // ✅ chỉ trả mảng, không bọc "success"

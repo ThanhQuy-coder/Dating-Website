@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $stmt = $pdo->query("
+        $stmt = $conn->query("
             SELECT 
                 r.id, 
                 r.reporter_id, 
@@ -22,7 +22,7 @@ try {
         ");
 
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($data);
+        echo json_encode(['success' => true, 'reports' => $data]);
         exit;
     }
 
@@ -42,7 +42,7 @@ try {
             exit;
         }
 
-        $stmt = $pdo->prepare("UPDATE reports SET status = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE reports SET status = ? WHERE id = ?");
         $stmt->execute([$data['status'], $data['id']]);
 
         echo json_encode(['success' => true, 'message' => 'Cập nhật trạng thái thành công']);
