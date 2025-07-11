@@ -45,8 +45,21 @@ switch ($page) {
     case 'match-setup':
         include 'views/profile/match-setup.html';
         break;
+    // Admin page
+    case 'admin':
+    session_start();
+    if (!isset($_SESSION['user']) || $_SESSION['user']['phan_loai'] !== 'admin') {
+        header("Location: index.php?page=login&error=unauthorized");
+        exit;
+    }
+      // Truyền biến JS để biết đây là trang admin
+    echo '<script>window.isAdminPage = true;</script>';
+    include 'views/match/admin.html';
+    break;
+        
     // home page
     default:
         include 'views/home.html';
         break;
+    
 }

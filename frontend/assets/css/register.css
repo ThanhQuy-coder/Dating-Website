@@ -10,7 +10,7 @@
 
 /* Body with original background */
 body {
-  font-family: "Stick No Bills", sans-serif;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   background: url("assets/images/web.png") no-repeat
     center center fixed;
@@ -95,7 +95,7 @@ hr {
   border: 2px solid #ff6090;
   border-radius: 10px;
   font-size: 16px;
-  font-family: "Stick No Bills", sans-serif;
+  font-family: "Poppins", sans-serif;
   background: rgba(255, 255, 255, 0.3);
   color: black;
 }

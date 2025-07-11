@@ -12,15 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await login(username, password);
       const result = await response.json();
+      console.log("Kết quả login từ PHP:", result);
 
       if (response.ok && result.success) {
-        showNotification("Login successful!");
-        setTimeout(() => {
-          window.location.href = "index.php?page=match";
-        }, 3000);
-      } else {
-        showNotification("Login failed. Please try again!", true);
-      }
+  const isAdmin = result.phan_loai === 'admin';
+
+  showNotification("Login successful!");
+  setTimeout(() => {
+    window.location.href = isAdmin
+      ? "index.php?page=admin"
+      : "index.php?page=match";
+  }, 3000);
+}
+
     } catch (err) {
       console.error("Lỗi đăng nhập: ", err);
       alert("An error occurred while logging in.");

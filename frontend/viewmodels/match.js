@@ -1129,3 +1129,347 @@ document.addEventListener("DOMContentLoaded", () => {
   if (defaultNavIcon) defaultNavIcon.classList.add("active")
   if (defaultBottomNavItem) defaultBottomNavItem.classList.add("active")
 })
+
+
+// Blocking Modal Functions
+function showBlockingModal() {
+  const modal = document.createElement("div")
+  modal.className = "modal-overlay"
+  modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-slash"></i> Manage Blocked Users</h2>
+                <button class="modal-close-btn" onclick="closeModal(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">Currently Blocked (${blockedUsers.length})</h3>
+                    ${
+                      blockedUsers.length === 0
+                        ? '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No blocked users</p>'
+                        : blockedUsers
+                            .map(
+                              (user) => `
+                            <div class="blocked-user-item">
+                                <img src="${user.avatar}" alt="${user.name}" class="blocked-user-avatar">
+                                <div class="blocked-user-info">
+                                    <div class="blocked-user-name">${user.name}</div>
+                                    <div class="blocked-user-date">Blocked on ${new Date(user.blockedDate).toLocaleDateString()}</div>
+                                </div>
+                                <button class="unblock-btn" onclick="unblockUser('${user.name}')">
+                                    <i class="fas fa-unlock"></i> Unblock
+                                </button>
+                            </div>
+                        `,
+                            )
+                            .join("")
+                    }
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">Block Someone New</h3>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="block-search" placeholder="Search friends to block..." 
+                               style="width: 100%; padding: 12px 16px; border: 2px solid var(--secondary); border-radius: 12px; font-size: 15px;">
+                    </div>
+                    <div id="friends-to-block">
+                        ${profiles
+                          .map(
+                            (profile) => `
+                            <div class="blocked-user-item" style="background: var(--card-bg);">
+                                <img src="${profile.image}" alt="${profile.name}" class="blocked-user-avatar">
+                                <div class="blocked-user-info">
+                                    <div class="blocked-user-name">${profile.name}</div>
+                                    <div class="blocked-user-date">${profile.age} years old • ${profile.distance} away</div>
+                                </div>
+                                <button class="modal-btn danger" onclick="blockUser('${profile.name}', '${profile.image}')" style="padding: 8px 16px; font-size: 14px;">
+                                    <i class="fas fa-user-slash"></i> Block
+                                </button>
+                            </div>
+                        `,
+                          )
+                          .join("")}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+
+  document.body.appendChild(modal)
+}
+
+function blockUser(name, avatar) {
+  // Add to blocked users
+  blockedUsers.push({
+    name: name,
+    avatar: avatar,
+    blockedDate: new Date().toISOString().split("T")[0],
+  })
+
+  // Show confirmation
+  showNotification(`${name} has been blocked`, "warning")
+
+  // Close modal and refresh
+  closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+
+  // Optionally refresh the blocking modal if it's still open
+  setTimeout(() => {
+    if (document.querySelector(".modal-overlay")) {
+      showBlockingModal()
+    }
+  }, 100)
+}
+
+function unblockUser(name) {
+  // Remove from blocked users
+  const index = blockedUsers.findIndex((user) => user.name === name)
+  if (index > -1) {
+    blockedUsers.splice(index, 1)
+    showNotification(`${name} has been unblocked`, "success")
+
+    // Refresh the modal
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+    setTimeout(() => showBlockingModal(), 100)
+  }
+}
+
+// Activity Modal Functions
+function showActivityModal() {
+  const modal = document.createElement("div")
+  modal.className = "modal-overlay"
+  modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-line"></i> Your Activity</h2>
+                <button class="modal-close-btn" onclick="closeModal(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="activity-stats">
+                    <div class="activity-stat-card">
+                        <div class="activity-stat-number">${activityData.profileViews}</div>
+                        <div class="activity-stat-label">Profile Views</div>
+                    </div>
+                    <div class="activity-stat-card">
+                        <div class="activity-stat-number">${activityData.likes}</div>
+                        <div class="activity-stat-label">Likes Given</div>
+                    </div>
+                    <div class="activity-stat-card">
+                        <div class="activity-stat-number">${activityData.matches}</div>
+                        <div class="activity-stat-label">Total Matches</div>
+                    </div>
+                    <div class="activity-stat-card">
+                        <div class="activity-stat-number">${activityData.messages}</div>
+                        <div class="activity-stat-label">Messages Sent</div>
+                    </div>
+                    <div class="activity-stat-card">
+                        <div class="activity-stat-number">${activityData.swipes}</div>
+                        <div class="activity-stat-label">Total Swipes</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 20px;">Recent Activity</h3>
+                    <div style="space-y: 15px;">
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--secondary); border-radius: 12px; margin-bottom: 10px;">
+                            <div style="width: 40px; height: 40px; background: var(--primary-solid); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-eye" style="color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--text-primary);">Profile Views</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">Your profile was viewed 15 times today</div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-light);">2 hours ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--secondary); border-radius: 12px; margin-bottom: 10px;">
+                            <div style="width: 40px; height: 40px; background: #ff6b9d; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-heart" style="color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--text-primary);">New Match</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">You matched with Hà My</div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-light);">5 hours ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--secondary); border-radius: 12px; margin-bottom: 10px;">
+                            <div style="width: 40px; height: 40px; background: #74b9ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-star" style="color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--text-primary);">Super Like Received</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">Someone super liked your profile!</div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-light);">1 day ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--secondary); border-radius: 12px;">
+                            <div style="width: 40px; height: 40px; background: #00b894; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-comments" style="color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--text-primary);">Messages</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">You sent 12 messages today</div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-light);">Today</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+
+  document.body.appendChild(modal)
+}
+
+
+
+// Logout Modal Functions
+function showLogoutModal() {
+  const modal = document.createElement("div")
+  modal.className = "modal-overlay"
+  modal.innerHTML = `
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-out-alt"></i> Log Out</h2>
+                <button class="modal-close-btn" onclick="closeModal(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 20px 0;">
+                    <div style="font-size: 48px; color: var(--primary-solid); margin-bottom: 20px;">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">Are you sure you want to log out?</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.5;">
+                        You'll need to log back in to access your account and continue chatting with your matches.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn secondary" onclick="closeModal(this)">Cancel</button>
+                <button type="button" class="modal-btn primary" onclick="performLogout()" style="background: #ff6b9d;">Log Out</button>
+            </div>
+        </div>
+    `
+
+  document.body.appendChild(modal)
+}
+
+function performLogout() {
+  // Show loading state
+  showNotification("Logging out...", "info")
+
+  // Simulate logout process
+  setTimeout(() => {
+    // In a real app, this would:
+    // 1. Clear authentication tokens
+    // 2. Clear user data from localStorage
+    // 3. Redirect to login page
+
+    showNotification("Successfully logged out!", "success")
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+
+    // Simulate redirect to login (in a real app)
+    setTimeout(() => {
+      alert("In a real app, you would be redirected to the login page now.")
+    }, 1000)
+  }, 1500)
+}
+
+// Delete Account Modal Functions
+function showDeleteAccountModal() {
+  const modal = document.createElement("div")
+  modal.className = "modal-overlay"
+  modal.innerHTML = `
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header" style="background: #ff4757;">
+                <h2><i class="fas fa-exclamation-triangle"></i> Delete Account</h2>
+                <button class="modal-close-btn" onclick="closeModal(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 20px 0;">
+                    <div style="font-size: 48px; color: #ff4757; margin-bottom: 20px;">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">This action cannot be undone!</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                        Deleting your account will permanently remove all your data, including:
+                    </p>
+                    
+                    <div style="text-align: left; background: var(--secondary); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><i class="fas fa-heart" style="color: #ff4757; margin-right: 10px;"></i> All your matches and conversations</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><i class="fas fa-user" style="color: #ff4757; margin-right: 10px;"></i> Your profile and photos</li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><i class="fas fa-crown" style="color: #ff4757; margin-right: 10px;"></i> Premium subscription benefits</li>
+                            <li style="padding: 8px 0;"><i class="fas fa-chart-line" style="color: #ff4757; margin-right: 10px;"></i> All activity history</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(255, 71, 87, 0.1); border: 2px solid #ff4757; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <p style="color: #ff4757; font-weight: 600; margin: 0;">
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            This action is permanent and cannot be reversed!
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label for="delete-confirmation" style="display: block; color: var(--text-primary); font-weight: 600; margin-bottom: 10px;">
+                            Type "DELETE" to confirm:
+                        </label>
+                        <input type="text" id="delete-confirmation" placeholder="Type DELETE here..." 
+                               style="width: 100%; padding: 12px; border: 2px solid #ff4757; border-radius: 8px; text-align: center; font-weight: 600;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn secondary" onclick="closeModal(this)">Cancel</button>
+                <button type="button" class="modal-btn danger" onclick="confirmDeleteAccount()" id="delete-confirm-btn" disabled>Delete My Account</button>
+            </div>
+        </div>
+    `
+
+  document.body.appendChild(modal)
+
+  // Add event listener for confirmation input
+  const confirmInput = document.getElementById("delete-confirmation")
+  const deleteBtn = document.getElementById("delete-confirm-btn")
+
+  confirmInput.addEventListener("input", function () {
+    if (this.value.toUpperCase() === "DELETE") {
+      deleteBtn.disabled = false
+      deleteBtn.style.opacity = "1"
+    } else {
+      deleteBtn.disabled = true
+      deleteBtn.style.opacity = "0.5"
+    }
+  })
+}
+
+
+function confirmDeleteAccount() {
+  const confirmInput = document.getElementById("delete-confirmation")
+
+  if (confirmInput.value.toUpperCase() !== "DELETE") {
+    showNotification('Please type "DELETE" to confirm', "error")
+    return
+  }
+
+  // Show loading state
+  showNotification("Deleting account...", "info")
+
+  // Simulate account deletion process
+  setTimeout(() => {
+    // In a real app, this would:
+    // 1. Send delete request to server
+    // 2. Clear all local data
+    // 3. Redirect to goodbye page
+
+    showNotification("Account deleted successfully", "success")
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+
+    // Simulate redirect (in a real app)
+    setTimeout(() => {
+      alert("Your account has been permanently deleted. In a real app, you would be redirected to a goodbye page.")
+    }, 1000)
+  }, 2000)
+}
