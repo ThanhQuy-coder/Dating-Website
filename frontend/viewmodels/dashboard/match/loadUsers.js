@@ -16,6 +16,13 @@ let currentIndex = 0;
 export async function loadUsers() {
   try {
     users = await getDatingUsers();
+
+    // XÁO TRỘN MẢNG USERS Fisher-Yates Shuffle
+    for (let i = users.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [users[i], users[j]] = [users[j], users[i]];
+    }
+
     currentIndex = -1;
     loadNextCard();
   } catch (error) {
