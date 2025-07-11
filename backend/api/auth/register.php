@@ -8,35 +8,32 @@ header("Content-Type: application/json");
 require_once dirname(__DIR__, 2) . "/core/db.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
-$username = $data["username"]; // đang nhận username từ frontend
+$username = $data["username"];
 $password = $data["password"];
 
-if (!$username || !$password) {
-    echo json_encode(["success" => false, "error" => "Missing username or password."]);
-    exit;
-}
-
-// Kiểm tra trùng username
-$stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+//Kiem tra trung username
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
 $stmt->execute([$username]);
 if ($stmt->rowCount() > 0) {
-    echo json_encode(["success" => false, "message" => "Account already exists"]);
+    echo json_encode(["success" => false, "message" => "Account already exits"]);
     exit;
 }
 
-// Hash mật khẩu
+// Hash mat khau
 $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-// Thêm user vào DB
-$stmt = $pdo->prepare("INSERT INTO users (email, password_hash, created_at) VALUES (?, ?, NOW())");
-$stmt->execute([$email, $hashed]);
+//Them DB
+$stmt = $conn->prepare("INSERT INTO users (username, password_hash) VALUES (?,?)");
+$stmt->execute([$username, $hashed]);
 
-$userId = $pdo->lastInsertId();
+$userId = $conn->lastInsertId();
 
 // Lưu vào session
-$_SESSION['user'] = ['id' => $userId];
+$_SESSION['user'] = [
+    'id' => $userId
+];
 
-// Xóa session tạm
+// Xóa session cụ thể
 unset($_SESSION['profile_created']);
 unset($_SESSION['avatar_uploaded']);
 
