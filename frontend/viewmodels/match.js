@@ -1020,11 +1020,11 @@ function sendAutoReply() {
   const replyMessage = document.createElement("div");
   replyMessage.className = "message other";
   replyMessage.innerHTML = `
-    <span>Typing...</span>
+    <span>Users who have been blocked cannot view news</span>
     <div class="message-time">${new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
-    })}</div>
+    })}</div> 
   `;
 
   chatBody.appendChild(replyMessage);

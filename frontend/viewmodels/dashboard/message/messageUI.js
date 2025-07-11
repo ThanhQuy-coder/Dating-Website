@@ -59,7 +59,6 @@ function setupMessageInputListeners() {
 
 setupMessageInputListeners();
 
-
 function handleSendMessage() {
   const input = document.getElementById("chat-input");
   const text = input.value.trim();
@@ -295,12 +294,14 @@ export function reportUser() {
     return;
   }
 
-  const confirmed = confirm(
-    `Report ${currentChatUser} for inappropriate behavior?`
+  const confirmed = prompt(
+    `Report ${currentChatUser} for inappropriate behavior? Please enter your reason`
   );
 
-  if (confirmed) {
-    initReportUsers(window.currentChatUserId, null);
+  if (confirmed !== null) {
+    initReportUsers(window.currentChatUserId, confirmed);
+  } else {
+    console.log("Người dùng đã huỷ");
   }
 }
 
