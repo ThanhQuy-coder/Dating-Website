@@ -1,4 +1,5 @@
 import { fetchCurrentUser } from "../../../models/messageModel.js";
+import { loadProfileOther } from "../profile/profileViewOrther.js";
 import { setCurrentChatUser, getChatProfiles } from "./messageHandler.js";
 import { sendMessage, listenForMessages } from "./chatService.js";
 import { initReportUsers } from "./reportUser/reportViewModel.js";
@@ -270,6 +271,21 @@ export function toggleChatOptions() {
 
 window.toggleChatOptions = toggleChatOptions;
 
+export function viewProfile() {
+  closeChatOptions();
+
+  if (!window.currentChatUserId) {
+    console.error("Không có user đang được chọn");
+    return;
+  }
+  try {
+    loadProfileOther(window.currentChatUserId);
+  } catch (err) {
+    console.error(err);
+  }
+  showTab("profile");
+}
+
 export function blockUser() {
   closeChatOptions();
 
@@ -319,3 +335,4 @@ function blockOnFirebase(currentUserId, blockedId) {
 
 window.reportUser = reportUser;
 window.blockUser = blockUser;
+window.viewProfile = viewProfile;

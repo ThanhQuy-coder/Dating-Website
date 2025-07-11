@@ -851,27 +851,27 @@ function closeChatOptions() {
   }
 }
 
-function viewProfile() {
-  closeChatOptions();
-  // Implement profile viewing logic
-  console.log("Viewing profile of", currentChatUser);
-}
+// function viewProfile() {
+//   closeChatOptions();
+//   // Implement profile viewing logic
+//   console.log("Viewing profile of", currentChatUser);
+// }
 
-function muteChat() {
-  closeChatOptions();
-  showNotification(
-    "Chat muted",
-    "You won't receive notifications from this chat"
-  );
-}
+// function muteChat() {
+//   closeChatOptions();
+//   showNotification(
+//     "Chat muted",
+//     "You won't receive notifications from this chat"
+//   );
+// }
 
-function archiveChat() {
-  closeChatOptions();
-  showNotification(
-    "Chat archived",
-    "This chat has been moved to your archived conversations"
-  );
-}
+// function archiveChat() {
+//   closeChatOptions();
+//   showNotification(
+//     "Chat archived",
+//     "This chat has been moved to your archived conversations"
+//   );
+// }
 
 // function blockUser() {
 //   closeChatOptions();
@@ -1195,13 +1195,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (defaultNavIcon) defaultNavIcon.classList.add("active");
   if (defaultBottomNavItem) defaultBottomNavItem.classList.add("active");
-})
-
+});
 
 // Blocking Modal Functions
 function showBlockingModal() {
-  const modal = document.createElement("div")
-  modal.className = "modal-overlay"
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
   modal.innerHTML = `
         <div class="modal-content">
             <div class="modal-header">
@@ -1210,7 +1209,9 @@ function showBlockingModal() {
             </div>
             <div class="modal-body">
                 <div style="margin-bottom: 30px;">
-                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">Currently Blocked (${blockedUsers.length})</h3>
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px;">Currently Blocked (${
+                      blockedUsers.length
+                    })</h3>
                     ${
                       blockedUsers.length === 0
                         ? '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No blocked users</p>'
@@ -1218,16 +1219,24 @@ function showBlockingModal() {
                             .map(
                               (user) => `
                             <div class="blocked-user-item">
-                                <img src="${user.avatar}" alt="${user.name}" class="blocked-user-avatar">
+                                <img src="${user.avatar}" alt="${
+                                user.name
+                              }" class="blocked-user-avatar">
                                 <div class="blocked-user-info">
-                                    <div class="blocked-user-name">${user.name}</div>
-                                    <div class="blocked-user-date">Blocked on ${new Date(user.blockedDate).toLocaleDateString()}</div>
+                                    <div class="blocked-user-name">${
+                                      user.name
+                                    }</div>
+                                    <div class="blocked-user-date">Blocked on ${new Date(
+                                      user.blockedDate
+                                    ).toLocaleDateString()}</div>
                                 </div>
-                                <button class="unblock-btn" onclick="unblockUser('${user.name}')">
+                                <button class="unblock-btn" onclick="unblockUser('${
+                                  user.name
+                                }')">
                                     <i class="fas fa-unlock"></i> Unblock
                                 </button>
                             </div>
-                        `,
+                        `
                             )
                             .join("")
                     }
@@ -1253,16 +1262,16 @@ function showBlockingModal() {
                                     <i class="fas fa-user-slash"></i> Block
                                 </button>
                             </div>
-                        `,
+                        `
                           )
                           .join("")}
                     </div>
                 </div>
             </div>
         </div>
-    `
+    `;
 
-  document.body.appendChild(modal)
+  document.body.appendChild(modal);
 }
 
 function blockUser(name, avatar) {
@@ -1271,39 +1280,39 @@ function blockUser(name, avatar) {
     name: name,
     avatar: avatar,
     blockedDate: new Date().toISOString().split("T")[0],
-  })
+  });
 
   // Show confirmation
-  showNotification(`${name} has been blocked`, "warning")
+  showNotification(`${name} has been blocked`, "warning");
 
   // Close modal and refresh
-  closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+  closeModal(document.querySelector(".modal-overlay .modal-close-btn"));
 
   // Optionally refresh the blocking modal if it's still open
   setTimeout(() => {
     if (document.querySelector(".modal-overlay")) {
-      showBlockingModal()
+      showBlockingModal();
     }
-  }, 100)
+  }, 100);
 }
 
 function unblockUser(name) {
   // Remove from blocked users
-  const index = blockedUsers.findIndex((user) => user.name === name)
+  const index = blockedUsers.findIndex((user) => user.name === name);
   if (index > -1) {
-    blockedUsers.splice(index, 1)
-    showNotification(`${name} has been unblocked`, "success")
+    blockedUsers.splice(index, 1);
+    showNotification(`${name} has been unblocked`, "success");
 
     // Refresh the modal
-    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
-    setTimeout(() => showBlockingModal(), 100)
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"));
+    setTimeout(() => showBlockingModal(), 100);
   }
 }
 
 // Activity Modal Functions
 function showActivityModal() {
-  const modal = document.createElement("div")
-  modal.className = "modal-overlay"
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
   modal.innerHTML = `
         <div class="modal-content">
             <div class="modal-header">
@@ -1384,17 +1393,15 @@ function showActivityModal() {
                 </div>
             </div>
         </div>
-    `
+    `;
 
-  document.body.appendChild(modal)
+  document.body.appendChild(modal);
 }
-
-
 
 // Logout Modal Functions
 function showLogoutModal() {
-  const modal = document.createElement("div")
-  modal.className = "modal-overlay"
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
   modal.innerHTML = `
         <div class="modal-content" style="max-width: 400px;">
             <div class="modal-header">
@@ -1417,14 +1424,14 @@ function showLogoutModal() {
                 <button type="button" class="modal-btn primary" onclick="performLogout()" style="background: #ff6b9d;">Log Out</button>
             </div>
         </div>
-    `
+    `;
 
-  document.body.appendChild(modal)
+  document.body.appendChild(modal);
 }
 
 function performLogout() {
   // Show loading state
-  showNotification("Logging out...", "info")
+  showNotification("Logging out...", "info");
 
   // Simulate logout process
   setTimeout(() => {
@@ -1433,20 +1440,20 @@ function performLogout() {
     // 2. Clear user data from localStorage
     // 3. Redirect to login page
 
-    showNotification("Successfully logged out!", "success")
-    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+    showNotification("Successfully logged out!", "success");
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"));
 
     // Simulate redirect to login (in a real app)
     setTimeout(() => {
-      alert("In a real app, you would be redirected to the login page now.")
-    }, 1000)
-  }, 1500)
+      alert("In a real app, you would be redirected to the login page now.");
+    }, 1000);
+  }, 1500);
 }
 
 // Delete Account Modal Functions
 function showDeleteAccountModal() {
-  const modal = document.createElement("div")
-  modal.className = "modal-overlay"
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
   modal.innerHTML = `
         <div class="modal-content" style="max-width: 500px;">
             <div class="modal-header" style="background: #ff4757;">
@@ -1493,36 +1500,35 @@ function showDeleteAccountModal() {
                 <button type="button" class="modal-btn danger" onclick="confirmDeleteAccount()" id="delete-confirm-btn" disabled>Delete My Account</button>
             </div>
         </div>
-    `
+    `;
 
-  document.body.appendChild(modal)
+  document.body.appendChild(modal);
 
   // Add event listener for confirmation input
-  const confirmInput = document.getElementById("delete-confirmation")
-  const deleteBtn = document.getElementById("delete-confirm-btn")
+  const confirmInput = document.getElementById("delete-confirmation");
+  const deleteBtn = document.getElementById("delete-confirm-btn");
 
   confirmInput.addEventListener("input", function () {
     if (this.value.toUpperCase() === "DELETE") {
-      deleteBtn.disabled = false
-      deleteBtn.style.opacity = "1"
+      deleteBtn.disabled = false;
+      deleteBtn.style.opacity = "1";
     } else {
-      deleteBtn.disabled = true
-      deleteBtn.style.opacity = "0.5"
+      deleteBtn.disabled = true;
+      deleteBtn.style.opacity = "0.5";
     }
-  })
+  });
 }
 
-
 function confirmDeleteAccount() {
-  const confirmInput = document.getElementById("delete-confirmation")
+  const confirmInput = document.getElementById("delete-confirmation");
 
   if (confirmInput.value.toUpperCase() !== "DELETE") {
-    showNotification('Please type "DELETE" to confirm', "error")
-    return
+    showNotification('Please type "DELETE" to confirm', "error");
+    return;
   }
 
   // Show loading state
-  showNotification("Deleting account...", "info")
+  showNotification("Deleting account...", "info");
 
   // Simulate account deletion process
   setTimeout(() => {
@@ -1531,12 +1537,14 @@ function confirmDeleteAccount() {
     // 2. Clear all local data
     // 3. Redirect to goodbye page
 
-    showNotification("Account deleted successfully", "success")
-    closeModal(document.querySelector(".modal-overlay .modal-close-btn"))
+    showNotification("Account deleted successfully", "success");
+    closeModal(document.querySelector(".modal-overlay .modal-close-btn"));
 
     // Simulate redirect (in a real app)
     setTimeout(() => {
-      alert("Your account has been permanently deleted. In a real app, you would be redirected to a goodbye page.")
-    }, 1000)
-  }, 2000)
+      alert(
+        "Your account has been permanently deleted. In a real app, you would be redirected to a goodbye page."
+      );
+    }, 1000);
+  }, 2000);
 }

@@ -80,6 +80,15 @@ export async function showProfile() {
   return res;
 }
 
+export async function showProfileOther(id_profile_other) {
+  const res = await fetch(BASE_URL + "user/profile/profileOther.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_profile_other }),
+  });
+  return res;
+}
+
 // Phần cập nhật, chỉnh sửa, xóa ảnh
 export async function uploadPhotos(formData) {
   const res = await fetch(BASE_URL + "user/profile/photos/photosUpload.php", {

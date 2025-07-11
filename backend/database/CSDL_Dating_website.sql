@@ -44,6 +44,10 @@ CREATE TABLE likes (
     UNIQUE KEY unique_like (from_user_id, to_user_id)
 );
 
+-- Cập nhật bảng likes
+ALTER TABLE likes
+ADD COLUMN type ENUM('like', 'super-like') NOT NULL DEFAULT 'like';
+
 -- 5. Bảng MATCHES
 CREATE TABLE matches (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -117,7 +121,6 @@ CREATE TABLE reports (
     reported_id INT NOT NULL,
     reason VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('pending', 'resolved', 'dismissed') DEFAULT 'pending', -- Thêm cột status
     FOREIGN KEY (reporter_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (reported_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -132,29 +135,15 @@ CREATE TABLE blocks (
     FOREIGN KEY (blocked_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE KEY unique_block (blocker_id, blocked_id)
 );
- -- Phân loại
-ALTER TABLE users
-ADD COLUMN username VARCHAR(255),
-ADD COLUMN status ENUM('active', 'banned') DEFAULT 'active', -- Dòng cập nhật cột status từ BOOLEAN DEFAULT 1 thành ENUM('active', 'banned') DEFAULT 'active'.
-ADD COLUMN phan_loai ENUM('user', 'admin') DEFAULT 'user';
-
--- Tạo user admin
-
-INSERT INTO users (email, username, password_hash, created_at, phan_loai, status)
-VALUES (
-  'admin_final@fake.local',
-  'admin',
-  '$2y$10$w5xz2qTnmkiPwfqerWfBUe1apmLLrZroDyjS2kcS0ZAsKdcd65eAu',
-  NOW(),
-  'admin',
-  1
-);
-
 
 -- Thêm cột vào bảng
 ALTER TABLE users
 ADD COLUMN username VARCHAR(255),
-ADD COLUMN status BOOLEAN;
+ADD COLUMN phan_loai ENUM('user', 'admin') DEFAULT 'user',
+ADD COLUMN status ENUM('active', 'banned') DEFAULT 'active';
+
+ALTER TABLE reports
+ADD COLUMN status ENUM('pending', 'resolved', 'dismissed') DEFAULT 'pending';
 
 -- Ràng buộc cho hobbies của profile
 ALTER TABLE profiles
@@ -171,6 +160,18 @@ ALTER TABLE profiles
 ADD COLUMN occupation VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
 ADD COLUMN education VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- Tạo bảng social_links
+CREATE TABLE social_links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    platform VARCHAR(50) NOT NULL,         -- Ví dụ: 'facebook', 'instagram', 'linkedin'
+    url TEXT NOT NULL,                     -- Link đầy đủ người dùng nhập
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_platform_per_user (user_id, platform)
+);
+
 -- Tạo indexes để tối ưu hiệu năng
 CREATE INDEX idx_photos_user ON photos(user_id);
 CREATE INDEX idx_likes_from_user ON likes(from_user_id);
@@ -184,3 +185,12 @@ CREATE INDEX idx_subscriptions_status ON user_subscriptions(status);
 CREATE INDEX idx_verifications_user ON verifications(user_id);
 CREATE INDEX idx_verifications_status ON verifications(status);
 
+INSERT INTO users (email, username, password_hash, created_at, phan_loai, status)
+VALUES (
+  'admin_final@fake.local',
+  'admin',
+  '$2y$10$w5xz2qTnmkiPwfqerWfBUe1apmLLrZroDyjS2kcS0ZAsKdcd65eAu',
+  NOW(),
+  'admin',
+  1
+);
