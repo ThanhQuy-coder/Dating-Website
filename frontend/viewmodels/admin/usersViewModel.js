@@ -45,20 +45,22 @@ async function loadUsers() {
   users = await adminModel.getUsers();
 
   tbody.innerHTML = users.map(user => `
-    <tr id="user-row-${user.id}">
-      <td><input type="checkbox" value="${user.id}"></td>
-      <td>${user.username}</td>
-      <td>${user.email}</td>
-      <td><span class="status-badge status-${user.status}">${user.status}</span></td>
-      <td>
-        <button class="btn btn-view" onclick="viewUser(${user.id})">👁️ Xem</button>
-        <button class="btn btn-edit" onclick="editUser(${user.id})">✏️ Sửa</button>
-        <button class="btn btn-ban" onclick="toggleUserStatus(${user.id}, '${user.status}')">
-          ${user.status === 'banned' ? 'Unban' : 'Ban'}
-        </button>
-      </td>
-    </tr>
-  `).join('');
+  <tr id="user-row-${user.id}">
+    <td><input type="checkbox" value="${user.id}"></td>
+    <td>${user.username}</td>
+    <td>${user.email}</td>
+    <td>${user.created_at ?? 'Không rõ'}</td>
+    <td><span class="status-badge status-${user.status}">${user.status}</span></td>
+    <td>
+      <button class="btn btn-view" onclick="viewUser(${user.id})">👁️ Xem</button>
+      <button class="btn btn-edit" onclick="editUser(${user.id})">✏️ Sửa</button>
+      <button class="btn btn-ban" onclick="toggleUserStatus(${user.id}, '${user.status}')">
+        ${user.status === 'banned' ? 'Unban' : 'Ban'}
+      </button>
+    </td>
+  </tr>
+`).join('');
+
 }
 
 window.viewUser = function(userId) {
@@ -67,7 +69,6 @@ window.viewUser = function(userId) {
   const user = users.find(u => u.id == userId);
   if (!user) return;
 
-  // Đóng modal edit nếu đang mở
   const editModal = document.getElementById('editUserModal');
   if (editModal) editModal.classList.remove('show');
 
@@ -75,25 +76,24 @@ window.viewUser = function(userId) {
   const modalBody = document.getElementById('userModalBody');
 
   modalBody.innerHTML = `
-    <div class="user-details-modal">
-      <div class="avatar">
-        <img src="https://via.placeholder.com/80?text=${user.username}" alt="${user.username}">
-      </div>
-      <div class="info">
-        <h2>${user.username}</h2>
-        <p><strong>📧 Email:</strong> ${user.email}</p>
-        <p><strong>📌 Trạng thái:</strong> 
-          <span class="badge badge-${user.status}">${user.status}</span>
-        </p>
-      </div>
+  <div class="user-details-modal">
+    <div class="info">
+      <h2>${user.username}</h2>
+      <p><strong>📧 Email:</strong> ${user.email ?? 'Không có'}</p>
+      <p><strong>🆔 ID:</strong> ${user.id}</p>
+      <p><strong>📌 Trạng thái:</strong> 
+        <span class="badge badge-${user.status}">${user.status}</span>
+      </p>
+      <p><strong>📅 Ngày tham gia:</strong> ${user.created_at ?? 'Không rõ'}</p>
     </div>
-  `;
+  </div>
+`;
 
-  // Đảm bảo render lại đúng
   modal.classList.remove('show');
-  void modal.offsetHeight;  // 👈 ép reflow
+  void modal.offsetHeight;
   modal.classList.add('show');
 };
+
 
 window.editUser = function (userId) {
   console.log("✏️ Đã click Sửa, ID:", userId);
@@ -148,4 +148,5 @@ window.closeModal = function (modalId) {
     }
   }
 };
+
 

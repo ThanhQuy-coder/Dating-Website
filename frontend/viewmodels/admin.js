@@ -269,34 +269,23 @@ async function loadUsersData() {
 function renderUsersTable(users) {
     const tbody = document.getElementById('usersTableBody');
     tbody.innerHTML = users.map(user => `
-        <tr>
-            <td><input type="checkbox" value="${user.id}" onchange="updateSelectAllState()"></td>
-            <td>
-                <div class="user-info">
-                    <img src="https://via.placeholder.com/40" class="user-avatar" alt="${user.username}">
-                    <div class="user-details">
-                        <h4>${user.username}</h4>
-                        <p>ID: ${user.id}</p>
-                    </div>
-                </div>
-            </td>
-            <td class="hide-mobile">${user.email}</td>
-            <td class="hide-mobile">N/A</td>
-            <td class="hide-mobile">N/A</td>
-            <td>
-                <span class="status-badge status-${user.status}">
-                    ${getStatusText(user.status)}
-                </span>
-            </td>
-            <td class="hide-mobile">N/A</td>
-            <td>
-                <div class="action-buttons">
-                    <button class="action-btn btn-view" onclick="viewUser(${user.id})">👁️ Xem</button>
-                    <button class="action-btn btn-edit" onclick="editUser(${user.id})">✏️ Sửa</button>
-                    <button class="action-btn btn-ban" onclick="banUser(${user.id})">${user.status === 'banned' ? '🔓 Bỏ cấm' : '🚫 Cấm'}</button>
-                </div>
-            </td>
-        </tr>
+        <tr id="user-row-${user.id}">
+      <td><input type="checkbox" value="${user.id}"></td>
+      <td>${user.username}<br><small>ID: ${user.id}</small></td>
+      <td>${user.email ?? 'Không có email'}</td>
+      <td>${user.created_at ?? 'Không rõ'}</td>
+      <td><span class="status-badge status-${user.status}">
+        ${user.status === 'active' ? 'Hoạt động' : 'Bị cấm'}
+      </span></td>
+      
+      <td>
+        <button class="btn btn-view" onclick="viewUser(${user.id})">👁️ Xem</button>
+        <button class="btn btn-edit" onclick="editUser(${user.id})">✏️ Sửa</button>
+        <button class="btn btn-ban" onclick="toggleUserStatus(${user.id}, '${user.status}')">
+          ${user.status === 'banned' ? 'Bỏ cấm' : 'Cấm'}
+        </button>
+      </td>
+    </tr>
     `).join('');
 }
 window.renderUsersTable = renderUsersTable;
@@ -1003,6 +992,20 @@ function filterReports() {
   renderReportsGrid(filtered);
 }
 
+// ✅ Định nghĩa trước
+async function toggleUserStatus(id, currentStatus) {
+  const newStatus = currentStatus === 'banned' ? 'active' : 'banned';
+  const confirmText = newStatus === 'banned' ? 'CẤM' : 'BỎ CẤM';
+  if (!confirm(`Bạn có chắc muốn ${confirmText} người dùng này?`)) return;
+
+  const res = await adminModel.updateUserStatus(id, newStatus);
+  if (res.success) {
+    alert('✅ Đã cập nhật trạng thái');
+    await loadUsers(); // reload lại danh sách
+  } else {
+    alert('❌ Không cập nhật được');
+  }
+}
 
 
 window.viewUser = viewUser;
@@ -1015,5 +1018,7 @@ window.toggleUserStatus = toggleUserStatus;
 window.resolveReport = resolveReport;
 window.dismissReport = dismissReport;
 window.renderReportsGrid = renderReportsGrid;
+
+window.toggleMobileMenu = toggleMobileMenu;
 
 

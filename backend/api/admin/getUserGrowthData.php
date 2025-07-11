@@ -6,7 +6,7 @@ try {
     require_once '../../core/db.php';
 
     // Query dữ liệu (ví dụ: số user mới theo ngày)
-    $stmt = $pdo->query("SELECT DAYOFWEEK(created_at) as day, COUNT(*) as count FROM users GROUP BY day");
+    $stmt = $conn->query("SELECT DAYOFWEEK(created_at) as day, COUNT(*) as count FROM users GROUP BY day");
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $data = array_fill(0, 7, 0); // T2->CN
