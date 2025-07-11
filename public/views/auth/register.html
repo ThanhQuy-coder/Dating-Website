@@ -2,15 +2,20 @@
 <html>
   <meta charset="UTF-8" />
   <head>
-    <title>Choco-Sign In</title>
-    <link rel="stylesheet" href="assets/css/login.css" />
+    <title>Choco - Sign Up</title>
+    <link rel="stylesheet" href="assets/css/register.css" />
+    <link rel="stylesheet" href="assets/css/notification.css">
     <link rel="stylesheet" href="assets/css/about.css">
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="assets/css/notification.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -104,52 +109,55 @@
             </div>
         </header>
     <hr />
-    <!-- Phần đăng nhập chính -->
-    <main class="main-signin">
+    <main class="main-signup">
       <div class="box">
         <div class="box-logo">Choco</div>
-        <p class="slogan">Happiness You Can Taste!</p>
-        <form id="login-form">
+        <p class="slogan">Happiness you can taste!</p>
+        <!-- Form -->
+        <form id="register-form">
           <section class="inputname input-icon">
             <i class="fa fa-user"></i>
-            <input type="text" placeholder="Username" id="login" />
+            <input
+              type="text"
+              placeholder="Username"
+              id="register"
+              required
+            />
           </section>
           <section class="inputpass input-icon">
             <i class="fa fa-lock"></i>
-            <input type="password" placeholder="Password" id="login-pass" />
+            <input
+              type="password"
+              placeholder="Password"
+              id="register-pass"
+              required
+            />
           </section>
-          <!-- Note -->
-          <a href="#">Forget password</a>
-          <section class="signin-btn">
-            <button type="submit">Sign in</button>
+          <section class="inputrepass input-icon">
+            <i class="fa fa-lock"></i>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              id="confirm-password"
+              required
+            />
+          </section>
+          <section class="signup-btn">
+            <button type="submit">Sign up</button>
           </section>
         </form>
-        <!-- Link Sign up now -->
-        <p class="signup-text">
-          Don't have an account?
-          <a href="index.php?page=register">Sign up now</a>
-        </p>
-        <div class="or-divider"><span>Or</span></div>
-        <section class="logofb">
-          <button id="fb-login-btn">
-            <i class="fab fa-facebook-f"></i> Login With Facebook
-          </button>
-        </section>
-        <section class="logogg">
-          <button id="google-login-btn">
-            <i class="fab fa-google"></i> Login With Google
-          </button>
-        </section>
       </div>
     </main>
 
-    <!-- Thông báo đăng nhập -->
+    <!-- Thông báo đăng ký -->
     <div id="notification" class="notification hidden">
-      <p id="notification-message">Registration successful!</p>
+      <p id="notification-message"></p>
     </div>
 
-    <!-- Phần JS -->
-    <script type="module" src="viewmodels/loginViewModel.js"></script>
-    <script src="viewmodels/login.js"></script>
+    <script
+      type="module"
+      src="viewmodels/registerViewModel.js"
+    ></script>
+    <script src="assets/js/login.js"></script>
   </body>
 </html>

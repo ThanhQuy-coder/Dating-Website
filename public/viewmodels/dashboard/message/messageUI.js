@@ -25,7 +25,7 @@ async function getCurrentUser() {
     const data = await fetchCurrentUser();
     if (data.success) {
       currentUserId = data.user.id;
-      console.log("Bạn là user ID:", currentUserId);
+      // console.log("Bạn là user ID:", currentUserId);
     } else {
       console.error("Lỗi xác thực:", data.error);
     }

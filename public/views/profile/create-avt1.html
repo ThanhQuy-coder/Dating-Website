@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Choco - Create Match</title>
+    <title>Choco - Create Avatar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -12,10 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/css/about.css">
-    <link rel="stylesheet" href="assets/css/match-setup.css">
-    <link rel="stylesheet" href="assets/css/create-profile.css">
 
+    <link rel="stylesheet" href="assets/css/create-profile.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+    
 </head>
 <body>
         <!-- Loading Screen -->
@@ -54,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <!-- Main Content -->
     <div id="main-content" class="main-content hidden">
         <!-- Header -->
@@ -61,12 +63,12 @@
             <div class="header-container">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.php?page=home" class="logo-link">Choco</a>
+                    <a href="index.php?page" class="logo-link">Choco</a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="nav desktop-nav" role="navigation">
-                    <a href="index.php?page=premium" class="nav-link">Premium</a>
+                    <a href="index.php?page=login" class="nav-link">Premium</a>
                     <a href="index.php?page=about" class="nav-link">About</a>
                     <a href="index.php?page=support" class="nav-link">Support</a>
                     
@@ -90,7 +92,7 @@
                     </button>
 
                     <!-- Sign In Button (Desktop) -->
-                    <a href="index.php?page=login" class="sign-in-btn desktop-only">Sign in</a>
+                    <a href="index.php?page" class="sign-in-btn desktop-only">Sign in</a>
 
                     <!-- Mobile Menu Toggle -->
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -104,7 +106,7 @@
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
                 <nav class="mobile-nav" role="navigation">
-                    <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+                    <a href="index.php?page=login" class="mobile-nav-link">Premium</a>
                     <a href="index.php?page=about" class="mobile-nav-link">About</a>
                     <a href="index.php?page=support" class="mobile-nav-link">Support</a>
                     <div class="mobile-dropdown">
@@ -119,28 +121,24 @@
             </div>
         </header>
     <hr>
+
     <main class="main-signup">
         <div class="box">
             <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
             <div class="box-logo">Choco</div>
             <p class="slogan">Happiness you can taste!</p>
             <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
-            <form id="matchForm" novalidate>
-                <section>
-                    <label class="gender-label">Gender you want to meet:</label>
-                    <div class="gender-select">
-                        <button type="button" class="gender-btn" data-value="male">Male</button>
-                        <button type="button" class="gender-btn" data-value="female">Female</button>
-                        <button type="button" class="gender-btn" data-value="both">Both</button>
-                    </div>
+            <form id="profileForm" novalidate>
+                <!-- Avatar upload UI sẽ được chỉnh sửa ở bước tiếp theo -->
+                <section class="avatar-upload" style="display:flex; flex-direction:column; align-items:center; margin-bottom: 24px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" style="width:150px; height:150px; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08); object-fit:cover;">
+                    <label for="avatarInput" style="position:relative; top:-40px; left:55px; cursor:pointer;">
+                        <i class="fa fa-plus-circle" style="font-size:2rem; color:#2196f3; background:#fff; border-radius:50%;"></i>
+                        <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display:none;">
+                    </label>
                 </section>
-                <section>
-                    <label class="age-label">Age you want to meet?</label>
-                    <input type="range" min="18" max="50" value="25" class="age-slider" id="ageRange">
-                    <div class="age-value" id="ageValue">25 Age</div>
-                </section>
-                <section class="signup-btn">
-                    <button type="submit" class="submit-btn">
+                <section class="uploadAvatarButton" id="uploadAvatarButton">
+                    <button type="submit" class="submit-btn signup-btn">
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </section>
@@ -148,8 +146,14 @@
             </form>
         </div>
     </main>
-    
-    <script src="viewmodels/match-setup.js"></script>
-    <script src="viewmodels/about.js"></script>
+
+    <!-- Phần thông báo cho người dùng -->
+    <div id="notification" class="notification hidden">
+      <p id="notification-message"></p>
+    </div>
+
+    <script src="viewmodels/auth-guard.js"></script>
+    <script type="module" src="viewmodels/create-avt1ViewModel.js"></script>
+    <script src="assets/js/about.js"></script>
 </body>
 </html> 

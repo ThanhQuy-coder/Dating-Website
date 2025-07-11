@@ -549,7 +549,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 40px 20px 20px 20px;
   height: 100%;
 }
 
@@ -621,7 +621,7 @@ body {
 .card-container {
   position: relative;
   width: 350px;
-  height: 600px;
+  height: 450px;
   perspective: 1000px;
 }
 
@@ -2370,7 +2370,7 @@ body:not([data-theme="dark"]) .chat-send-btn i {
     background: #f8f9fa;
     min-height: calc(100vh - 150px);
     order: 1;
-    padding-bottom: 100px;
+    /* padding-bottom: 100px; */
   }
 
   .bottom-nav {
@@ -2990,7 +2990,7 @@ body:not([data-theme="dark"]) .chat-send-btn i {
     background: #f8f9fa;
     min-height: calc(100vh - 150px);
     order: 1;
-    padding-bottom: 100px;
+    /* padding-bottom: 100px; */
   }
 
   .bottom-nav {
@@ -3004,7 +3004,7 @@ body:not([data-theme="dark"]) .chat-send-btn i {
   .card-container {
     width: 90vw;
     max-width: 350px;
-    height: 70vh;
+    height: 60vh;
     max-height: 600px;
   }
 

@@ -2,24 +2,24 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Choco - Create Avatar</title>
+    <title>Choco - Create Profile</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="assets/css/create-profile.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+    <link rel="stylesheet" href="assets/css/about.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
-    
 
-    <link rel="stylesheet" href="assets/css/create-profile.css">
-    <link rel="stylesheet" href="assets/css/about.css">
-    <link rel="stylesheet" href="assets/css/notification.css">
-    
 </head>
 <body>
-        <!-- Loading Screen -->
+    <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-container">
             <!-- Header Skeleton -->
@@ -68,7 +68,7 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="nav desktop-nav" role="navigation">
-                    <a href="index.php?page=premium" class="nav-link">Premium</a>
+                    <a href="index.php?page=login" class="nav-link">Premium</a>
                     <a href="index.php?page=about" class="nav-link">About</a>
                     <a href="index.php?page=support" class="nav-link">Support</a>
                     
@@ -92,7 +92,7 @@
                     </button>
 
                     <!-- Sign In Button (Desktop) -->
-                    <a href="index.php?page" class="sign-in-btn desktop-only">Sign in</a>
+                    <a href="index.php?page=login" class="sign-in-btn desktop-only">Sign in</a>
 
                     <!-- Mobile Menu Toggle -->
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -106,7 +106,7 @@
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
                 <nav class="mobile-nav" role="navigation">
-                    <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+                    <a href="index.php?page=login" class="mobile-nav-link">Premium</a>
                     <a href="index.php?page=about" class="mobile-nav-link">About</a>
                     <a href="index.php?page=support" class="mobile-nav-link">Support</a>
                     <div class="mobile-dropdown">
@@ -128,21 +128,32 @@
             <div class="box-logo">Choco</div>
             <p class="slogan">Happiness you can taste!</p>
             <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
+            
+            <!-- Form -->
             <form id="profileForm" novalidate>
-                <!-- Avatar upload UI sẽ được chỉnh sửa ở bước tiếp theo -->
-                <section class="avatar-upload" style="display:flex; flex-direction:column; align-items:center; margin-bottom: 24px;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" style="width:150px; height:150px; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08); object-fit:cover;">
-                    <label for="avatarInput" style="position:relative; top:-40px; left:55px; cursor:pointer;">
-                        <i class="fa fa-plus-circle" style="font-size:2rem; color:#2196f3; background:#fff; border-radius:50%;"></i>
-                        <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display:none;">
-                    </label>
+                <section class="inputname input-icon">
+                    <input type="text" placeholder="Display name" name="displayName" id="display-name" required>
                 </section>
-                <section class="uploadAvatarButton" id="uploadAvatarButton">
-                    <button type="submit" class="submit-btn signup-btn">
+                <section class="inputhobbies input-icon">
+                    <input type="text" placeholder="Hobbies (How to fill in: play games, sing, travel)" name="hobbies" id="hobbies" required>
+                </section>
+                <section class="input-group gender-dob-group">
+                    <select name="gender" id="gender" required>
+                        <option value="" disabled selected>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="date" name="dob" placeholder="Date of birth" id="date-of-birth" required>
+                </section>
+                <section class="inputdesc input-icon">
+                    <input type="text" placeholder="Self description" name="description" id="description" required>
+                </section>
+                <section class="signup-btn">
+                    <button type="submit" class="submit-btn" id="submitBtn">
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </section>
-                <div id="formMessage" class="form-message"></div>
             </form>
         </div>
     </main>
@@ -153,7 +164,7 @@
     </div>
 
     <script src="viewmodels/auth-guard.js"></script>
-    <script type="module" src="viewmodels/create-avt1ViewModel.js"></script>
-    <script src="viewmodels/about.js"></script>
+    <script type="module" src="assets/js/about.js"></script>
+    <script type="module" src="viewmodels/create-profileViewModel.js"></script>
 </body>
 </html> 

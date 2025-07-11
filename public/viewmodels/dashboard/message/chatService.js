@@ -62,7 +62,7 @@ export async function listenForMessages(
       }
     });
 
-    console.log("Get Notification IDs:", existingNotificationIds);
+    // console.log("Get Notification IDs:", existingNotificationIds);
   } else {
     console.log("No notifications found");
   }

@@ -2,24 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Choco - Create Profile</title>
-
+    <title>Choco - Create Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <link rel="stylesheet" href="assets/css/create-profile.css">
-    <link rel="stylesheet" href="assets/css/notification.css">
-    <link rel="stylesheet" href="assets/css/about.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="assets/css/match-setup.css">
+    <link rel="stylesheet" href="assets/css/create-profile.css">
 
 </head>
 <body>
-    <!-- Loading Screen -->
+        <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-container">
             <!-- Header Skeleton -->
@@ -55,7 +54,6 @@
             </div>
         </div>
     </div>
-
     <!-- Main Content -->
     <div id="main-content" class="main-content hidden">
         <!-- Header -->
@@ -63,12 +61,12 @@
             <div class="header-container">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.php?page" class="logo-link">Choco</a>
+                    <a href="index.php?page=home" class="logo-link">Choco</a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="nav desktop-nav" role="navigation">
-                    <a href="index.php?page=premium" class="nav-link">Premium</a>
+                    <a href="index.php?page=login" class="nav-link">Premium</a>
                     <a href="index.php?page=about" class="nav-link">About</a>
                     <a href="index.php?page=support" class="nav-link">Support</a>
                     
@@ -106,7 +104,7 @@
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
                 <nav class="mobile-nav" role="navigation">
-                    <a href="index.php?page=premium" class="mobile-nav-link">Premium</a>
+                    <a href="index.php?page=login" class="mobile-nav-link">Premium</a>
                     <a href="index.php?page=about" class="mobile-nav-link">About</a>
                     <a href="index.php?page=support" class="mobile-nav-link">Support</a>
                     <div class="mobile-dropdown">
@@ -121,50 +119,37 @@
             </div>
         </header>
     <hr>
-
     <main class="main-signup">
         <div class="box">
             <a href="javascript:history.back()" class="back-btn"><i class="fa fa-arrow-left"></i></a>
             <div class="box-logo">Choco</div>
             <p class="slogan">Happiness you can taste!</p>
             <h2 style="text-align:center; margin-bottom: 10px;">Create your profile</h2>
-            
-            <!-- Form -->
-            <form id="profileForm" novalidate>
-                <section class="inputname input-icon">
-                    <input type="text" placeholder="Display name" name="displayName" id="display-name" required>
+            <form id="matchForm" novalidate>
+                <section>
+                    <label class="gender-label">Gender you want to meet:</label>
+                    <div class="gender-select">
+                        <button type="button" class="gender-btn" data-value="male">Male</button>
+                        <button type="button" class="gender-btn" data-value="female">Female</button>
+                        <button type="button" class="gender-btn" data-value="both">Both</button>
+                    </div>
                 </section>
-                <section class="inputhobbies input-icon">
-                    <input type="text" placeholder="Hobbies (How to fill in: play games, sing, travel)" name="hobbies" id="hobbies" required>
-                </section>
-                <section class="input-group gender-dob-group">
-                    <select name="gender" id="gender" required>
-                        <option value="" disabled selected>Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="date" name="dob" placeholder="Date of birth" id="date-of-birth" required>
-                </section>
-                <section class="inputdesc input-icon">
-                    <input type="text" placeholder="Self description" name="description" id="description" required>
+                <section>
+                    <label class="age-label">Age you want to meet?</label>
+                    <input type="range" min="18" max="50" value="25" class="age-slider" id="ageRange">
+                    <div class="age-value" id="ageValue">25 Age</div>
                 </section>
                 <section class="signup-btn">
-                    <button type="submit" class="submit-btn" id="submitBtn">
+                    <button type="submit" class="submit-btn">
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </section>
+                <div id="formMessage" class="form-message"></div>
             </form>
         </div>
     </main>
-
-    <!-- Phần thông báo cho người dùng -->
-    <div id="notification" class="notification hidden">
-      <p id="notification-message"></p>
-    </div>
-
-    <script src="viewmodels/auth-guard.js"></script>
-    <script type="module" src="viewmodels/about.js"></script>
-    <script type="module" src="viewmodels/create-profileViewModel.js"></script>
+    
+    <script src="viewmodels/match-setup.js"></script>
+    <script src="assets/js/about.js"></script>
 </body>
 </html> 
